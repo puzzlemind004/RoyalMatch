@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(for dir in feature_4_systeme_objectifs feature_5_gestion_joueurs feature_6_logique_manche feature_7_logique_tour feature_8_systeme_effets feature_9_gestion_parties feature_10_mode_multijoueur feature_11_intelligence_artificielle feature_12_mode_spectateur feature_13_interface_utilisateur feature_14_systeme_scoring feature_15_tests_equilibrage feature_16_administration feature_17_deploiement_production feature_18_optimisation_performance)",
+      "Bash(do mkdir -p \"$dir\")",
+      "Bash(done)",
+      "Bash(if not exist .claudecommands mkdir .claudecommands)",
+      "Bash(powershell:*)",
+      "Bash(dir:*)",
+      "Bash(find:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  },
+  "spinnerTipsEnabled": false
+}
