@@ -2,33 +2,44 @@
 description: Remove console.log, verify compilation, lint, format and create clean commit
 ---
 
-Execute the following steps to clean the code and prepare a commit:
+# Clean Commit Workflow
 
-1. Remove all console.log statements from TypeScript and JavaScript files
-2. Verify that the code compiles without errors
-3. Run lint checks and fix issues
-4. Format the code
-5. Stage all changes
-6. Analyze the changes and create a descriptive commit message
+Exécute automatiquement les étapes suivantes pour nettoyer le code et créer un commit propre :
 
-!powershell -ExecutionPolicy Bypass -File .claude/scripts/clean-commit.ps1
+## Étapes automatisées
 
-After the script completes, review the changes shown and create a commit with a detailed message describing:
-- Removal of console.log statements
-- Any compilation fixes applied
-- Lint and format improvements
-- Other changes included
+1. **Recherche et suppression des console.log**
+   - Trouve tous les fichiers .ts/.js (hors node_modules, dist, build)
+   - Supprime les console.log/debug/info/warn/error
+   - Compte le nombre de fichiers modifiés
 
-Use this format for the commit message:
-```
-chore: clean code - remove logs, verify build, lint and format
+2. **Vérification de la compilation**
+   - Client (Angular) : `npm run build` si le dossier client/ existe
+   - Server (AdonisJS) : `npm run build` si le dossier server/ existe
+   - Arrête si une compilation échoue
 
-- Removed console.log statements from X files
-- Verified compilation succeeds for client and server
-- Applied lint fixes
-- Formatted code according to style guide
+3. **Lint et correction**
+   - Client : `npm run lint` puis `npm run lint:fix` si disponible
+   - Server : `npm run lint` puis `npm run lint:fix` si disponible
 
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
+4. **Formatage du code**
+   - Client : `npm run format` (Prettier)
+   - Server : `npm run format` (Prettier)
 
-Co-Authored-By: Claude <noreply@anthropic.com>
-```
+5. **Analyse des changements**
+   - `git status` pour voir les fichiers modifiés
+   - `git diff` pour analyser les modifications
+   - Génère un message de commit descriptif basé sur les vrais changements
+
+6. **Création du commit**
+   - Stage automatiquement tous les changements
+   - Crée un commit avec un message détaillé et précis
+   - Format : `chore: clean code - [actions effectuées]`
+
+## Résultat attendu
+
+Un commit propre avec :
+- Code sans console.log
+- Build qui compile sans erreur
+- Code linté et formaté
+- Message de commit descriptif basé sur les vrais changements
