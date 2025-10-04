@@ -19,7 +19,12 @@
       "Bash(npm run build:*)",
       "Bash(npm run lint)",
       "Bash(npm run lint:*)",
-      "Bash(npm run format:*)"
+      "Bash(npm run format:*)",
+      "Bash(node ace make:migration:*)",
+      "Bash(del:*)",
+      "Bash(node ace make:model:*)",
+      "Bash(node ace migration:run:*)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []
