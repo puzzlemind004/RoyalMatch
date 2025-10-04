@@ -38,22 +38,38 @@ RoyalMatch est un jeu de cartes innovant jouable en multijoueur (2-4 joueurs) ou
 
 ```
 RoyalMatch/
-├── client/          # Frontend Angular (à créer)
-├── server/          # Backend AdonisJS (à créer)
-├── features/        # Documentation des features (101 tâches)
-├── projet.md        # Cahier des charges complet
-├── REGLES_COULEURS_FINAL.md  # Règles définitives des couleurs
-└── CORRECTIONS_IMPORTANTES.md # Corrections appliquées
+├── client/          # Frontend Angular 18+ ✅
+│   ├── src/app/
+│   │   ├── core/          # Services, guards, interceptors
+│   │   ├── features/      # Modules fonctionnels
+│   │   ├── shared/        # Composants partagés
+│   │   └── models/        # Interfaces TypeScript
+│   └── ...
+├── server/          # Backend AdonisJS 6 ✅
+│   ├── app/
+│   │   ├── controllers/   # Contrôleurs HTTP/WS
+│   │   ├── models/        # Modèles Lucid ORM
+│   │   ├── services/      # Logique métier
+│   │   └── validators/    # Validation des données
+│   └── ...
+├── projet/          # Documentation des features (101 tâches)
+└── README.md        # Ce fichier
 ```
 
 ## 🚀 Statut du projet
 
-**Phase actuelle** : Planification terminée ✅
+**Phase actuelle** : Développement en cours 🚧
 
 - ✅ Cahier des charges complet
 - ✅ 18 features planifiées
 - ✅ 101 tâches documentées
-- ⏳ Développement à démarrer
+- ✅ **Tâche 1.1 : Configuration du projet terminée**
+  - Backend AdonisJS 6 avec TypeScript
+  - Frontend Angular 18+ avec Signals
+  - TailwindCSS v4 configuré
+  - WebSocket (Transmit) installé
+  - CORS configuré
+  - Structure de dossiers complète
 
 **Temps estimé de développement** : 2,5-3,5 mois (temps plein)
 
@@ -75,23 +91,57 @@ Soyez le premier joueur à atteindre le score cible en remplissant vos objectifs
 
 La couleur forte bat toutes les autres, la couleur faible perd contre toutes.
 
-## 🏗️ Installation (à venir)
+## 🏗️ Installation
+
+### Prérequis
+- Node.js 20+ LTS
+- PostgreSQL 14+
+- npm ou yarn
+
+### Configuration du backend
 
 ```bash
-# Cloner le repository
-git clone https://github.com/VOTRE_USERNAME/RoyalMatch.git
-cd RoyalMatch
-
-# Backend
 cd server
 npm install
-npm run dev
 
-# Frontend
-cd ../client
+# Configurer PostgreSQL dans .env
+# DB_HOST=127.0.0.1
+# DB_PORT=5432
+# DB_USER=postgres
+# DB_PASSWORD=postgres
+# DB_DATABASE=royalmatch
+
+# Lancer le serveur de développement
+npm run dev
+```
+
+Le backend sera accessible sur `http://localhost:3333`
+
+### Configuration du frontend
+
+```bash
+cd client
 npm install
+
+# Lancer le serveur de développement
 npm start
 ```
+
+Le frontend sera accessible sur `http://localhost:4200`
+
+### Commandes utiles
+
+**Backend:**
+- `npm run dev` - Serveur de développement avec HMR
+- `npm run build` - Build de production
+- `npm run lint` - Vérification ESLint
+- `npm run format` - Formatage avec Prettier
+
+**Frontend:**
+- `npm start` - Serveur de développement
+- `npm run build` - Build de production
+- `npm run format` - Formatage avec Prettier
+- `npm test` - Lancer les tests
 
 ## 📚 Documentation
 
