@@ -1,0 +1,97 @@
+<div class="min-h-screen bg-gray-50 p-4 md:p-8">
+  <div class="max-w-4xl mx-auto">
+    <!-- Header -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+      <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">WebSocket Test Dashboard</h1>
+      <p class="text-gray-600">Test real-time communication with RoyalMatch server</p>
+    </div>
+
+    <!-- Connection Status -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">Connection Status</h2>
+      <div class="flex items-center gap-4 flex-wrap">
+        <div class="flex items-center gap-2">
+          <div
+            class="w-3 h-3 rounded-full"
+            [class.bg-green-500]="wsService.connectionState() === 'connected'"
+            [class.bg-yellow-500]="
+              wsService.connectionState() === 'connecting' ||
+              wsService.connectionState() === 'reconnecting'
+            "
+            [class.bg-red-500]="
+              wsService.connectionState() === 'disconnected' ||
+              wsService.connectionState() === 'error'
+            "
+          ></div>
+          <span class="text-gray-700 capitalize">{{ wsService.connectionState() }}</span>
+        </div>
+
+        @if (wsService.latency() > 0) {
+          <div class="text-sm text-gray-600">
+            Latency: <span class="font-mono">{{ wsService.latency() }}ms</span>
+          </div>
+        }
+
+        @if (wsService.lastError()) {
+          <div class="text-sm text-red-600">Error: {{ wsService.lastError() }}</div>
+        }
+      </div>
+
+      <!-- Connection Controls -->
+      <div class="mt-4 flex gap-2 flex-wrap">
+        <button
+          (click)="connect()"
+          [disabled]="wsService.connectionState() === 'connected'"
+          class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+        >
+          Connect
+        </button>
+        <button
+          (click)="disconnect()"
+          [disabled]="wsService.connectionState() === 'disconnected'"
+          class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+        >
+          Disconnect
+        </button>
+        <button
+          (click)="subscribeToTestGame()"
+          [disabled]="!wsService.isConnected()"
+          class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+        >
+          Subscribe to Test Game
+        </button>
+      </div>
+    </div>
+
+    <!-- Events Log -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">Events Log</h2>
+      <div class="space-y-2 max-h-96 overflow-y-auto">
+        @for (event of events; track event.id) {
+          <div class="p-3 bg-gray-50 rounded-md border border-gray-200">
+            <div class="flex items-start justify-between gap-2 flex-wrap">
+              <div class="flex-1 min-w-0">
+                <span class="font-semibold text-gray-900">{{ event.type }}</span>
+                <pre class="mt-1 text-sm text-gray-600 overflow-x-auto">{{
+                  event.data | json
+                }}</pre>
+              </div>
+              <span class="text-xs text-gray-500 whitespace-nowrap">{{ event.time }}</span>
+            </div>
+          </div>
+        } @empty {
+          <p class="text-gray-500 text-center py-8">
+            No events yet. Connect and subscribe to start receiving events.
+          </p>
+        }
+      </div>
+
+      <button
+        (click)="clearEvents()"
+        class="mt-4 px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors"
+      >
+        Clear Events
+      </button>
+    </div>
+  </div>
+</div>

@@ -129,6 +129,7 @@ But NEVER execute `git commit` on your own initiative.
 - Prefer Signals over RxJS for state management
 - Use Angular's built-in dependency injection
 - Component selector prefix: `app-`
+- **ALWAYS externalize HTML templates**: Use separate `.html` files instead of inline `template` strings for better readability
 
 ## Project Documentation
 
