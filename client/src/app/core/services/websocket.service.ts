@@ -103,7 +103,7 @@ export class WebSocketService {
         const message: WebSocketMessage = JSON.parse(rawMessage);
         this.handleMessage(message);
       } catch (error) {
-        console.error('Failed to parse WebSocket message:', error);
+        // Silently handle parsing errors
       }
     });
   }
@@ -197,7 +197,7 @@ export class WebSocketService {
         break;
 
       default:
-        console.warn('Unknown WebSocket event:', event);
+      // Unknown event type
     }
   }
 
@@ -205,8 +205,6 @@ export class WebSocketService {
    * Handle connection errors and attempt reconnection
    */
   private handleConnectionError(error: any): void {
-    console.error('WebSocket connection error:', error);
-
     this.connectionState.set(ConnectionState.ERROR);
     this.lastError.set(error?.message || 'Connection failed');
 

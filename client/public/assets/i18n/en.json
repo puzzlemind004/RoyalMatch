@@ -1,0 +1,205 @@
+{
+  "cards": {
+    "effects": {
+      "objective_bonus": {
+        "title": "Objective Bonus",
+        "desc": "Bonus points on objectives"
+      },
+      "protection": {
+        "title": "Protection",
+        "desc": "Protection against negative effects"
+      },
+      "objective_progress": {
+        "title": "Progress",
+        "desc": "Progress toward objectives"
+      },
+      "heal": {
+        "title": "Healing",
+        "desc": "Remove debuffs"
+      },
+      "protection_strong": {
+        "title": "Immunity",
+        "desc": "Total immunity this turn"
+      },
+      "objective_double": {
+        "title": "Double Objective",
+        "desc": "Double objective points"
+      },
+      "objective_choice": {
+        "title": "Objective Choice",
+        "desc": "Additional objective"
+      },
+      "objective_boost": {
+        "title": "Boost Objectives",
+        "desc": "All objectives +2 points"
+      },
+      "objective_ultimate": {
+        "title": "Completion",
+        "desc": "Instantly complete objective"
+      },
+      "draw": {
+        "title": "Draw",
+        "desc": "Draw cards"
+      },
+      "peek": {
+        "title": "Peek",
+        "desc": "Look at next cards"
+      },
+      "cycle": {
+        "title": "Cycle",
+        "desc": "Discard and draw"
+      },
+      "search": {
+        "title": "Search",
+        "desc": "Search for specific card"
+      },
+      "shuffle_draw": {
+        "title": "Recycle",
+        "desc": "Recycle discard pile"
+      },
+      "peek_steal": {
+        "title": "Steal & Peek",
+        "desc": "Look + steal card"
+      },
+      "deck_top": {
+        "title": "Organization",
+        "desc": "Organize deck"
+      },
+      "resurrect": {
+        "title": "Resurrect",
+        "desc": "Recover from discard"
+      },
+      "tutor": {
+        "title": "Tutor",
+        "desc": "Search for 2 cards"
+      },
+      "ultimate_draw": {
+        "title": "Ultimate Draw",
+        "desc": "Draw 5, keep 3"
+      },
+      "coin_flip": {
+        "title": "Coin Flip",
+        "desc": "Random coin flip"
+      },
+      "random_bonus": {
+        "title": "Random Bonus",
+        "desc": "Random bonus +1 to +3"
+      },
+      "shuffle_hands": {
+        "title": "Shuffle",
+        "desc": "Shuffle hands"
+      },
+      "random_opponent": {
+        "title": "Random Curse",
+        "desc": "Random opponent debuff"
+      },
+      "chaos": {
+        "title": "Chaos",
+        "desc": "Random global effect"
+      },
+      "lucky_seven": {
+        "title": "Lucky Seven",
+        "desc": "Replay effect x2"
+      },
+      "gamble": {
+        "title": "Gamble",
+        "desc": "Bet points"
+      },
+      "russian_roulette": {
+        "title": "Russian Roulette",
+        "desc": "Random player -5pts"
+      },
+      "wild_card": {
+        "title": "Wild Card",
+        "desc": "Copy last effect"
+      },
+      "jackpot": {
+        "title": "Jackpot",
+        "desc": "30% chance +10pts"
+      },
+      "redistribute": {
+        "title": "Redistribute",
+        "desc": "Random redistribution"
+      },
+      "chaos_king": {
+        "title": "Chaos King",
+        "desc": "3 random effects"
+      },
+      "fortune": {
+        "title": "Fortune",
+        "desc": "Massive effect -10 to +15"
+      },
+      "peek_hand": {
+        "title": "Spy",
+        "desc": "Spy on hand"
+      },
+      "discard": {
+        "title": "Discard",
+        "desc": "Forced discard"
+      },
+      "block": {
+        "title": "Block",
+        "desc": "Block effect"
+      },
+      "steal_points": {
+        "title": "Steal Points",
+        "desc": "Steal points"
+      },
+      "curse": {
+        "title": "Curse",
+        "desc": "Ongoing curse"
+      },
+      "sabotage": {
+        "title": "Sabotage",
+        "desc": "Cancel objective"
+      },
+      "poison": {
+        "title": "Poison",
+        "desc": "Damage over time"
+      },
+      "steal_card": {
+        "title": "Steal Card",
+        "desc": "Steal chosen card"
+      },
+      "assassinate": {
+        "title": "Assassinate",
+        "desc": "Destroy strong card"
+      },
+      "betray": {
+        "title": "Betray",
+        "desc": "Damage all opponents"
+      },
+      "mind_control": {
+        "title": "Mind Control",
+        "desc": "Control action"
+      },
+      "devastate": {
+        "title": "Devastate",
+        "desc": "Mass discard + damage"
+      },
+      "death": {
+        "title": "Death",
+        "desc": "Cancel objectives + steal"
+      }
+    }
+  },
+  "demo": {
+    "cardDemo": {
+      "title": "Demo - Card Component",
+      "features": "Tested features",
+      "cardDisplay": "Card display (face up/down)",
+      "suitColors": "Suit colors (red for ♥♦, black for ♣♠)",
+      "interactiveSelection": "Interactive card selection",
+      "tooltipDesktop": "Desktop tooltip (hover) + mobile (tap)",
+      "translation": "FR/EN translation",
+      "responsive": "Responsive design (mobile-first)",
+      "selectedCard": "Selected card:",
+      "interactiveCards": "Interactive cards",
+      "hide": "Hide",
+      "show": "Show",
+      "block": "Block",
+      "activate": "Activate",
+      "allSuits": "All suits"
+    }
+  }
+}

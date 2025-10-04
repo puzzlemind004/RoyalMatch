@@ -1,0 +1,205 @@
+{
+  "cards": {
+    "effects": {
+      "objective_bonus": {
+        "title": "Bonus Objectif",
+        "desc": "Bonus de points sur objectifs complétés"
+      },
+      "protection": {
+        "title": "Protection",
+        "desc": "Protection contre effets négatifs"
+      },
+      "objective_progress": {
+        "title": "Progression",
+        "desc": "Progression vers objectifs"
+      },
+      "heal": {
+        "title": "Guérison",
+        "desc": "Annulation de malus"
+      },
+      "protection_strong": {
+        "title": "Immunité",
+        "desc": "Immunité totale ce tour"
+      },
+      "objective_double": {
+        "title": "Double Objectif",
+        "desc": "Double les points d'objectif"
+      },
+      "objective_choice": {
+        "title": "Choix Objectif",
+        "desc": "Objectif supplémentaire"
+      },
+      "objective_boost": {
+        "title": "Boost Objectifs",
+        "desc": "Tous objectifs +2 points"
+      },
+      "objective_ultimate": {
+        "title": "Complétion",
+        "desc": "Complète instantanément un objectif"
+      },
+      "draw": {
+        "title": "Pioche",
+        "desc": "Pioche de cartes"
+      },
+      "peek": {
+        "title": "Vision",
+        "desc": "Vision des prochaines cartes"
+      },
+      "cycle": {
+        "title": "Cycle",
+        "desc": "Défausse et pioche"
+      },
+      "search": {
+        "title": "Recherche",
+        "desc": "Recherche de carte spécifique"
+      },
+      "shuffle_draw": {
+        "title": "Recyclage",
+        "desc": "Recyclage de défausse"
+      },
+      "peek_steal": {
+        "title": "Vol Vision",
+        "desc": "Vision + vol de carte"
+      },
+      "deck_top": {
+        "title": "Organisation",
+        "desc": "Organisation du deck"
+      },
+      "resurrect": {
+        "title": "Résurrection",
+        "desc": "Récupération depuis défausse"
+      },
+      "tutor": {
+        "title": "Tuteur",
+        "desc": "Recherche de 2 cartes"
+      },
+      "ultimate_draw": {
+        "title": "Pioche Ultime",
+        "desc": "Pioche 5, garde 3"
+      },
+      "coin_flip": {
+        "title": "Pile ou Face",
+        "desc": "Pile ou face aléatoire"
+      },
+      "random_bonus": {
+        "title": "Bonus Aléatoire",
+        "desc": "Bonus aléatoire +1 à +3"
+      },
+      "shuffle_hands": {
+        "title": "Mélange",
+        "desc": "Mélange des mains"
+      },
+      "random_opponent": {
+        "title": "Malus Aléatoire",
+        "desc": "Malus adverse aléatoire"
+      },
+      "chaos": {
+        "title": "Chaos",
+        "desc": "Effet aléatoire global"
+      },
+      "lucky_seven": {
+        "title": "Chance Sept",
+        "desc": "Relance effet x2"
+      },
+      "gamble": {
+        "title": "Pari",
+        "desc": "Pari de points"
+      },
+      "russian_roulette": {
+        "title": "Roulette Russe",
+        "desc": "Joueur aléatoire -5pts"
+      },
+      "wild_card": {
+        "title": "Joker",
+        "desc": "Copie dernier effet"
+      },
+      "jackpot": {
+        "title": "Jackpot",
+        "desc": "30% chance +10pts"
+      },
+      "redistribute": {
+        "title": "Redistribution",
+        "desc": "Redistribution aléatoire"
+      },
+      "chaos_king": {
+        "title": "Roi du Chaos",
+        "desc": "3 effets aléatoires"
+      },
+      "fortune": {
+        "title": "Fortune",
+        "desc": "Effet massif -10 à +15"
+      },
+      "peek_hand": {
+        "title": "Espionnage",
+        "desc": "Espionnage de main"
+      },
+      "discard": {
+        "title": "Défausse",
+        "desc": "Défausse forcée"
+      },
+      "block": {
+        "title": "Blocage",
+        "desc": "Blocage d'effet"
+      },
+      "steal_points": {
+        "title": "Vol de Points",
+        "desc": "Vol de points"
+      },
+      "curse": {
+        "title": "Malédiction",
+        "desc": "Malédiction continue"
+      },
+      "sabotage": {
+        "title": "Sabotage",
+        "desc": "Annulation d'objectif"
+      },
+      "poison": {
+        "title": "Poison",
+        "desc": "Dégâts sur la durée"
+      },
+      "steal_card": {
+        "title": "Vol de Carte",
+        "desc": "Vol de carte choisi"
+      },
+      "assassinate": {
+        "title": "Assassinat",
+        "desc": "Destruction carte forte"
+      },
+      "betray": {
+        "title": "Trahison",
+        "desc": "Dégâts à tous adversaires"
+      },
+      "mind_control": {
+        "title": "Contrôle Mental",
+        "desc": "Contrôle d'action"
+      },
+      "devastate": {
+        "title": "Dévastation",
+        "desc": "Défausse massive + dégâts"
+      },
+      "death": {
+        "title": "Mort Noire",
+        "desc": "Annulation objectifs + vol"
+      }
+    }
+  },
+  "demo": {
+    "cardDemo": {
+      "title": "Démo - Composant Carte",
+      "features": "Fonctionnalités testées",
+      "cardDisplay": "Affichage des cartes (face visible/cachée)",
+      "suitColors": "Couleurs des enseignes (rouge pour ♥♦, noir pour ♣♠)",
+      "interactiveSelection": "Sélection interactive des cartes",
+      "tooltipDesktop": "Tooltip desktop (survol) + mobile (tap)",
+      "translation": "Traduction FR/EN",
+      "responsive": "Responsive design (mobile-first)",
+      "selectedCard": "Carte sélectionnée :",
+      "interactiveCards": "Cartes interactives",
+      "hide": "Cacher",
+      "show": "Montrer",
+      "block": "Bloquer",
+      "activate": "Activer",
+      "allSuits": "Toutes les enseignes"
+    }
+  }
+}

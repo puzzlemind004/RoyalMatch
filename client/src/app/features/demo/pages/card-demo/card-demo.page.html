@@ -1,0 +1,108 @@
+<div class="container mx-auto p-4 md:p-8">
+  <!-- Header with language switcher -->
+  <div class="mb-6 flex items-center justify-between">
+    <h1 class="text-3xl font-bold text-gray-800">Démo - Composant Carte</h1>
+    <div class="flex gap-2">
+      <button
+        (click)="switchLocale('fr')"
+        [class.bg-blue-600]="currentLocale === 'fr'"
+        [class.bg-gray-300]="currentLocale !== 'fr'"
+        [class.text-white]="currentLocale === 'fr'"
+        [class.text-gray-700]="currentLocale !== 'fr'"
+        class="rounded px-3 py-1 text-sm font-semibold transition-colors"
+      >
+        FR
+      </button>
+      <button
+        (click)="switchLocale('en')"
+        [class.bg-blue-600]="currentLocale === 'en'"
+        [class.bg-gray-300]="currentLocale !== 'en'"
+        [class.text-white]="currentLocale === 'en'"
+        [class.text-gray-700]="currentLocale !== 'en'"
+        class="rounded px-3 py-1 text-sm font-semibold transition-colors"
+      >
+        EN
+      </button>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="mb-8 rounded-lg bg-blue-50 p-4">
+    <h2 class="mb-2 text-xl font-semibold text-blue-900">Fonctionnalités testées</h2>
+    <ul class="list-inside list-disc space-y-1 text-blue-800">
+      <li>Affichage des cartes (face visible/cachée)</li>
+      <li>Couleurs des enseignes (rouge pour ♥♦, noir pour ♣♠)</li>
+      <li>Sélection interactive des cartes</li>
+      <li>Tooltip desktop (survol) + mobile (tap)</li>
+      <li>Traduction FR/EN</li>
+      <li>Responsive design (mobile-first)</li>
+    </ul>
+  </div>
+
+  <!-- Selected Card Info -->
+  @if (selectedCard()) {
+    <div class="mb-6 rounded-lg bg-green-50 p-4">
+      <h3 class="mb-2 font-semibold text-green-900">
+        {{ 'demo.cardDemo.selectedCard' | transloco }}
+      </h3>
+      <p class="font-semibold text-green-800">
+        {{ 'cards.effects.' + selectedCard()!.effect.type + '.title' | transloco }}
+      </p>
+    </div>
+  }
+
+  <!-- Cards Grid -->
+  <div class="mb-8">
+    <h2 class="mb-4 text-2xl font-semibold text-gray-700">Cartes interactives</h2>
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+      @for (card of sampleCards; track card.id) {
+        <div class="flex flex-col items-center gap-2">
+          <app-card
+            [card]="card"
+            [faceUp]="getCardState(card.id).faceUp"
+            [selectable]="getCardState(card.id).selectable"
+            [selected]="isSelected(card)"
+            (cardSelected)="onCardSelected($event)"
+          />
+          <div class="flex gap-2">
+            <button
+              (click)="toggleCardFace(card.id)"
+              class="rounded bg-blue-500 px-2 py-1 text-xs text-white hover:bg-blue-600"
+            >
+              {{ getCardState(card.id).faceUp ? 'Cacher' : 'Montrer' }}
+            </button>
+            <button
+              (click)="toggleCardSelectable(card.id)"
+              class="rounded bg-purple-500 px-2 py-1 text-xs text-white hover:bg-purple-600"
+            >
+              {{ getCardState(card.id).selectable ? 'Bloquer' : 'Activer' }}
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Cards Display Only -->
+  <div>
+    <h2 class="mb-4 text-2xl font-semibold text-gray-700">Toutes les enseignes</h2>
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+      <div class="rounded-lg bg-red-50 p-4">
+        <h3 class="mb-2 text-center font-semibold text-red-700">♥ Cœurs</h3>
+        <app-card [card]="sampleCards[0]" [faceUp]="true" [selectable]="false" />
+      </div>
+      <div class="rounded-lg bg-gray-50 p-4">
+        <h3 class="mb-2 text-center font-semibold text-gray-700">♠ Piques</h3>
+        <app-card [card]="sampleCards[1]" [faceUp]="true" [selectable]="false" />
+      </div>
+      <div class="rounded-lg bg-red-50 p-4">
+        <h3 class="mb-2 text-center font-semibold text-red-700">♦ Carreaux</h3>
+        <app-card [card]="sampleCards[2]" [faceUp]="true" [selectable]="false" />
+      </div>
+      <div class="rounded-lg bg-gray-50 p-4">
+        <h3 class="mb-2 text-center font-semibold text-gray-700">♣ Trèfles</h3>
+        <app-card [card]="sampleCards[3]" [faceUp]="true" [selectable]="false" />
+      </div>
+    </div>
+  </div>
+</div>

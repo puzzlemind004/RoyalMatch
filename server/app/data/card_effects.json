@@ -1,0 +1,218 @@
+{
+  "hearts": {
+    "2": {
+      "type": "objective_bonus",
+      "target": "self"
+    },
+    "3": {
+      "type": "objective_bonus",
+      "target": "self"
+    },
+    "4": {
+      "type": "protection",
+      "target": "self"
+    },
+    "5": {
+      "type": "objective_progress",
+      "target": "self"
+    },
+    "6": {
+      "type": "objective_bonus",
+      "target": "self"
+    },
+    "7": {
+      "type": "protection",
+      "target": "self"
+    },
+    "8": {
+      "type": "heal",
+      "target": "self"
+    },
+    "9": {
+      "type": "objective_bonus",
+      "target": "self"
+    },
+    "10": {
+      "type": "protection_strong",
+      "target": "self"
+    },
+    "J": {
+      "type": "objective_double",
+      "target": "self"
+    },
+    "Q": {
+      "type": "objective_choice",
+      "target": "self"
+    },
+    "K": {
+      "type": "objective_boost",
+      "target": "self"
+    },
+    "A": {
+      "type": "objective_ultimate",
+      "target": "self"
+    }
+  },
+  "diamonds": {
+    "2": {
+      "type": "draw",
+      "target": "self"
+    },
+    "3": {
+      "type": "draw",
+      "target": "self"
+    },
+    "4": {
+      "type": "peek",
+      "target": "self"
+    },
+    "5": {
+      "type": "draw",
+      "target": "self"
+    },
+    "6": {
+      "type": "cycle",
+      "target": "self"
+    },
+    "7": {
+      "type": "search",
+      "target": "self"
+    },
+    "8": {
+      "type": "draw",
+      "target": "self"
+    },
+    "9": {
+      "type": "shuffle_draw",
+      "target": "self"
+    },
+    "10": {
+      "type": "peek_steal",
+      "target": "opponent"
+    },
+    "J": {
+      "type": "deck_top",
+      "target": "self"
+    },
+    "Q": {
+      "type": "resurrect",
+      "target": "self"
+    },
+    "K": {
+      "type": "tutor",
+      "target": "self"
+    },
+    "A": {
+      "type": "ultimate_draw",
+      "target": "self"
+    }
+  },
+  "clubs": {
+    "2": {
+      "type": "coin_flip",
+      "target": "self"
+    },
+    "3": {
+      "type": "random_bonus",
+      "target": "self"
+    },
+    "4": {
+      "type": "shuffle_hands",
+      "target": "all"
+    },
+    "5": {
+      "type": "random_opponent",
+      "target": "random"
+    },
+    "6": {
+      "type": "chaos",
+      "target": "all"
+    },
+    "7": {
+      "type": "lucky_seven",
+      "target": "self"
+    },
+    "8": {
+      "type": "gamble",
+      "target": "self"
+    },
+    "9": {
+      "type": "russian_roulette",
+      "target": "random"
+    },
+    "10": {
+      "type": "wild_card",
+      "target": "self"
+    },
+    "J": {
+      "type": "jackpot",
+      "target": "self"
+    },
+    "Q": {
+      "type": "redistribute",
+      "target": "all"
+    },
+    "K": {
+      "type": "chaos_king",
+      "target": "all"
+    },
+    "A": {
+      "type": "fortune",
+      "target": "self"
+    }
+  },
+  "spades": {
+    "2": {
+      "type": "peek_hand",
+      "target": "opponent"
+    },
+    "3": {
+      "type": "discard",
+      "target": "opponent"
+    },
+    "4": {
+      "type": "block",
+      "target": "opponent"
+    },
+    "5": {
+      "type": "steal_points",
+      "target": "opponent"
+    },
+    "6": {
+      "type": "curse",
+      "target": "opponent"
+    },
+    "7": {
+      "type": "sabotage",
+      "target": "opponent"
+    },
+    "8": {
+      "type": "poison",
+      "target": "opponent"
+    },
+    "9": {
+      "type": "steal_card",
+      "target": "opponent"
+    },
+    "10": {
+      "type": "assassinate",
+      "target": "opponent"
+    },
+    "J": {
+      "type": "betray",
+      "target": "all"
+    },
+    "Q": {
+      "type": "mind_control",
+      "target": "opponent"
+    },
+    "K": {
+      "type": "devastate",
+      "target": "all"
+    },
+    "A": {
+      "type": "death",
+      "target": "opponent"
+    }
+  }
+}

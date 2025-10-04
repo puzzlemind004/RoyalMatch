@@ -22,7 +22,6 @@ async function createDatabase() {
 
   try {
     await client.connect()
-    console.log('✓ Connected to PostgreSQL')
 
     // Check if database exists
     const checkDbQuery = `
@@ -30,18 +29,13 @@ async function createDatabase() {
     `
     const result = await client.query(checkDbQuery)
 
-    if (result.rows.length > 0) {
-      console.log('✓ Database "royalmatch" already exists')
-    } else {
+    if (result.rows.length === 0) {
       // Create the database
       await client.query('CREATE DATABASE royalmatch')
-      console.log('✓ Database "royalmatch" created successfully')
     }
 
     await client.end()
-    console.log('\n✅ Setup complete! You can now run: node ace migration:run')
   } catch (error) {
-    console.error('❌ Error:', error.message)
     process.exit(1)
   }
 }
