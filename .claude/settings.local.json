@@ -16,7 +16,10 @@
       "Bash(npm install:*)",
       "Bash(node ace configure:*)",
       "Bash(npx:*)",
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(npm run lint)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run format:*)"
     ],
     "deny": [],
     "ask": []

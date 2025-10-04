@@ -10,11 +10,7 @@ const corsConfig = defineConfig({
   enabled: true,
   origin: (origin) => {
     // Allow local development
-    if (
-      origin === 'http://localhost:4200' ||
-      origin === 'http://127.0.0.1:4200' ||
-      !origin
-    ) {
+    if (origin === 'http://localhost:4200' || origin === 'http://127.0.0.1:4200' || !origin) {
       return true
     }
     // In production, add your domain here
