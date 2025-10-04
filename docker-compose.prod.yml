@@ -1,0 +1,86 @@
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: royalmatch-postgres-prod
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - royalmatch-network
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${DB_USER}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: royalmatch-redis-prod
+    restart: always
+    volumes:
+      - redis_data:/data
+    networks:
+      - royalmatch-network
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  # Backend (AdonisJS)
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+      target: production
+    container_name: royalmatch-backend-prod
+    restart: always
+    environment:
+      NODE_ENV: production
+      PORT: 3333
+      HOST: 0.0.0.0
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DATABASE: ${DB_DATABASE}
+      APP_KEY: ${APP_KEY}
+    networks:
+      - royalmatch-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Frontend (Angular + Nginx)
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+      target: production
+    container_name: royalmatch-frontend-prod
+    restart: always
+    ports:
+      - '80:80'
+      - '443:443'
+    networks:
+      - royalmatch-network
+    depends_on:
+      - backend
+
+networks:
+  royalmatch-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local

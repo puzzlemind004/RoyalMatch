@@ -1,0 +1,34 @@
+{
+  "name": "royalmatch",
+  "version": "1.0.0",
+  "description": "RoyalMatch - Jeu de cartes compétitif et stratégique multijoueur",
+  "private": true,
+  "scripts": {
+    "docker:dev": "docker compose up",
+    "docker:dev:build": "docker compose up --build",
+    "docker:down": "docker compose down",
+    "docker:clean": "docker compose down -v",
+    "docker:prod": "docker compose -f docker-compose.prod.yml up -d",
+    "docker:prod:build": "docker compose -f docker-compose.prod.yml up -d --build",
+    "docker:prod:down": "docker compose -f docker-compose.prod.yml down",
+    "docker:logs": "docker compose logs -f",
+    "docker:logs:backend": "docker compose logs -f backend",
+    "docker:logs:frontend": "docker compose logs -f frontend",
+    "docker:ps": "docker compose ps",
+    "docker:restart": "docker compose restart",
+    "install:all": "npm install && cd client && npm install && cd ../server && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/royalmatch.git"
+  },
+  "keywords": [
+    "card-game",
+    "multiplayer",
+    "websocket",
+    "angular",
+    "adonisjs"
+  ],
+  "author": "Your Name",
+  "license": "UNLICENSED"
+}

@@ -24,7 +24,9 @@
       "Bash(del:*)",
       "Bash(node ace make:model:*)",
       "Bash(node ace migration:run:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(cat:*)",
+      "Bash(docker compose build:*)"
     ],
     "deny": [],
     "ask": []
