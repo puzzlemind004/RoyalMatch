@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 export class DemoLayoutComponent {
   demoLinks = [
     { path: '/demo/cards', label: 'Cartes', icon: '🎴' },
+    { path: '/demo/effects', label: 'Effets', icon: '✨' },
     // Future demos will be added here
     // { path: '/demo/game', label: 'Partie', icon: '🎮' },
     // { path: '/demo/players', label: 'Joueurs', icon: '👥' },

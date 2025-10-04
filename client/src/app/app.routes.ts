@@ -12,6 +12,13 @@ export const routes: Routes = [
           import('./features/demo/pages/card-demo/card-demo.page').then((m) => m.CardDemoPage),
       },
       {
+        path: 'effects',
+        loadComponent: () =>
+          import('./features/demo/pages/effect-demo/effect-demo.page').then(
+            (m) => m.EffectDemoPage,
+          ),
+      },
+      {
         path: '',
         redirectTo: 'cards',
         pathMatch: 'full',

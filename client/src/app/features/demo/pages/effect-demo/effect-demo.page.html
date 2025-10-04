@@ -1,0 +1,159 @@
+<div class="effect-demo-container">
+  <!-- Header -->
+  <div class="demo-header">
+    <h1 class="demo-title">🎴 Démo des Effets de Cartes</h1>
+    <p class="demo-subtitle">Visualisez et testez les 52 effets uniques du jeu</p>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-section">
+    <div class="filters-grid">
+      <!-- Suit filter -->
+      <div class="filter-group">
+        <label class="filter-label">Couleur</label>
+        <div class="filter-buttons">
+          @for (suit of suits; track suit) {
+            <button
+              class="filter-btn"
+              [class.filter-btn--active]="selectedSuit() === suit"
+              [style.color]="getSuitColor(suit)"
+              (click)="selectedSuit.set(selectedSuit() === suit ? null : suit)"
+            >
+              <span class="suit-symbol">{{ getSuitSymbol(suit) }}</span>
+              <span class="suit-name">{{
+                suit === 'hearts'
+                  ? 'Cœur'
+                  : suit === 'diamonds'
+                    ? 'Carreau'
+                    : suit === 'clubs'
+                      ? 'Trèfle'
+                      : 'Pique'
+              }}</span>
+            </button>
+          }
+        </div>
+      </div>
+
+      <!-- Category filter -->
+      <div class="filter-group">
+        <label class="filter-label">Catégorie</label>
+        <div class="filter-buttons">
+          <button
+            class="filter-btn"
+            [class.filter-btn--active]="selectedCategory() === 'objective'"
+            (click)="selectedCategory.set(selectedCategory() === 'objective' ? null : 'objective')"
+          >
+            🎯 Objectif
+          </button>
+          <button
+            class="filter-btn"
+            [class.filter-btn--active]="selectedCategory() === 'draw'"
+            (click)="selectedCategory.set(selectedCategory() === 'draw' ? null : 'draw')"
+          >
+            🃏 Pioche
+          </button>
+          <button
+            class="filter-btn"
+            [class.filter-btn--active]="selectedCategory() === 'random'"
+            (click)="selectedCategory.set(selectedCategory() === 'random' ? null : 'random')"
+          >
+            🎲 Hasard
+          </button>
+          <button
+            class="filter-btn"
+            [class.filter-btn--active]="selectedCategory() === 'attack'"
+            (click)="selectedCategory.set(selectedCategory() === 'attack' ? null : 'attack')"
+          >
+            ⚔️ Attaque
+          </button>
+        </div>
+      </div>
+
+      <!-- Search -->
+      <div class="filter-group">
+        <label class="filter-label">Recherche</label>
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Nom de l'effet ou description..."
+          [value]="searchQuery()"
+          (input)="searchQuery.set($any($event.target).value)"
+        />
+      </div>
+
+      <!-- Clear filters -->
+      @if (selectedSuit() || selectedCategory() || searchQuery()) {
+        <button class="clear-filters-btn" (click)="clearFilters()">✕ Effacer les filtres</button>
+      }
+    </div>
+  </div>
+
+  <!-- Results count -->
+  <div class="results-count">{{ filteredEffects().length }} effet(s) trouvé(s)</div>
+
+  <!-- Effects grid -->
+  <div class="effects-grid">
+    @for (effect of filteredEffects(); track effect.id) {
+      <div
+        class="effect-card"
+        [class.effect-card--objective]="effect.category === 'objective'"
+        [class.effect-card--draw]="effect.category === 'draw'"
+        [class.effect-card--random]="effect.category === 'random'"
+        [class.effect-card--attack]="effect.category === 'attack'"
+        (click)="triggerEffect(effect, $event)"
+      >
+        <!-- Card identifier -->
+        <div class="effect-card-header">
+          <span class="card-value" [style.color]="getSuitColor(effect.card.suit)">
+            {{ effect.card.value }}{{ getSuitSymbol(effect.card.suit) }}
+          </span>
+        </div>
+
+        <!-- Effect name -->
+        <h3 class="effect-name">{{ effect.name }}</h3>
+
+        <!-- Effect description -->
+        <p class="effect-description">{{ effect.description }}</p>
+
+        <!-- Effect metadata -->
+        <div class="effect-meta">
+          <span class="effect-category">
+            {{
+              effect.category === 'objective'
+                ? '🎯 Objectif'
+                : effect.category === 'draw'
+                  ? '🃏 Pioche'
+                  : effect.category === 'random'
+                    ? '🎲 Hasard'
+                    : '⚔️ Attaque'
+            }}
+          </span>
+          @if (effect.needsTarget) {
+            <span class="effect-target">🎯 Cible requise</span>
+          }
+        </div>
+
+        <!-- Timing indicator -->
+        <div class="effect-timing">
+          {{
+            effect.timing === 'immediate'
+              ? '⚡ Immédiat'
+              : effect.timing === 'next_turn'
+                ? '⏭️ Tour suivant'
+                : '🏁 Fin de manche'
+          }}
+        </div>
+
+        <!-- Click hint -->
+        <div class="click-hint">Cliquez pour voir l'animation</div>
+      </div>
+    } @empty {
+      <div class="no-results">
+        <p>Aucun effet trouvé avec ces filtres</p>
+      </div>
+    }
+  </div>
+</div>
+
+<!-- Animation overlay -->
+<app-effect-animation [animation]="currentAnimation()" />

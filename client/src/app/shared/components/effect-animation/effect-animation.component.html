@@ -1,0 +1,55 @@
+@if (animation() && isPlaying) {
+  <div [class]="getAnimationClass()" [ngStyle]="getAnimationStyles()">
+    <!-- Particles animation -->
+    @if (animation()?.type === 'particles') {
+      <div class="particles-container">
+        @for (i of [1, 2, 3, 4, 5, 6, 7, 8]; track i) {
+          <div class="particle" [style.animation-delay.ms]="i * 50"></div>
+        }
+      </div>
+    }
+
+    <!-- Lightning animation -->
+    @if (animation()?.type === 'lightning') {
+      <div class="lightning-container">
+        <svg class="lightning" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M 50 0 L 30 80 L 50 80 L 20 200 L 70 90 L 50 90 L 80 0 Z"
+            [attr.fill]="animation()?.color"
+          />
+        </svg>
+      </div>
+    }
+
+    <!-- Aura animation -->
+    @if (animation()?.type === 'aura') {
+      <div class="aura-container">
+        <div class="aura-ring aura-ring--1"></div>
+        <div class="aura-ring aura-ring--2"></div>
+        <div class="aura-ring aura-ring--3"></div>
+      </div>
+    }
+
+    <!-- Explosion animation -->
+    @if (animation()?.type === 'explosion') {
+      <div class="explosion-container">
+        <div class="explosion-core"></div>
+        <div class="explosion-circle explosion-circle--1"></div>
+        <div class="explosion-circle explosion-circle--2"></div>
+        <div class="explosion-circle explosion-circle--3"></div>
+        @for (i of [1, 2, 3, 4, 5, 6, 7, 8]; track i) {
+          <div class="explosion-shard" [style.--shard-angle]="i * 45 + 'deg'"></div>
+        }
+      </div>
+    }
+
+    <!-- Tornado animation -->
+    @if (animation()?.type === 'tornado') {
+      <div class="tornado-container">
+        <div class="tornado-spiral tornado-spiral--1"></div>
+        <div class="tornado-spiral tornado-spiral--2"></div>
+        <div class="tornado-spiral tornado-spiral--3"></div>
+      </div>
+    }
+  </div>
+}

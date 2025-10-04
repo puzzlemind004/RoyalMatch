@@ -1,0 +1,92 @@
+<div class="target-selector-overlay" (click)="cancel()">
+  <div class="target-selector-modal" (click)="$event.stopPropagation()">
+    <!-- Header -->
+    <div class="modal-header">
+      <h3 class="modal-title">{{ effectName() }}</h3>
+      <button class="close-button" (click)="cancel()" aria-label="Fermer">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Instructions -->
+    <div class="modal-instructions">
+      @if (targetType() === 'opponent') {
+        <p>Sélectionnez un adversaire</p>
+      } @else if (targetType() === 'all') {
+        <p>Sélectionnez un joueur</p>
+      } @else {
+        <p>Cible sélectionnée aléatoirement</p>
+      }
+    </div>
+
+    <!-- Players grid -->
+    <div class="players-grid">
+      @for (player of players(); track player.id) {
+        <button
+          class="player-card"
+          [class.player-card--selectable]="canSelectPlayer(player)"
+          [class.player-card--selected]="isPlayerSelected(player)"
+          [class.player-card--disabled]="!canSelectPlayer(player)"
+          [disabled]="!canSelectPlayer(player)"
+          (click)="selectPlayer(player)"
+        >
+          <!-- Avatar -->
+          <div class="player-avatar">
+            @if (player.avatar) {
+              <img [src]="player.avatar" [alt]="player.name" class="avatar-image" />
+            } @else {
+              <div class="avatar-placeholder">
+                {{ player.name.charAt(0).toUpperCase() }}
+              </div>
+            }
+          </div>
+
+          <!-- Name -->
+          <div class="player-name">{{ player.name }}</div>
+
+          <!-- Current player badge -->
+          @if (player.isCurrentPlayer) {
+            <div class="current-player-badge">Vous</div>
+          }
+
+          <!-- Selection indicator -->
+          @if (isPlayerSelected(player)) {
+            <div class="selection-indicator">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+          }
+        </button>
+      }
+    </div>
+
+    <!-- Footer actions -->
+    <div class="modal-footer">
+      <button class="btn btn--secondary" (click)="cancel()">Annuler</button>
+    </div>
+  </div>
+</div>

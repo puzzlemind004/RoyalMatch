@@ -1,0 +1,680 @@
+{
+  "effects": [
+    {
+      "id": "2H",
+      "card": {
+        "value": 2,
+        "suit": "hearts"
+      },
+      "name": "Petit Bonus",
+      "description": "+1 point si vous gagnez ce pli",
+      "category": "objective",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "immediate"
+    },
+    {
+      "id": "3H",
+      "card": {
+        "value": 3,
+        "suit": "hearts"
+      },
+      "name": "Révélation",
+      "description": "Révélez un objectif d'un adversaire de votre choix",
+      "category": "objective",
+      "targetType": "opponent",
+      "needsTarget": true,
+      "timing": "immediate"
+    },
+    {
+      "id": "4H",
+      "card": {
+        "value": 4,
+        "suit": "hearts"
+      },
+      "name": "Protection",
+      "description": "Ce pli ne peut pas compter négativement pour vous",
+      "category": "objective",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "immediate"
+    },
+    {
+      "id": "5H",
+      "card": {
+        "value": 5,
+        "suit": "hearts"
+      },
+      "name": "Double Comptage",
+      "description": "Ce pli compte double pour vos objectifs",
+      "category": "objective",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "immediate"
+    },
+    {
+      "id": "6H",
+      "card": {
+        "value": 6,
+        "suit": "hearts"
+      },
+      "name": "Bonus Conditionnel",
+      "description": "+2 points si vous avez gagné au moins 2 plis",
+      "category": "objective",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "immediate"
+    },
+    {
+      "id": "7H",
+      "card": {
+        "value": 7,
+        "suit": "hearts"
+      },
+      "name": "Copie d'Objectif",
+      "description": "Copiez un objectif non choisi et ajoutez-le temporairement",
+      "category": "objective",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "8H",
+      "card": {
+        "value": 8,
+        "suit": "hearts"
+      },
+      "name": "Bouclier",
+      "description": "Protégez tous vos plis actuels contre les effets négatifs",
+      "category": "objective",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "immediate"
+    },
+    {
+      "id": "9H",
+      "card": {
+        "value": 9,
+        "suit": "hearts"
+      },
+      "name": "Changement d'Objectif",
+      "description": "Défaussez un objectif et piochez-en un nouveau",
+      "category": "objective",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "10H",
+      "card": {
+        "value": 10,
+        "suit": "hearts"
+      },
+      "name": "Espionnage",
+      "description": "Révélez un objectif d'un adversaire",
+      "category": "objective",
+      "targetType": "opponent",
+      "needsTarget": true,
+      "timing": "immediate"
+    },
+    {
+      "id": "JH",
+      "card": {
+        "value": 11,
+        "suit": "hearts"
+      },
+      "name": "Tri-Bonus",
+      "description": "+3 points si vous gagnez ce pli avec la couleur dominante",
+      "category": "objective",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "immediate"
+    },
+    {
+      "id": "QH",
+      "card": {
+        "value": 12,
+        "suit": "hearts"
+      },
+      "name": "Multiplicateur",
+      "description": "Les 2 prochains plis gagnés comptent double",
+      "category": "objective",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "KH",
+      "card": {
+        "value": 13,
+        "suit": "hearts"
+      },
+      "name": "Révélation Totale",
+      "description": "Révélez tous les objectifs d'un adversaire",
+      "category": "objective",
+      "targetType": "opponent",
+      "needsTarget": true,
+      "timing": "immediate"
+    },
+    {
+      "id": "AH",
+      "card": {
+        "value": 14,
+        "suit": "hearts"
+      },
+      "name": "Grande Récompense",
+      "description": "Si vous remplissez tous vos objectifs, +5 points",
+      "category": "objective",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "end_round"
+    },
+    {
+      "id": "2D",
+      "card": {
+        "value": 2,
+        "suit": "diamonds"
+      },
+      "name": "Pioche Simple",
+      "description": "Piochez 1 carte supplémentaire au prochain tour",
+      "category": "draw",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "3D",
+      "card": {
+        "value": 3,
+        "suit": "diamonds"
+      },
+      "name": "Défausse et Pioche",
+      "description": "Défaussez 1 carte et piochez-en 1",
+      "category": "draw",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "4D",
+      "card": {
+        "value": 4,
+        "suit": "diamonds"
+      },
+      "name": "Vision",
+      "description": "Regardez les 2 prochaines cartes de votre deck",
+      "category": "draw",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "immediate"
+    },
+    {
+      "id": "5D",
+      "card": {
+        "value": 5,
+        "suit": "diamonds"
+      },
+      "name": "Clairvoyance",
+      "description": "Regardez les 3 prochaines cartes de votre deck",
+      "category": "draw",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "immediate"
+    },
+    {
+      "id": "6D",
+      "card": {
+        "value": 6,
+        "suit": "diamonds"
+      },
+      "name": "Recyclage",
+      "description": "Récupérez une carte jouée précédemment dans votre main",
+      "category": "draw",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "7D",
+      "card": {
+        "value": 7,
+        "suit": "diamonds"
+      },
+      "name": "Mélange",
+      "description": "Mélangez votre deck",
+      "category": "draw",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "immediate"
+    },
+    {
+      "id": "8D",
+      "card": {
+        "value": 8,
+        "suit": "diamonds"
+      },
+      "name": "Double Pioche",
+      "description": "Piochez 2 cartes supplémentaires au prochain tour",
+      "category": "draw",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "9D",
+      "card": {
+        "value": 9,
+        "suit": "diamonds"
+      },
+      "name": "Échange Simple",
+      "description": "Échangez 1 carte de votre main avec votre deck",
+      "category": "draw",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "10D",
+      "card": {
+        "value": 10,
+        "suit": "diamonds"
+      },
+      "name": "Grand Échange",
+      "description": "Échangez 2 cartes de votre main avec votre deck",
+      "category": "draw",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "JD",
+      "card": {
+        "value": 11,
+        "suit": "diamonds"
+      },
+      "name": "Sélection",
+      "description": "Regardez 4 cartes de votre deck, piochez-en 1",
+      "category": "draw",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "QD",
+      "card": {
+        "value": 12,
+        "suit": "diamonds"
+      },
+      "name": "Renouvellement",
+      "description": "Défaussez votre main et piochez autant de cartes",
+      "category": "draw",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "KD",
+      "card": {
+        "value": 13,
+        "suit": "diamonds"
+      },
+      "name": "Triple Pioche",
+      "description": "Piochez 3 cartes supplémentaires au prochain tour",
+      "category": "draw",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "AD",
+      "card": {
+        "value": 14,
+        "suit": "diamonds"
+      },
+      "name": "Grande Sélection",
+      "description": "Piochez 3 cartes, défaussez-en 2",
+      "category": "draw",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "2C",
+      "card": {
+        "value": 2,
+        "suit": "clubs"
+      },
+      "name": "Chance Simple",
+      "description": "50% chance de piocher 1 carte",
+      "category": "random",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "immediate"
+    },
+    {
+      "id": "3C",
+      "card": {
+        "value": 3,
+        "suit": "clubs"
+      },
+      "name": "Chaos Mineur",
+      "description": "Tous les joueurs piochent 1 carte",
+      "category": "random",
+      "targetType": "all",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "4C",
+      "card": {
+        "value": 4,
+        "suit": "clubs"
+      },
+      "name": "Fortune",
+      "description": "Effet aléatoire : +1 ou +2 points",
+      "category": "random",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "immediate"
+    },
+    {
+      "id": "5C",
+      "card": {
+        "value": 5,
+        "suit": "clubs"
+      },
+      "name": "Pioche Aléatoire",
+      "description": "Effet aléatoire : piochez 1 ou 2 cartes",
+      "category": "random",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "6C",
+      "card": {
+        "value": 6,
+        "suit": "clubs"
+      },
+      "name": "Distribution",
+      "description": "Tous les joueurs défaussent 1 carte au hasard",
+      "category": "random",
+      "targetType": "all",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "7C",
+      "card": {
+        "value": 7,
+        "suit": "clubs"
+      },
+      "name": "Bénédiction",
+      "description": "Événement aléatoire bénéfique pour vous",
+      "category": "random",
+      "targetType": "self",
+      "needsTarget": false,
+      "timing": "immediate"
+    },
+    {
+      "id": "8C",
+      "card": {
+        "value": 8,
+        "suit": "clubs"
+      },
+      "name": "Mélange Général",
+      "description": "Tous les joueurs mélangent leur deck",
+      "category": "random",
+      "targetType": "all",
+      "needsTarget": false,
+      "timing": "immediate"
+    },
+    {
+      "id": "9C",
+      "card": {
+        "value": 9,
+        "suit": "clubs"
+      },
+      "name": "Roulette Temporaire",
+      "description": "Relancez la roulette pour 1 tour seulement",
+      "category": "random",
+      "targetType": "all",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "10C",
+      "card": {
+        "value": 10,
+        "suit": "clubs"
+      },
+      "name": "Inversion",
+      "description": "Au prochain tour, inversez forte/faible pour tous",
+      "category": "random",
+      "targetType": "all",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "JC",
+      "card": {
+        "value": 11,
+        "suit": "clubs"
+      },
+      "name": "Chaos Total",
+      "description": "Effet aléatoire parmi 3 effets possibles",
+      "category": "random",
+      "targetType": "random",
+      "needsTarget": false,
+      "timing": "immediate"
+    },
+    {
+      "id": "QC",
+      "card": {
+        "value": 12,
+        "suit": "clubs"
+      },
+      "name": "Échange de Mains",
+      "description": "Échangez votre main avec un adversaire aléatoire",
+      "category": "random",
+      "targetType": "random",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "KC",
+      "card": {
+        "value": 13,
+        "suit": "clubs"
+      },
+      "name": "Mélange des Mains",
+      "description": "Mélangez toutes les mains entre tous les joueurs",
+      "category": "random",
+      "targetType": "all",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "AC",
+      "card": {
+        "value": 14,
+        "suit": "clubs"
+      },
+      "name": "Grande Roulette",
+      "description": "Relancez la roulette, la nouvelle couleur s'applique pour 1 tour",
+      "category": "random",
+      "targetType": "all",
+      "needsTarget": false,
+      "timing": "next_turn"
+    },
+    {
+      "id": "2S",
+      "card": {
+        "value": 2,
+        "suit": "spades"
+      },
+      "name": "Espionnage Léger",
+      "description": "Regardez la main d'un adversaire",
+      "category": "attack",
+      "targetType": "opponent",
+      "needsTarget": true,
+      "timing": "immediate"
+    },
+    {
+      "id": "3S",
+      "card": {
+        "value": 3,
+        "suit": "spades"
+      },
+      "name": "Sabotage",
+      "description": "Un adversaire défausse 1 carte de votre choix",
+      "category": "attack",
+      "targetType": "opponent",
+      "needsTarget": true,
+      "timing": "next_turn"
+    },
+    {
+      "id": "4S",
+      "card": {
+        "value": 4,
+        "suit": "spades"
+      },
+      "name": "Blocage Faible",
+      "description": "Bloquez l'effet d'une carte adverse de valeur ≤ 5",
+      "category": "attack",
+      "targetType": "opponent",
+      "needsTarget": true,
+      "timing": "immediate"
+    },
+    {
+      "id": "5S",
+      "card": {
+        "value": 5,
+        "suit": "spades"
+      },
+      "name": "Défausse Forcée",
+      "description": "Un adversaire défausse 1 carte au hasard",
+      "category": "attack",
+      "targetType": "opponent",
+      "needsTarget": true,
+      "timing": "next_turn"
+    },
+    {
+      "id": "6S",
+      "card": {
+        "value": 6,
+        "suit": "spades"
+      },
+      "name": "Perturbation",
+      "description": "Un adversaire joue sa prochaine carte au hasard",
+      "category": "attack",
+      "targetType": "opponent",
+      "needsTarget": true,
+      "timing": "next_turn"
+    },
+    {
+      "id": "7S",
+      "card": {
+        "value": 7,
+        "suit": "spades"
+      },
+      "name": "Vol Simple",
+      "description": "Volez 1 carte aléatoire d'un adversaire",
+      "category": "attack",
+      "targetType": "opponent",
+      "needsTarget": true,
+      "timing": "next_turn"
+    },
+    {
+      "id": "8S",
+      "card": {
+        "value": 8,
+        "suit": "spades"
+      },
+      "name": "Annulation de Pli",
+      "description": "Un adversaire ne gagne pas de points pour son prochain pli gagné",
+      "category": "attack",
+      "targetType": "opponent",
+      "needsTarget": true,
+      "timing": "next_turn"
+    },
+    {
+      "id": "9S",
+      "card": {
+        "value": 9,
+        "suit": "spades"
+      },
+      "name": "Blocage Moyen",
+      "description": "Bloquez l'effet d'une carte adverse de valeur ≤ 10",
+      "category": "attack",
+      "targetType": "opponent",
+      "needsTarget": true,
+      "timing": "immediate"
+    },
+    {
+      "id": "10S",
+      "card": {
+        "value": 10,
+        "suit": "spades"
+      },
+      "name": "Contre",
+      "description": "Annulez l'effet de la carte adverse la plus forte ce tour",
+      "category": "attack",
+      "targetType": "opponent",
+      "needsTarget": true,
+      "timing": "immediate"
+    },
+    {
+      "id": "JS",
+      "card": {
+        "value": 11,
+        "suit": "spades"
+      },
+      "name": "Double Défausse",
+      "description": "Un adversaire défausse 2 cartes au hasard",
+      "category": "attack",
+      "targetType": "opponent",
+      "needsTarget": true,
+      "timing": "next_turn"
+    },
+    {
+      "id": "QS",
+      "card": {
+        "value": 12,
+        "suit": "spades"
+      },
+      "name": "Blocage Total",
+      "description": "Bloquez l'effet de n'importe quelle carte adverse",
+      "category": "attack",
+      "targetType": "opponent",
+      "needsTarget": true,
+      "timing": "immediate"
+    },
+    {
+      "id": "KS",
+      "card": {
+        "value": 13,
+        "suit": "spades"
+      },
+      "name": "Suppression d'Objectif",
+      "description": "Un adversaire perd 1 objectif aléatoire pour ce round",
+      "category": "attack",
+      "targetType": "opponent",
+      "needsTarget": true,
+      "timing": "next_turn"
+    },
+    {
+      "id": "AS",
+      "card": {
+        "value": 14,
+        "suit": "spades"
+      },
+      "name": "Grand Vol",
+      "description": "Volez 2 cartes aléatoires d'un adversaire",
+      "category": "attack",
+      "targetType": "opponent",
+      "needsTarget": true,
+      "timing": "next_turn"
+    }
+  ]
+}

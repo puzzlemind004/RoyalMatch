@@ -48,7 +48,7 @@ export class CardComponent {
       case 'diamonds':
         return 'from-orange-500 to-orange-600'; // Orange
       case 'spades':
-        return 'from-slate-800 to-blue-950'; // Noir bleuté
+        return 'from-purple-900 to-purple-950'; // Violet foncé
       case 'clubs':
         return 'from-emerald-900 to-slate-900'; // Noir verdâtre
       default:
