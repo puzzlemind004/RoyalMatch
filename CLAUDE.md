@@ -5,6 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Overview
 
 RoyalMatch is a multiplayer card game (2-4 players) with real-time WebSocket communication. The game features:
+
 - A color roulette system that changes card hierarchy each round
 - Objective-based scoring system
 - Simultaneous card playing with effect resolution
@@ -16,6 +17,7 @@ RoyalMatch is a multiplayer card game (2-4 players) with real-time WebSocket com
 This is a **monorepo** with two separate applications:
 
 ### Backend (`server/`)
+
 - **Framework**: AdonisJS 6 (TypeScript, ES Modules)
 - **Database**: PostgreSQL with Lucid ORM
 - **Real-time**: AdonisJS Transmit (WebSocket wrapper)
@@ -23,18 +25,21 @@ This is a **monorepo** with two separate applications:
 - **Validation**: VineJS validators
 
 **Key architectural patterns:**
+
 - **Path aliases**: Use `#` imports (e.g., `#models/user`, `#services/*`) defined in `package.json` imports field
 - **Service layer**: Business logic goes in `app/services/`, NOT in controllers
 - **Controllers**: Thin HTTP/WS handlers in `app/controllers/`
 - **Validators**: Input validation in `app/validators/` using VineJS
 
 ### Frontend (`client/`)
+
 - **Framework**: Angular 18+ with standalone components (NO NgModules)
 - **State**: Angular Signals (avoid RxJS BehaviorSubject for state)
 - **Styling**: TailwindCSS v4 (uses `@import "tailwindcss"` syntax, NOT v3 directives)
 - **Real-time**: socket.io-client for WebSocket
 
 **Key architectural patterns:**
+
 - **Folder structure**:
   - `core/`: Singleton services, guards, interceptors (app-wide utilities)
   - `features/`: Feature modules containing components, services, and models specific to that feature
@@ -95,19 +100,23 @@ npm test
 ## Critical Development Rules
 
 ### Commits
+
 **NEVER create commits autonomously.** The user must explicitly request commits using the `/clean-commit` command. You may:
+
 - Develop and test code
 - Verify compilation and functionality
 - Let the user review diffs
-But NEVER execute `git commit` on your own initiative.
+  But NEVER execute `git commit` on your own initiative.
 
 ### Code Quality
+
 - Always use **design patterns** when appropriate (Factory, Strategy, Observer, etc.)
 - Properly utilize **TypeScript classes, inheritance, interfaces**
 - Follow **SOLID principles** for clean, maintainable code
 - Keep code DRY (Don't Repeat Yourself)
 
 ### TailwindCSS v4 - CRITICAL STYLING RULES
+
 **NEVER write custom CSS. TailwindCSS utility classes are sufficient for everything.**
 
 - Configuration is in `.postcssrc.json` (NOT `tailwind.config.js`)
@@ -119,12 +128,14 @@ But NEVER execute `git commit` on your own initiative.
 - Use Tailwind's responsive utilities: `flex`, `grid`, `hidden`, `block`, etc. with breakpoints
 
 ### AdonisJS Specifics
+
 - Routes defined in `start/routes.ts`
 - Middleware in `app/middleware/`
 - Use `node ace` CLI for code generation
 - CORS configured for `localhost:4200` in development
 
 ### Angular Specifics
+
 - ALL components must be standalone
 - Prefer Signals over RxJS for state management
 - Use Angular's built-in dependency injection
@@ -136,9 +147,9 @@ But NEVER execute `git commit` on your own initiative.
 Detailed task documentation is in `projet/features/` with 18 features split into 101 tasks. Each feature has its own folder with markdown files describing each task.
 
 Key documentation files:
+
 - `projet/projet.md`: Complete specifications
-- `projet/REGLES_COULEURS_FINAL.md`: Final color system rules
-- `projet/CORRECTIONS_IMPORTANTES.md`: Important corrections applied
+- `projet/notes/`: Important notes on the project
 
 ## API Communication
 
@@ -151,6 +162,7 @@ Key documentation files:
 ## Database
 
 PostgreSQL configuration in `server/.env`:
+
 - Database name: `royalmatch`
 - User: `postgres`
 - Password: `postgres`

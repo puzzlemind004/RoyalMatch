@@ -109,7 +109,7 @@ function compareCards(card1, card2, dominantColor) {
 - Tester toutes les combinaisons de couleurs
 - Tester avec différentes couleurs dominantes
 - Vérifier qu'il n'y a jamais d'égalité
-- Tester avec 2, 3, 4, 5, 6 joueurs
+- Tester avec 2, 3, 4 joueurs
 ```
 
 ### Frontend

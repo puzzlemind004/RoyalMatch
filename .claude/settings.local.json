@@ -27,7 +27,8 @@
       "Bash(node:*)",
       "Bash(cat:*)",
       "Bash(docker compose build:*)",
-      "Bash(ng generate component:*)"
+      "Bash(ng generate component:*)",
+      "Bash(npm test)"
     ],
     "deny": [],
     "ask": []
