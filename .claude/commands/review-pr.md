@@ -2,6 +2,8 @@
 
 Automated code review of a Pull Request with focus on quality, performance, and i18n compliance.
 
+**IMPORTANT: Réponds en français tout au long de cette revue.**
+
 ## Usage
 
 ```

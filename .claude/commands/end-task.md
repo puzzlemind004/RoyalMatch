@@ -2,6 +2,8 @@
 
 Finalize current task with clean commit and create Pull Request.
 
+**IMPORTANT: Réponds en français tout au long de cette commande.**
+
 ## Usage
 
 ```

@@ -2,6 +2,8 @@
 
 Start working on a specific task with dedicated branch and development workflow.
 
+**IMPORTANT: Réponds en français tout au long de cette tâche.**
+
 ## Usage
 
 ```
@@ -61,6 +63,10 @@ Start working on a specific task with dedicated branch and development workflow.
 - Mark all todos as completed
 - Summarize what was done
 - List modified/created files
+- **Explain how to test the feature**:
+  - Either: Add a demo page in `client/src/app/features/demo/` to showcase the new functionality
+  - Or: Specify the affected areas/endpoints/components where the user can see the changes in action
+  - Provide clear testing instructions (e.g., "Go to /demo/roulette to see the animation")
 - Remind user to use `/end-task` when ready
 
 ## Important Notes

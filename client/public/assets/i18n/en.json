@@ -184,6 +184,30 @@
     }
   },
   "demo": {
+    "rouletteDemo": {
+      "title": "Demo - Color Roulette",
+      "subtitle": "Random dominant color selection system",
+      "animation": "Roulette Animation",
+      "spinning": "Spinning...",
+      "spinRandom": "🎲 Random Spin",
+      "currentHierarchy": "Current Hierarchy",
+      "inGamePreview": "In-Game Preview",
+      "inGameDescription": "Here's how the hierarchy will appear during a game",
+      "desktopPreview": "Desktop - Top-right corner",
+      "mobilePreview": "Mobile - Accessible via button",
+      "gameAreaPlaceholder": "Game area (cards, players, etc.)",
+      "statistics": "Distribution Statistics",
+      "reset": "Reset",
+      "totalSpins": "Total spins",
+      "fairDistribution": "✓ Fair distribution observed over multiple spins",
+      "features": "Implemented Features",
+      "feature1": "Cryptographically secure selection (crypto.randomInt)",
+      "feature2": "Smooth rotation animation (2 seconds)",
+      "feature3": "Automatic weak/neutral color calculation",
+      "feature4": "Synchronization with ColorRouletteService (signals)",
+      "feature5": "Mobile-first responsive design with Tailwind",
+      "feature6": "Fair distribution tests (23-27%)"
+    },
     "cardDemo": {
       "title": "Demo - Card Component",
       "features": "Tested features",
@@ -203,6 +227,13 @@
     }
   },
   "game": {
+    "roulette": {
+      "strong": "Strong",
+      "weak": "Weak",
+      "neutral": "Neutral",
+      "spinning": "The roulette is spinning...",
+      "result": "Dominant color:"
+    },
     "effects": {
       "hearts": {
         "2": { "name": "Small Bonus", "desc": "+1 point if you win this trick" },

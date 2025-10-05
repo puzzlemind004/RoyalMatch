@@ -28,7 +28,10 @@
       "Bash(cat:*)",
       "Bash(docker compose build:*)",
       "Bash(ng generate component:*)",
-      "Bash(npm test)"
+      "Bash(npm test)",
+      "Bash(git switch:*)",
+      "Bash(npm run typecheck:*)",
+      "SlashCommand(/clean-commit)"
     ],
     "deny": [],
     "ask": []

@@ -184,6 +184,30 @@
     }
   },
   "demo": {
+    "rouletteDemo": {
+      "title": "Démo - Roulette de Couleurs",
+      "subtitle": "Système de sélection aléatoire de la couleur dominante",
+      "animation": "Animation de la Roulette",
+      "spinning": "En cours...",
+      "spinRandom": "🎲 Lancer Aléatoire",
+      "currentHierarchy": "Hiérarchie Actuelle",
+      "inGamePreview": "Aperçu en Jeu",
+      "inGameDescription": "Voici comment la hiérarchie s'affichera pendant une partie",
+      "desktopPreview": "Desktop - Coin supérieur droit",
+      "mobilePreview": "Mobile - Consultable via bouton",
+      "gameAreaPlaceholder": "Zone de jeu (cartes, joueurs, etc.)",
+      "statistics": "Statistiques de Distribution",
+      "reset": "Réinitialiser",
+      "totalSpins": "Nombre total de lancers",
+      "fairDistribution": "✓ Distribution équitable observée sur plusieurs lancers",
+      "features": "Fonctionnalités Implémentées",
+      "feature1": "Sélection cryptographiquement sécurisée (crypto.randomInt)",
+      "feature2": "Animation fluide de rotation (2 secondes)",
+      "feature3": "Calcul automatique des couleurs faible/neutres",
+      "feature4": "Synchronisation avec ColorRouletteService (signals)",
+      "feature5": "Design responsive mobile-first avec Tailwind",
+      "feature6": "Tests de distribution équitable (23-27%)"
+    },
     "cardDemo": {
       "title": "Démo - Composant Carte",
       "features": "Fonctionnalités testées",
@@ -203,6 +227,13 @@
     }
   },
   "game": {
+    "roulette": {
+      "strong": "Forte",
+      "weak": "Faible",
+      "neutral": "Neutre",
+      "spinning": "La roulette tourne...",
+      "result": "Couleur dominante :"
+    },
     "effects": {
       "hearts": {
         "2": { "name": "Petit Bonus", "desc": "+1 point si vous gagnez ce pli" },
