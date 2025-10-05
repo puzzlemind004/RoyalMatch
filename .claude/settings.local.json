@@ -30,8 +30,12 @@
       "Bash(ng generate component:*)",
       "Bash(npm test)",
       "Bash(git switch:*)",
+      "Bash(git pull:*)",
+      "Bash(git branch:*)",
+      "Bash(git fetch:*)",
       "Bash(npm run typecheck:*)",
       "SlashCommand(/clean-commit)",
+      "SlashCommand(/merge-pr)",
       "Bash(git push:*)",
       "Bash(python:*)"
     ],
