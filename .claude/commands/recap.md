@@ -110,4 +110,4 @@ Si aucun problème bloquant n'est détecté :
 - Sois UTILE : fournis des informations actionnables
 - UN SEUL rapport : PROBLÈME **OU** BILAN, pas les deux
 - Si plusieurs problèmes : concentre-toi sur le plus bloquant d'abord
-- écrit ton rapport en markdown dans le dossier @projet/recap avec comme nom de fichier la date, l'heure et le statut ex : 2025-10-03_22h23_probleme.md ou 2025-10-03_22h23_bilan.md
+- écrit ton rapport en markdown dans le dossier @recap avec comme nom de fichier la date, l'heure et le statut ex : 2025-10-03_22h23_probleme.md ou 2025-10-03_22h23_bilan.md
