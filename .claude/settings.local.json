@@ -31,7 +31,8 @@
       "Bash(npm test)",
       "Bash(git switch:*)",
       "Bash(npm run typecheck:*)",
-      "SlashCommand(/clean-commit)"
+      "SlashCommand(/clean-commit)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []
