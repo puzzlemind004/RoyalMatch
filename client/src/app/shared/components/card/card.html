@@ -22,6 +22,26 @@
       [class.text-red-600]="suitColor === 'red'"
       [class.text-black]="suitColor === 'black'"
     >
+      <!-- Strength badge (top-right) -->
+      @if (colorStrength) {
+        <div class="absolute right-1 top-1 z-10">
+          @if (colorStrength === 'strong') {
+            <div
+              class="rounded-full bg-green-500 px-2 py-0.5 text-[0.5rem] font-bold text-white shadow-md"
+            >
+              FORTE
+            </div>
+          }
+          @if (colorStrength === 'weak') {
+            <div
+              class="rounded-full bg-red-500 px-2 py-0.5 text-[0.5rem] font-bold text-white shadow-md"
+            >
+              FAIBLE
+            </div>
+          }
+        </div>
+      }
+
       <!-- Main card content area (without ribbon) -->
       <div class="relative flex flex-1 flex-col">
         <!-- Center: Large suit symbol (centered in the white area only) -->

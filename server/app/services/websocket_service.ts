@@ -17,7 +17,9 @@ export enum WebSocketEvent {
   TURN_ENDED = 'turn:ended',
 
   // Round events
+  ROUND_STARTED = 'round:started',
   ROUND_ENDED = 'round:ended',
+  ROULETTE_RESULT = 'roulette:result',
 
   // Action events
   CARD_PLAYED = 'card:played',
@@ -127,6 +129,17 @@ export class WebSocketService {
   static turnEnded(gameId: string, turnData: { turnNumber: number; results?: any }): void {
     this.broadcastToGame(gameId, WebSocketEvent.TURN_ENDED, turnData)
     this.broadcastToSpectators(gameId, WebSocketEvent.TURN_ENDED, turnData)
+  }
+
+  /**
+   * Broadcast roulette result event
+   */
+  static rouletteResult(
+    gameId: string,
+    rouletteData: { dominantColor: string; weakColor: string; neutrals: string[] }
+  ): void {
+    this.broadcastToGame(gameId, WebSocketEvent.ROULETTE_RESULT, rouletteData)
+    this.broadcastToSpectators(gameId, WebSocketEvent.ROULETTE_RESULT, rouletteData)
   }
 
   /**

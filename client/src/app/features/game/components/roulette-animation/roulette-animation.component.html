@@ -1,0 +1,48 @@
+<!-- Roulette Container -->
+<div class="flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
+  <!-- Roulette Wheel -->
+  <div class="mb-6">
+    <div
+      class="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full border-4 border-gray-300 bg-white shadow-2xl overflow-hidden transition-transform duration-[2000ms] ease-out mx-auto"
+      [style.transform]="isSpinning() ? 'rotate(1800deg)' : 'rotate(0deg)'"
+    >
+      <!-- Grid 2x2 for the 4 suits -->
+      <div class="grid grid-cols-2 grid-rows-2 w-full h-full">
+        @for (suit of suits; track suit) {
+          <div
+            class="flex items-center justify-center text-4xl sm:text-5xl md:text-6xl font-bold transition-all duration-300 border border-gray-200 p-4 sm:p-6 md:p-8"
+            [ngClass]="
+              suit === selectedSuit() ? 'bg-gradient-to-r from-yellow-400 to-orange-400' : ''
+            "
+          >
+            <span [ngClass]="getSuitColorClass(suit)">{{ getSuitSymbol(suit) }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Spinning Message -->
+  @if (isSpinning()) {
+    <div class="text-center">
+      <p class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-700 animate-pulse">
+        {{ 'game.roulette.spinning' | transloco }}
+      </p>
+    </div>
+  }
+
+  <!-- Result Display -->
+  @if (selectedSuit() && !isSpinning()) {
+    <div class="text-center">
+      <div class="flex items-center justify-center gap-2 sm:gap-3">
+        <span
+          class="text-4xl sm:text-5xl md:text-6xl"
+          [ngClass]="getSuitColorClass(selectedSuit()!)"
+        >
+          {{ getSuitSymbol(selectedSuit()!) }}
+        </span>
+        <span class="text-3xl sm:text-4xl">👑</span>
+      </div>
+    </div>
+  }
+</div>

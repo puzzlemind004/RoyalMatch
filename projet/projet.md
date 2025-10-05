@@ -4,7 +4,7 @@ RoyalMatch – Cahier des charges fonctionnel
 
 RoyalMatch est un jeu de cartes compétitif et stratégique jouable :
 
-En multijoueur (2 à 6 joueurs).
+En multijoueur (2 à 4 joueurs).
 
 En solo contre IA (une ou plusieurs IA pouvant remplacer des joueurs humains).
 

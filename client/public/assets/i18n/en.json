@@ -184,6 +184,30 @@
     }
   },
   "demo": {
+    "rouletteDemo": {
+      "title": "Demo - Color Roulette",
+      "subtitle": "Random dominant color selection system",
+      "animation": "Roulette Animation",
+      "spinning": "Spinning...",
+      "spinRandom": "🎲 Random Spin",
+      "currentHierarchy": "Current Hierarchy",
+      "inGamePreview": "In-Game Preview",
+      "inGameDescription": "Here's how the hierarchy will appear during a game",
+      "desktopPreview": "Desktop - Top-right corner",
+      "mobilePreview": "Mobile - Accessible via button",
+      "gameAreaPlaceholder": "Game area (cards, players, etc.)",
+      "statistics": "Distribution Statistics",
+      "reset": "Reset",
+      "totalSpins": "Total spins",
+      "fairDistribution": "✓ Fair distribution observed over multiple spins",
+      "features": "Implemented Features",
+      "feature1": "Cryptographically secure selection (crypto.randomInt)",
+      "feature2": "Smooth rotation animation (2 seconds)",
+      "feature3": "Automatic weak/neutral color calculation",
+      "feature4": "Synchronization with ColorRouletteService (signals)",
+      "feature5": "Mobile-first responsive design with Tailwind",
+      "feature6": "Fair distribution tests (23-27%)"
+    },
     "cardDemo": {
       "title": "Demo - Card Component",
       "features": "Tested features",
@@ -200,6 +224,120 @@
       "block": "Block",
       "activate": "Activate",
       "allSuits": "All suits"
+    }
+  },
+  "game": {
+    "roulette": {
+      "strong": "Strong",
+      "weak": "Weak",
+      "neutral": "Neutral",
+      "spinning": "The roulette is spinning...",
+      "result": "Dominant color:"
+    },
+    "effects": {
+      "hearts": {
+        "2": { "name": "Small Bonus", "desc": "+1 point if you win this trick" },
+        "3": { "name": "Revelation", "desc": "Reveal an opponent's objective" },
+        "4": { "name": "Protection", "desc": "This trick does not count negatively" },
+        "5": { "name": "Double Count", "desc": "This trick counts double for your objectives" },
+        "6": { "name": "Conditional Bonus", "desc": "+2 points if 2+ tricks won" },
+        "7": { "name": "Objective Copy", "desc": "Copy an unchosen objective" },
+        "8": { "name": "Shield", "desc": "Protect your tricks from negative effects" },
+        "9": { "name": "Objective Change", "desc": "Discard and draw an objective" },
+        "10": { "name": "Espionage", "desc": "Reveal an opponent's objective" },
+        "J": { "name": "Tri-Bonus", "desc": "+3 points if trick won with dominant color" },
+        "Q": { "name": "Multiplier", "desc": "Next 2 tricks count double" },
+        "K": { "name": "Total Revelation", "desc": "Reveal all of an opponent's objectives" },
+        "A": { "name": "Grand Reward", "desc": "If all objectives met: +5 points" }
+      },
+      "diamonds": {
+        "2": { "name": "Simple Draw", "desc": "Draw 1 card next turn" },
+        "3": { "name": "Discard and Draw", "desc": "Discard 1 card and draw 1" },
+        "4": { "name": "Vision", "desc": "Look at the next 2 cards" },
+        "5": { "name": "Clairvoyance", "desc": "Look at the next 3 cards" },
+        "6": { "name": "Recycle", "desc": "Recover a played card" },
+        "7": { "name": "Shuffle", "desc": "Shuffle your deck" },
+        "8": { "name": "Double Draw", "desc": "Draw 2 cards next turn" },
+        "9": { "name": "Simple Exchange", "desc": "Exchange 1 card with your deck" },
+        "10": { "name": "Grand Exchange", "desc": "Exchange 2 cards with your deck" },
+        "J": { "name": "Selection", "desc": "Look at 4 cards, draw 1" },
+        "Q": { "name": "Renewal", "desc": "Discard your hand and draw as many" },
+        "K": { "name": "Triple Draw", "desc": "Draw 3 cards next turn" },
+        "A": { "name": "Grand Selection", "desc": "Draw 3 cards, discard 2" }
+      },
+      "clubs": {
+        "2": { "name": "Simple Chance", "desc": "50% chance to draw 1 card" },
+        "3": { "name": "Minor Chaos", "desc": "All players draw 1 card" },
+        "4": { "name": "Fortune", "desc": "Random effect: +1 or +2 points" },
+        "5": { "name": "Random Draw", "desc": "Random effect: draw 1 or 2 cards" },
+        "6": { "name": "Distribution", "desc": "All discard 1 card at random" },
+        "7": { "name": "Blessing", "desc": "Random beneficial event" },
+        "8": { "name": "General Shuffle", "desc": "All shuffle their deck" },
+        "9": { "name": "Temporary Roulette", "desc": "Reroll roulette for 1 turn" },
+        "10": { "name": "Inversion", "desc": "Invert strong/weak next turn" },
+        "J": { "name": "Total Chaos", "desc": "Random effect among 3" },
+        "Q": { "name": "Hand Exchange", "desc": "Exchange your hand with an opponent" },
+        "K": { "name": "Hand Shuffle", "desc": "Shuffle all hands" },
+        "A": { "name": "Grand Roulette", "desc": "Reroll roulette for 1 turn" }
+      },
+      "spades": {
+        "2": { "name": "Light Espionage", "desc": "Look at an opponent's hand" },
+        "3": { "name": "Sabotage", "desc": "An opponent discards 1 card" },
+        "4": { "name": "Weak Block", "desc": "Block an effect of value ≤ 5" },
+        "5": { "name": "Forced Discard", "desc": "1 opponent discards 1 card at random" },
+        "6": { "name": "Disruption", "desc": "1 opponent plays at random" },
+        "7": { "name": "Simple Theft", "desc": "Steal 1 card from an opponent" },
+        "8": { "name": "Trick Cancellation", "desc": "1 opponent gains no points" },
+        "9": { "name": "Medium Block", "desc": "Block an effect of value ≤ 10" },
+        "10": { "name": "Counter", "desc": "Cancel strongest effect this turn" },
+        "J": { "name": "Double Discard", "desc": "1 opponent discards 2 cards" },
+        "Q": { "name": "Total Block", "desc": "Block any effect" },
+        "K": { "name": "Objective Removal", "desc": "1 opponent loses 1 objective" },
+        "A": { "name": "Grand Theft", "desc": "Steal 2 cards from an opponent" }
+      }
+    },
+    "tricks": {
+      "onlyCardPlayed": "Only card played",
+      "higherValue": "Higher value ({{winner}} > {{loser}})",
+      "dominantColor": "Dominant color",
+      "opponentWeakColor": "Opponent has weak color",
+      "redNeutral": "Red neutral > black neutral",
+      "blackNeutral": "Black neutral > red neutral"
+    },
+    "errors": {
+      "default": "An error occurred",
+      "invalidSelectionCount": "You must select exactly 5 cards",
+      "duplicateCards": "You have selected the same card multiple times",
+      "cardNotOwned": "This card does not belong to you",
+      "playerNotFound": "Player not found",
+      "cardNotInHand": "You do not have this card",
+      "cardAlreadyPlayed": "This card has already been played",
+      "turnNotStarted": "The turn has not started",
+      "turnTimeout": "Time is up",
+      "invalidGamePhase": "Action not possible in this game phase",
+      "notPlayerTurn": "It is not your turn",
+      "alreadyPlayedThisTurn": "You have already played this turn",
+      "unnecessaryTargets": "This effect does not require a target",
+      "missingTarget": "You must select a target",
+      "invalidTarget": "Invalid target",
+      "invalidSelfTarget": "You can only target yourself",
+      "invalidOpponentTarget": "You cannot target yourself",
+      "deckNotFound": "Deck not found",
+      "deckEmpty": "Your deck is empty",
+      "invalidCardSelected": "Invalid card selected",
+      "gameNotPlaying": "Game is not in playing phase",
+      "notYourTurn": "It is not your turn",
+      "invalidAction": "Invalid action",
+      "authRequired": "Authentication required",
+      "playerBanned": "You have been temporarily banned for suspicious activity",
+      "rateLimitExceeded": "Too many actions too quickly. Please slow down."
+    },
+    "messages": {
+      "chanceSuccess": "Success! You draw 1 card",
+      "noLuck": "No luck this time",
+      "randomDraw": "Random draw: {{count}} card(s)",
+      "noTargetSelected": "No target selected",
+      "fortune": "Fortune: +{{points}} points"
     }
   }
 }

@@ -19,6 +19,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'roulette',
+        loadComponent: () =>
+          import('./features/demo/pages/roulette-demo/roulette-demo.page').then(
+            (m) => m.RouletteDemoPage,
+          ),
+      },
+      {
         path: '',
         redirectTo: 'cards',
         pathMatch: 'full',

@@ -1,0 +1,199 @@
+<div class="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 p-4 sm:p-6 md:p-8">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-6 sm:mb-8">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-2">
+        🎡 {{ 'demo.rouletteDemo.title' | transloco }}
+      </h1>
+      <p class="text-base sm:text-lg text-gray-600">
+        {{ 'demo.rouletteDemo.subtitle' | transloco }}
+      </p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+      <!-- Left Column: Roulette Animation -->
+      <div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6">
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 text-center">
+          {{ 'demo.rouletteDemo.animation' | transloco }}
+        </h2>
+
+        <!-- Roulette Component -->
+        <app-roulette-animation
+          [finalSuit]="lastResult()?.dominant ?? null"
+          [weakSuit]="lastResult()?.weak ?? null"
+        />
+
+        <!-- Control Buttons -->
+        <div class="flex flex-col gap-3 mt-6">
+          <!-- Random Spin Button -->
+          <button
+            (click)="spinRoulette()"
+            [disabled]="isSpinning()"
+            class="w-full py-3 px-6 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold rounded-lg shadow-lg hover:from-purple-700 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105 active:scale-95"
+          >
+            {{ (isSpinning() ? 'demo.rouletteDemo.spinning' : 'demo.rouletteDemo.spinRandom') | transloco }}
+          </button>
+
+          <!-- Specific Color Buttons -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            @for (suit of allSuits; track suit) {
+            <button
+              (click)="spinWithColor(suit)"
+              [disabled]="isSpinning()"
+              class="py-2 px-3 bg-white border-2 border-gray-300 rounded-lg font-semibold hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 transform hover:scale-105 active:scale-95"
+            >
+              <span class="text-2xl" [ngClass]="getSuitColorClass(suit)">{{ getSuitSymbol(suit) }}</span>
+            </button>
+            }
+          </div>
+        </div>
+
+        <!-- Current Hierarchy Display -->
+        @if (lastResult()) {
+        <div class="mt-6">
+          <h3 class="text-lg font-bold text-gray-800 mb-3 text-center">
+            {{ 'demo.rouletteDemo.currentHierarchy' | transloco }}
+          </h3>
+          <app-color-hierarchy
+            [dominantColor]="lastResult()!.dominant"
+            [weakColor]="lastResult()!.weak"
+            [neutralColors]="lastResult()!.neutrals"
+          />
+        </div>
+        }
+      </div>
+
+      <!-- Right Column: Statistics & Features -->
+      <div class="space-y-6">
+        <!-- Hierarchy Preview (In-Game Style) -->
+        @if (lastResult()) {
+        <div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6">
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 text-center">
+            {{ 'demo.rouletteDemo.inGamePreview' | transloco }}
+          </h2>
+          <p class="text-sm text-gray-600 mb-4 text-center">
+            {{ 'demo.rouletteDemo.inGameDescription' | transloco }}
+          </p>
+
+          <!-- Desktop Preview -->
+          <div class="hidden lg:block mb-4">
+            <p class="text-xs text-gray-500 mb-2 text-center">{{ 'demo.rouletteDemo.desktopPreview' | transloco }}</p>
+            <div class="relative w-full h-40 bg-gradient-to-br from-green-100 to-blue-100 rounded-lg border-2 border-gray-300">
+              <!-- Hierarchy in top-right corner -->
+              <div class="absolute top-2 right-2 bg-white rounded-lg shadow-lg p-2">
+                <app-color-hierarchy
+                  [dominantColor]="lastResult()!.dominant"
+                  [weakColor]="lastResult()!.weak"
+                  [neutralColors]="lastResult()!.neutrals"
+                />
+              </div>
+              <div class="flex items-center justify-center h-full text-gray-400 text-sm">
+                {{ 'demo.rouletteDemo.gameAreaPlaceholder' | transloco }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile Preview -->
+          <div class="lg:hidden">
+            <p class="text-xs text-gray-500 mb-2 text-center">{{ 'demo.rouletteDemo.mobilePreview' | transloco }}</p>
+            <div class="flex justify-center">
+              <div class="bg-white rounded-lg shadow-lg p-3 border-2 border-gray-300">
+                <app-color-hierarchy
+                  [dominantColor]="lastResult()!.dominant"
+                  [weakColor]="lastResult()!.weak"
+                  [neutralColors]="lastResult()!.neutrals"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+
+        <!-- Distribution Statistics -->
+        <div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl sm:text-2xl font-bold text-gray-800">
+              {{ 'demo.rouletteDemo.statistics' | transloco }}
+            </h2>
+            <button
+              (click)="resetStatistics()"
+              class="py-2 px-4 bg-red-500 text-white font-semibold rounded-lg hover:bg-red-600 transition-all duration-200 text-sm sm:text-base"
+            >
+              {{ 'demo.rouletteDemo.reset' | transloco }}
+            </button>
+          </div>
+
+          <div class="text-center mb-4">
+            <p class="text-gray-600">{{ 'demo.rouletteDemo.totalSpins' | transloco }}</p>
+            <p class="text-4xl font-bold text-purple-600">{{ spinCount() }}</p>
+          </div>
+
+          <!-- Distribution Bars -->
+          <div class="space-y-3">
+            @for (suit of allSuits; track suit) {
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <div class="flex items-center gap-2">
+                  <span class="text-2xl" [ngClass]="getSuitColorClass(suit)">{{ getSuitSymbol(suit) }}</span>
+                  <span class="text-sm font-semibold text-gray-700">{{ distribution()[suit] }}</span>
+                </div>
+                <span class="text-sm font-bold text-gray-600">{{ getPercentage(suit) }}%</span>
+              </div>
+              <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                <div
+                  class="h-full rounded-full transition-all duration-500"
+                  [class.bg-red-500]="suit === 'hearts' || suit === 'diamonds'"
+                  [class.bg-gray-700]="suit === 'clubs' || suit === 'spades'"
+                  [style.width.%]="getPercentage(suit)"
+                ></div>
+              </div>
+            </div>
+            }
+          </div>
+
+          @if (spinCount() >= 10) {
+          <div class="mt-4 p-3 bg-green-50 border-2 border-green-300 rounded-lg">
+            <p class="text-sm text-green-800 text-center">
+              {{ 'demo.rouletteDemo.fairDistribution' | transloco }}
+            </p>
+          </div>
+          }
+        </div>
+
+        <!-- Features List -->
+        <div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6">
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4">
+            {{ 'demo.rouletteDemo.features' | transloco }}
+          </h2>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <span class="text-green-500 text-xl">✅</span>
+              <span class="text-gray-700 text-sm sm:text-base">{{ 'demo.rouletteDemo.feature1' | transloco }}</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-green-500 text-xl">✅</span>
+              <span class="text-gray-700 text-sm sm:text-base">{{ 'demo.rouletteDemo.feature2' | transloco }}</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-green-500 text-xl">✅</span>
+              <span class="text-gray-700 text-sm sm:text-base">{{ 'demo.rouletteDemo.feature3' | transloco }}</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-green-500 text-xl">✅</span>
+              <span class="text-gray-700 text-sm sm:text-base">{{ 'demo.rouletteDemo.feature4' | transloco }}</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-green-500 text-xl">✅</span>
+              <span class="text-gray-700 text-sm sm:text-base">{{ 'demo.rouletteDemo.feature5' | transloco }}</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-green-500 text-xl">✅</span>
+              <span class="text-gray-700 text-sm sm:text-base">{{ 'demo.rouletteDemo.feature6' | transloco }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
