@@ -1,5 +1,6 @@
-import { Component, input, computed } from '@angular/core';
+import { Component, input, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslocoService } from '@jsverse/transloco';
 import type {
   ComparableCard,
   CardComparisonService,
@@ -27,6 +28,8 @@ export interface PlayedCardInfo {
   styleUrl: './trick-winner.component.css',
 })
 export class TrickWinnerComponent {
+  private transloco = inject(TranslocoService);
+
   // Inputs
   playedCards = input.required<PlayedCardInfo[]>();
   dominantColor = input.required<CardSuit>();
@@ -55,7 +58,7 @@ export class TrickWinnerComponent {
 
     const cards = this.playedCards();
     const otherCards = cards.filter((c) => c.playerId !== winner.playerId);
-    if (otherCards.length === 0) return 'Seule carte jouée';
+    if (otherCards.length === 0) return this.transloco.translate('game.tricks.onlyCardPlayed');
 
     // Compare with the best losing card
     let bestLoser = otherCards[0];
@@ -102,22 +105,27 @@ export class TrickWinnerComponent {
     const loseValue = this.getNumericValue(losingCard.value);
 
     if (winValue !== loseValue) {
-      return `Valeur plus haute (${winningCard.value} > ${losingCard.value})`;
+      return this.transloco.translate('game.tricks.higherValue', {
+        winner: winningCard.value,
+        loser: losingCard.value,
+      });
     }
 
     const dominantColor = this.dominantColor();
     const weakColor = this.getOppositeColor(dominantColor);
 
     if (winningCard.suit === dominantColor) {
-      return 'Couleur dominante';
+      return this.transloco.translate('game.tricks.dominantColor');
     }
 
     if (losingCard.suit === weakColor) {
-      return 'Adversaire a couleur faible';
+      return this.transloco.translate('game.tricks.opponentWeakColor');
     }
 
     const isDominantRed = this.isRedSuit(dominantColor);
-    return isDominantRed ? 'Neutre rouge > neutre noir' : 'Neutre noir > neutre rouge';
+    return isDominantRed
+      ? this.transloco.translate('game.tricks.redNeutral')
+      : this.transloco.translate('game.tricks.blackNeutral');
   }
 
   /**

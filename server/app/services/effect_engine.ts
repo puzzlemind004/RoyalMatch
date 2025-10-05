@@ -313,9 +313,9 @@ export class EffectEngine {
             targetPlayerId: context.caster.id,
             data: { count: 1 },
           })
-          message = 'Chance réussie ! Vous piochez 1 carte'
+          message = 'game.messages.chanceSuccess'
         } else {
-          message = 'Pas de chance cette fois'
+          message = 'game.messages.noLuck'
         }
         break
 
@@ -326,7 +326,7 @@ export class EffectEngine {
           targetPlayerId: context.caster.id,
           data: { points },
         })
-        message = `Fortune : +${points} points`
+        message = `game.messages.fortune|${points}`
         break
 
       case 5: // Random: draw 1 or 2 cards
@@ -336,7 +336,7 @@ export class EffectEngine {
           targetPlayerId: context.caster.id,
           data: { count: drawCount },
         })
-        message = `Pioche aléatoire : ${drawCount} carte(s)`
+        message = `game.messages.randomDraw|${drawCount}`
         break
 
       case 9: // Reroll color wheel for 1 turn
@@ -389,7 +389,7 @@ export class EffectEngine {
     if (!context.targets || context.targets.length === 0) {
       return {
         success: false,
-        message: 'Aucune cible sélectionnée',
+        message: 'game.messages.noTargetSelected',
         modifications: [],
       }
     }

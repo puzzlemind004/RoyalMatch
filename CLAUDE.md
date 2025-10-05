@@ -142,6 +142,50 @@ npm test
 - Component selector prefix: `app-`
 - **ALWAYS externalize HTML templates**: Use separate `.html` files instead of inline `template` strings for better readability
 
+### Internationalization (i18n) - CRITICAL RULE
+
+**⚠️ BEFORE writing ANY text, ask: "Will this text be displayed to the user?"**
+
+- ✅ **YES** → Use Transloco with translation keys (`this.transloco.translate('game.errors.key')`)
+- ❌ **NO** → Can remain in English (logs, comments, variable names)
+
+**Frontend (Client):**
+```typescript
+// ❌ WRONG - Hardcoded text
+const msg = 'Card not found';
+
+// ✅ CORRECT - Use Transloco
+const msg = this.transloco.translate('game.errors.cardNotFound');
+
+// ✅ CORRECT - With dynamic params
+const msg = this.transloco.translate('game.messages.randomDraw', { count: 2 });
+```
+
+**Backend (Server):**
+```typescript
+// ❌ WRONG - Text message
+return { success: false, message: 'Player not found' };
+
+// ✅ CORRECT - Translation key
+return { success: false, message: 'game.errors.playerNotFound' };
+
+// ✅ CORRECT - With code + key
+return {
+  code: 'PLAYER_NOT_FOUND',
+  message: 'game.errors.playerNotFound'
+};
+
+// ✅ CORRECT - With params (format: key|param1|param2)
+return { message: 'game.messages.randomDraw|2' };
+```
+
+**Key points:**
+- Transloco is configured with FR (default) and EN
+- Translation files: `client/public/assets/i18n/fr.json` and `en.json`
+- Server sends translation keys, client translates them
+- HTTP interceptor (`game-error.interceptor.ts`) handles automatic translation
+- Server `reason` field is for logs only, NEVER displayed to users
+
 ## Project Documentation
 
 Detailed task documentation is in `projet/features/` with 18 features split into 101 tasks. Each feature has its own folder with markdown files describing each task.

@@ -47,91 +47,18 @@ export class EffectExecutor {
 
   /**
    * Parse effect description to extract actionable data
-   * Examples:
-   * - "Piochez 2 cartes" → { action: 'draw', count: 2 }
-   * - "+3 points" → { action: 'points', count: 3 }
-   * - "Révélez un objectif" → { action: 'reveal', target: 'objective' }
+   * NOTE: This method is no longer used for text parsing.
+   * Effect data should be determined by card suit/value, not by description text.
+   * Descriptions are now translation keys handled by the frontend.
    */
-  private parseEffectActions(description: string): Array<{
+  private parseEffectActions(_description: string): Array<{
     action: string
     count?: number
     target?: string
   }> {
-    const actions: Array<{ action: string; count?: number; target?: string }> = []
-
-    // Draw cards
-    const drawMatch = description.match(/(?:Piochez|piochez)\s+(\d+)\s+carte/i)
-    if (drawMatch) {
-      actions.push({ action: 'draw', count: Number.parseInt(drawMatch[1]) })
-    }
-
-    // Add points
-    const pointsMatch = description.match(/\+(\d+)\s+points?/i)
-    if (pointsMatch) {
-      actions.push({ action: 'points', count: Number.parseInt(pointsMatch[1]) })
-    }
-
-    // Discard cards
-    const discardMatch = description.match(/(?:défaussez|Défaussez)\s+(\d+)\s+carte/i)
-    if (discardMatch) {
-      actions.push({ action: 'discard', count: Number.parseInt(discardMatch[1]) })
-    }
-
-    // Reveal objective
-    if (description.match(/révélez.*objectif/i)) {
-      const allMatch = description.match(/tous les objectifs/i)
-      actions.push({ action: 'reveal', target: 'objective', count: allMatch ? 999 : 1 })
-    }
-
-    // Steal cards
-    const stealMatch = description.match(/volez\s+(\d+)\s+carte/i)
-    if (stealMatch) {
-      actions.push({ action: 'steal', count: Number.parseInt(stealMatch[1]) })
-    }
-
-    // Double trick
-    if (description.match(/compte double/i)) {
-      actions.push({ action: 'double', target: 'trick' })
-    }
-
-    // Block effect
-    if (description.match(/bloquez|annulez/i)) {
-      actions.push({ action: 'block', target: 'effect' })
-    }
-
-    // Change color
-    if (description.match(/relancez.*roulette|inversez/i)) {
-      actions.push({ action: 'change_color' })
-    }
-
-    // Protect
-    if (description.match(/protégez|protéger/i)) {
-      actions.push({ action: 'protect', target: 'trick' })
-    }
-
-    // Look at cards
-    const lookMatch = description.match(/regardez.*(\d+)/i)
-    if (lookMatch) {
-      actions.push({ action: 'look', count: Number.parseInt(lookMatch[1]) })
-    }
-
-    // Exchange cards
-    const exchangeMatch = description.match(/échangez\s+(\d+)\s+carte/i)
-    if (exchangeMatch) {
-      actions.push({ action: 'exchange', count: Number.parseInt(exchangeMatch[1]) })
-    }
-
-    // Random effect
-    if (description.match(/aléatoire|chance|hasard/i)) {
-      actions.push({ action: 'random' })
-    }
-
-    // If no specific action found, use generic based on category
-    if (actions.length === 0) {
-      actions.push({ action: 'generic' })
-    }
-
-    return actions
+    // This method should be refactored to use card data instead of text parsing
+    // For now, return a generic action to maintain compatibility
+    return [{ action: 'generic' }]
   }
 
   /**
