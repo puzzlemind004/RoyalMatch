@@ -14,7 +14,7 @@ Start working on a specific task with dedicated branch and development workflow.
 
 ## What this command does
 
-1. **Load task specifications** from `projet/features/feature_*/task_*.md`
+1. **Load task specifications** from GitHub Issues
 2. **Create dedicated branch** `<task-number>-<task-name>` from master
 3. **Display task details** (description, acceptance criteria, technical requirements)
 4. **Plan implementation** with step-by-step breakdown
@@ -23,11 +23,21 @@ Start working on a specific task with dedicated branch and development workflow.
 
 ## Implementation Steps
 
-### Step 1: Load Task File
+### Step 1: Load Task from GitHub Issue
 
-- Read task file from `projet/features/feature_X/task_Y.md`
-- Parse task number, title, description, and requirements
-- Display full task context to user
+**Récupérer l'issue correspondante :**
+```bash
+# Chercher l'issue par titre
+gh issue list --search "in:title [Task X.Y]" --json number,title,body,labels --limit 1
+
+# Récupérer les détails complets
+gh issue view <issue-number> --json number,title,body,labels,state
+```
+
+- Extraire le numéro de tâche (X.Y) du titre de l'issue
+- Parser le body (markdown) pour afficher les spécifications
+- Vérifier que l'issue n'est pas déjà fermée (closed)
+- Afficher le contexte complet de la tâche à l'utilisateur
 
 ### Step 2: Create Branch
 

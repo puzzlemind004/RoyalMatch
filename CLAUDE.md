@@ -188,11 +188,23 @@ return { message: 'game.messages.randomDraw|2' };
 
 ## Project Documentation
 
-Detailed task documentation is in `projet/features/` with 18 features split into 101 tasks. Each feature has its own folder with markdown files describing each task.
+Detailed task documentation is managed via **GitHub Issues** with 18 features split into 101 tasks. Each task is a separate issue with appropriate labels and milestones.
+
+**To access task information:**
+```bash
+# List all tasks for a specific feature
+gh issue list --label "feature-3-roulette-couleurs"
+
+# View specific task details
+gh issue view <issue-number>
+
+# Search for a specific task by number
+gh issue list --search "in:title [Task 3.1]"
+```
 
 Key documentation files:
 
-- `projet/projet.md`: Complete specifications
+- `projet/projet.md`: Complete specifications (archived reference)
 - `projet/notes/`: Important notes on the project
 
 ## API Communication
