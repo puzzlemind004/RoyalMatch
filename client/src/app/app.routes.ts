@@ -26,6 +26,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'hierarchy',
+        loadComponent: () =>
+          import('./features/demo/pages/hierarchy-demo/hierarchy-demo.component').then(
+            (m) => m.HierarchyDemoComponent,
+          ),
+      },
+      {
         path: '',
         redirectTo: 'cards',
         pathMatch: 'full',

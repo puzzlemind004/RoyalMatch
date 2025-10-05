@@ -31,6 +31,7 @@
     "#tests/*": "./tests/*.js",
     "#config/*": "./config/*.js",
     "#types/*": "./app/types/*.js",
+    "#constants/*": "./app/constants/*.js",
     "#data/*": "./app/data/*.json"
   },
   "devDependencies": {

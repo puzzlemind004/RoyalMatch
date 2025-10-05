@@ -17,7 +17,9 @@ test.group('Card Validation Service', () => {
   const createCard = (value: CardValue, suit: CardSuit): ValidatableCard => ({ value, suit })
 
   // Helper function to create game state
-  const createGameState = (overrides?: Partial<GameStateForValidation>): GameStateForValidation => ({
+  const createGameState = (
+    overrides?: Partial<GameStateForValidation>
+  ): GameStateForValidation => ({
     currentTurn: 1,
     currentPhase: 'playing',
     simultaneousPlay: false,

@@ -174,8 +174,7 @@ export class CardValidationService {
       }
     }
 
-    const elapsedSeconds =
-      (currentTime.getTime() - gameState.turnStartTime.getTime()) / 1000
+    const elapsedSeconds = (currentTime.getTime() - gameState.turnStartTime.getTime()) / 1000
 
     if (elapsedSeconds > gameState.maxTurnDuration) {
       return {

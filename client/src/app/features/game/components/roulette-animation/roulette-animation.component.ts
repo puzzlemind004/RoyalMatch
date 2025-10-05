@@ -29,9 +29,9 @@ export class RouletteAnimationComponent {
 
   // All suits for the wheel (checkerboard pattern: red-black-black-red)
   readonly suits: CardSuit[] = [
-    CardSuit.HEARTS,   // Top-left: red
-    CardSuit.CLUBS,    // Top-right: black
-    CardSuit.SPADES,   // Bottom-left: black
+    CardSuit.HEARTS, // Top-left: red
+    CardSuit.CLUBS, // Top-right: black
+    CardSuit.SPADES, // Bottom-left: black
     CardSuit.DIAMONDS, // Bottom-right: red
   ];
 

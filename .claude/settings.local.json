@@ -37,7 +37,8 @@
       "SlashCommand(/clean-commit)",
       "SlashCommand(/merge-pr)",
       "Bash(git push:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(npm run test:*)"
     ],
     "deny": [],
     "ask": []
