@@ -18,14 +18,8 @@
           {{ 'demo.rouletteDemo.animation' | transloco }}
         </h2>
 
-        <!-- Roulette Component -->
-        <app-roulette-animation
-          [finalSuit]="lastResult()?.dominant ?? null"
-          [weakSuit]="lastResult()?.weak ?? null"
-        />
-
-        <!-- Control Buttons -->
-        <div class="flex flex-col gap-3 mt-6">
+        <!-- Control Buttons (moved above roulette) -->
+        <div class="flex flex-col gap-3 mb-6">
           <!-- Random Spin Button -->
           <button
             (click)="spinRoulette()"
@@ -53,6 +47,12 @@
             }
           </div>
         </div>
+
+        <!-- Roulette Component -->
+        <app-roulette-animation
+          [finalSuit]="lastResult()?.dominant ?? null"
+          [weakSuit]="lastResult()?.weak ?? null"
+        />
 
         <!-- Current Hierarchy Display -->
         @if (lastResult()) {

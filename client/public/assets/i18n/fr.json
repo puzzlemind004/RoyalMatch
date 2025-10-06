@@ -281,7 +281,9 @@
       "weak": "Faible",
       "neutral": "Neutre",
       "spinning": "La roulette tourne...",
-      "result": "Couleur dominante :"
+      "result": "Couleur dominante :",
+      "skip": "Passer",
+      "hierarchy": "Hiérarchie des couleurs"
     },
     "tricks": {
       "winner": "Gagnant du pli",
