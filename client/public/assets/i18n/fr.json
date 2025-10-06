@@ -263,6 +263,92 @@
       "step4": "<strong>Exemple</strong> : Un 2♥ FORTE bat un As♦ Neutre ! 🎯"
     }
   },
+  "objectives": {
+    "lose_all_tricks": {
+      "name": "Le Fantôme",
+      "description": "Ne gagnez aucun pli"
+    },
+    "win_exactly_0": {
+      "name": "Pacifiste",
+      "description": "Gagnez exactement 0 pli"
+    },
+    "win_exactly_1": {
+      "name": "Solitaire",
+      "description": "Gagnez exactement 1 pli"
+    },
+    "win_exactly_2": {
+      "name": "Duo Gagnant",
+      "description": "Gagnez exactement 2 plis"
+    },
+    "win_exactly_3": {
+      "name": "Trio Parfait",
+      "description": "Gagnez exactement 3 plis"
+    },
+    "win_exactly_4": {
+      "name": "Carré d'As",
+      "description": "Gagnez exactement 4 plis"
+    },
+    "win_at_least_3": {
+      "name": "Majorité",
+      "description": "Gagnez au moins 3 plis"
+    },
+    "win_at_most_1": {
+      "name": "Discrétion",
+      "description": "Gagnez au maximum 1 pli"
+    },
+    "win_first_and_last": {
+      "name": "Alpha et Oméga",
+      "description": "Gagnez le premier et le dernier pli"
+    },
+    "win_3_consecutive": {
+      "name": "Série Victorieuse",
+      "description": "Gagnez 3 plis consécutifs"
+    },
+    "no_red_cards": {
+      "name": "Anti-Rouge",
+      "description": "Ne gagnez aucune carte rouge (♥♦)"
+    },
+    "no_black_cards": {
+      "name": "Anti-Noir",
+      "description": "Ne gagnez aucune carte noire (♣♠)"
+    },
+    "win_2_dominant_suit": {
+      "name": "Maître de la Couleur",
+      "description": "Gagnez au moins 2 cartes de la couleur forte"
+    },
+    "win_all_suits": {
+      "name": "Arc-en-Ciel",
+      "description": "Gagnez au moins une carte de chaque couleur"
+    },
+    "win_all_aces": {
+      "name": "As de la Victoire",
+      "description": "Gagnez les 4 As"
+    },
+    "no_face_cards": {
+      "name": "Roturier",
+      "description": "Ne gagnez aucune figure (V, D, R)"
+    },
+    "only_even_cards": {
+      "name": "Paire ou Impaire",
+      "description": "Ne gagnez que des cartes paires (2, 4, 6, 8, 10, D)"
+    },
+    "total_value_less_30": {
+      "name": "Minimaliste",
+      "description": "Total des valeurs gagnées < 30"
+    },
+    "total_value_greater_50": {
+      "name": "Collectionneur",
+      "description": "Total des valeurs gagnées > 50"
+    },
+    "activate_all_effects": {
+      "name": "Effet Maximal",
+      "description": "Activez tous les effets de vos cartes"
+    },
+    "never_activate_effects": {
+      "name": "Puriste",
+      "description": "Ne jamais activer d'effets"
+    }
+  },
   "game": {
     "hierarchy": {
       "dominant": "FORTE",

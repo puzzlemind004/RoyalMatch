@@ -263,6 +263,92 @@
       "step4": "<strong>Example</strong>: A 2♥ STRONG beats an A♦ Neutral! 🎯"
     }
   },
+  "objectives": {
+    "lose_all_tricks": {
+      "name": "The Ghost",
+      "description": "Win no tricks"
+    },
+    "win_exactly_0": {
+      "name": "Pacifist",
+      "description": "Win exactly 0 tricks"
+    },
+    "win_exactly_1": {
+      "name": "Lone Wolf",
+      "description": "Win exactly 1 trick"
+    },
+    "win_exactly_2": {
+      "name": "Double Trouble",
+      "description": "Win exactly 2 tricks"
+    },
+    "win_exactly_3": {
+      "name": "Perfect Trio",
+      "description": "Win exactly 3 tricks"
+    },
+    "win_exactly_4": {
+      "name": "Four of a Kind",
+      "description": "Win exactly 4 tricks"
+    },
+    "win_at_least_3": {
+      "name": "Majority Rule",
+      "description": "Win at least 3 tricks"
+    },
+    "win_at_most_1": {
+      "name": "Low Profile",
+      "description": "Win at most 1 trick"
+    },
+    "win_first_and_last": {
+      "name": "Alpha and Omega",
+      "description": "Win the first and last trick"
+    },
+    "win_3_consecutive": {
+      "name": "Winning Streak",
+      "description": "Win 3 consecutive tricks"
+    },
+    "no_red_cards": {
+      "name": "No Red Zone",
+      "description": "Win no red cards (♥♦)"
+    },
+    "no_black_cards": {
+      "name": "No Black Zone",
+      "description": "Win no black cards (♣♠)"
+    },
+    "win_2_dominant_suit": {
+      "name": "Color Master",
+      "description": "Win at least 2 cards of the dominant suit"
+    },
+    "win_all_suits": {
+      "name": "Rainbow",
+      "description": "Win at least one card of each suit"
+    },
+    "win_all_aces": {
+      "name": "Ace Collector",
+      "description": "Win all 4 Aces"
+    },
+    "no_face_cards": {
+      "name": "Commoner",
+      "description": "Win no face cards (J, Q, K)"
+    },
+    "only_even_cards": {
+      "name": "Even Steven",
+      "description": "Win only even cards (2, 4, 6, 8, 10, Q)"
+    },
+    "total_value_less_30": {
+      "name": "Minimalist",
+      "description": "Total card values won < 30"
+    },
+    "total_value_greater_50": {
+      "name": "Collector",
+      "description": "Total card values won > 50"
+    },
+    "activate_all_effects": {
+      "name": "Maximum Effect",
+      "description": "Activate all card effects"
+    },
+    "never_activate_effects": {
+      "name": "Purist",
+      "description": "Never activate effects"
+    }
+  },
   "game": {
     "hierarchy": {
       "dominant": "STRONG",

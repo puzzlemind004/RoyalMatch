@@ -38,7 +38,8 @@
       "SlashCommand(/merge-pr)",
       "Bash(git push:*)",
       "Bash(python:*)",
-      "Bash(npm run test:*)"
+      "Bash(npm run test:*)",
+      "Bash(npm test:*)"
     ],
     "deny": [],
     "ask": []
