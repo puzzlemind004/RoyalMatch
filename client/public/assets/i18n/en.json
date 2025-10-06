@@ -243,6 +243,24 @@
       "oppositionRule2": "Relationships are fixed and symmetrical",
       "oppositionRule3": "Each color has exactly one opposite color",
       "backToDemo": "← Back to demos"
+    },
+    "trickResolutionDemo": {
+      "title": "Trick Resolution - Interactive Demo",
+      "subtitle": "Logic \"Color first, then value\"",
+      "selectDominantColor": "Select the STRONG (dominant) color",
+      "trickSimulation": "Trick Simulation",
+      "cardsCount": "{{count}}/4 cards",
+      "clickToStart": "Click on cards<br>to start",
+      "player": "Player {{number}}",
+      "winner": "Winner",
+      "reason": "Reason:",
+      "resetTrick": "Reset trick",
+      "availableCards": "Available Cards",
+      "howItWorks": "How it works?",
+      "step1": "<strong>Color first</strong>: We identify the strongest color present in the trick",
+      "step2": "<strong>Then value</strong>: Among cards of that color, the highest value wins",
+      "step3": "<strong>Hierarchy</strong>: STRONG > Neutral (same color) > Neutral (other color) > WEAK",
+      "step4": "<strong>Example</strong>: A 2♥ STRONG beats an A♦ Neutral! 🎯"
     }
   },
   "game": {
