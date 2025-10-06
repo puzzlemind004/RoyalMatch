@@ -23,6 +23,12 @@ import {
 } from '../types/objective.js'
 
 /**
+ * Card count constants
+ */
+const TOTAL_ACES = 4 // Total number of Aces in a deck
+const TOTAL_SUITS = 4 // Total number of suits in a deck
+
+/**
  * ========================================
  * TRICKS-BASED VERIFIERS
  * ========================================
@@ -226,15 +232,15 @@ export class WinXTricksWithDominantSuitVerifier implements ObjectiveVerifier {
 export class WinAllSuitsVerifier implements ObjectiveVerifier {
   checkCompletion(state: PlayerRoundState): boolean {
     const suits = new Set(state.cardsWon.map((card) => card.suit))
-    return suits.size === 4 // All 4 suits
+    return suits.size === TOTAL_SUITS
   }
 
   getProgress(state: PlayerRoundState): ObjectiveProgress {
     const suits = new Set(state.cardsWon.map((card) => card.suit))
     return {
       current: suits.size,
-      target: 4,
-      percentage: (suits.size / 4) * 100,
+      target: TOTAL_SUITS,
+      percentage: (suits.size / TOTAL_SUITS) * 100,
     }
   }
 }
@@ -251,15 +257,15 @@ export class WinAllSuitsVerifier implements ObjectiveVerifier {
 export class WinAllAcesVerifier implements ObjectiveVerifier {
   checkCompletion(state: PlayerRoundState): boolean {
     const acesWon = state.cardsWon.filter((card) => card.value === 'A')
-    return acesWon.length === 4 // All 4 Aces
+    return acesWon.length === TOTAL_ACES
   }
 
   getProgress(state: PlayerRoundState): ObjectiveProgress {
     const acesWon = state.cardsWon.filter((card) => card.value === 'A')
     return {
       current: acesWon.length,
-      target: 4,
-      percentage: (acesWon.length / 4) * 100,
+      target: TOTAL_ACES,
+      percentage: (acesWon.length / TOTAL_ACES) * 100,
     }
   }
 }

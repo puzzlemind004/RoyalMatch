@@ -8,7 +8,7 @@
  * - Total: ~51 objectives for deck variety
  */
 
-import type { ObjectiveDefinition } from '../types/objective.js'
+import type { ObjectiveDefinition, ObjectiveVerifier } from '../types/objective.js'
 import { ObjectiveCategory, ObjectiveDifficulty } from '../types/objective.js'
 import {
   WinExactlyXTricksVerifier,
@@ -40,7 +40,7 @@ interface ObjectiveTemplate {
   category: ObjectiveCategory
   difficulty: ObjectiveDifficulty
   points: number
-  createVerifier: () => any // Factory function for verifier
+  createVerifier: () => ObjectiveVerifier // Factory function for verifier with strict typing
 }
 
 /**
