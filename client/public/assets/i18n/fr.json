@@ -243,6 +243,24 @@
       "oppositionRule2": "Les relations sont fixes et symétriques",
       "oppositionRule3": "Chaque couleur a exactement une couleur opposée",
       "backToDemo": "← Retour aux démos"
+    },
+    "trickResolutionDemo": {
+      "title": "Résolution de Pli - Démo Interactive",
+      "subtitle": "Logique \"Couleur prime avant valeur\"",
+      "selectDominantColor": "Sélectionnez la couleur FORTE (dominante)",
+      "trickSimulation": "Simulation de Pli",
+      "cardsCount": "{{count}}/4 cartes",
+      "clickToStart": "Cliquez sur des cartes<br>pour commencer",
+      "player": "Joueur {{number}}",
+      "winner": "Gagnant",
+      "reason": "Raison :",
+      "resetTrick": "Réinitialiser le pli",
+      "availableCards": "Cartes Disponibles",
+      "howItWorks": "Comment ça marche ?",
+      "step1": "<strong>Couleur d'abord</strong> : On identifie la couleur la plus forte présente dans le pli",
+      "step2": "<strong>Puis valeur</strong> : Parmi les cartes de cette couleur, la plus haute valeur gagne",
+      "step3": "<strong>Hiérarchie</strong> : FORTE > Neutre (même couleur) > Neutre (autre couleur) > FAIBLE",
+      "step4": "<strong>Exemple</strong> : Un 2♥ FORTE bat un As♦ Neutre ! 🎯"
     }
   },
   "game": {
@@ -264,6 +282,19 @@
       "neutral": "Neutre",
       "spinning": "La roulette tourne...",
       "result": "Couleur dominante :"
+    },
+    "tricks": {
+      "winner": "Gagnant du pli",
+      "onlyCardPlayed": "Seule carte jouée",
+      "onlyDominantColor": "Seule carte de la couleur forte",
+      "onlyCardOfStrongestColor": "Seule carte de la couleur la plus forte",
+      "highestAmongDominant": "Plus haute valeur parmi les cartes fortes ({{value}})",
+      "highestAmongColor": "Plus haute valeur parmi les cartes de cette couleur ({{value}})",
+      "highestValue": "Plus haute valeur ({{value}})",
+      "dominantColor": "Couleur dominante",
+      "opponentWeakColor": "Adversaire a la couleur faible",
+      "redNeutral": "Neutre rouge bat neutre noir (rouge dominant)",
+      "blackNeutral": "Neutre noir bat neutre rouge (noir dominant)"
     },
     "effects": {
       "hearts": {

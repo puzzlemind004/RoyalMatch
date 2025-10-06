@@ -14,6 +14,7 @@ export class DemoLayoutComponent {
     { path: '/demo/effects', label: 'Effets', icon: '✨' },
     { path: '/demo/roulette', label: 'Roulette', icon: '🎡' },
     { path: '/demo/hierarchy', label: 'Hiérarchie', icon: '🎯' },
+    { path: '/demo/trick-resolution', label: 'Plis', icon: '🃏' },
     // Future demos will be added here
     // { path: '/demo/game', label: 'Partie', icon: '🎮' },
     // { path: '/demo/players', label: 'Joueurs', icon: '👥' },

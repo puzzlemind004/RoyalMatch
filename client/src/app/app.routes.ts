@@ -33,6 +33,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'trick-resolution',
+        loadComponent: () =>
+          import('./features/demo/pages/trick-resolution-demo/trick-resolution-demo.component').then(
+            (m) => m.TrickResolutionDemoComponent,
+          ),
+      },
+      {
         path: '',
         redirectTo: 'cards',
         pathMatch: 'full',
