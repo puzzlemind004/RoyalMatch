@@ -1,19 +1,19 @@
 <!-- Color Hierarchy - Vertical Display -->
 <div class="flex flex-col gap-1">
   @for (item of hierarchy(); track item.suit) {
-  <div
-    class="flex items-center justify-center py-2 px-4 rounded-lg transition-all duration-200"
-    [ngClass]="getBackgroundClass(item.type)"
-  >
-    <!-- Crown for dominant color -->
-    @if (item.type === 'dominant') {
-    <span class="text-xl mr-2">👑</span>
-    }
+    <div
+      class="flex items-center justify-center py-2 px-4 rounded-lg transition-all duration-200"
+      [ngClass]="getBackgroundClass(item.type)"
+    >
+      <!-- Crown for dominant color -->
+      @if (item.type === 'dominant') {
+        <span class="text-xl mr-2">👑</span>
+      }
 
-    <!-- Suit Symbol -->
-    <span class="text-3xl font-bold" [ngClass]="getSuitColorClass(item.suit)">
-      {{ getSuitSymbol(item.suit) }}
-    </span>
-  </div>
+      <!-- Suit Symbol -->
+      <span class="text-3xl font-bold" [ngClass]="getSuitColorClass(item.suit)">
+        {{ getSuitSymbol(item.suit) }}
+      </span>
+    </div>
   }
 </div>

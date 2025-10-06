@@ -60,7 +60,9 @@ export class ClientValidationService {
 
     // Check all cards are from dealt cards
     for (const selected of selectedCards) {
-      const found = dealtCards.some((dealt) => dealt.value === selected.value && dealt.suit === selected.suit);
+      const found = dealtCards.some(
+        (dealt) => dealt.value === selected.value && dealt.suit === selected.suit,
+      );
       if (!found) {
         return {
           valid: false,
@@ -93,7 +95,9 @@ export class ClientValidationService {
     }
 
     // Check card is in hand
-    const hasCard = gameState.playerHand.some((c) => c.value === card.value && c.suit === card.suit);
+    const hasCard = gameState.playerHand.some(
+      (c) => c.value === card.value && c.suit === card.suit,
+    );
     if (!hasCard) {
       return {
         valid: false,
@@ -102,7 +106,9 @@ export class ClientValidationService {
     }
 
     // Check card hasn't been played
-    const alreadyPlayed = gameState.playedCards.some((c) => c.value === card.value && c.suit === card.suit);
+    const alreadyPlayed = gameState.playedCards.some(
+      (c) => c.value === card.value && c.suit === card.suit,
+    );
     if (alreadyPlayed) {
       return {
         valid: false,

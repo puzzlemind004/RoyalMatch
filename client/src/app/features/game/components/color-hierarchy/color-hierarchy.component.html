@@ -1,0 +1,28 @@
+<div class="w-full p-4 bg-gray-50 rounded-lg shadow-sm">
+  <!-- Suit badges -->
+  <div class="flex flex-wrap gap-2 sm:gap-4 justify-center mb-4">
+    @for (suit of allSuits; track suit) {
+      <div class="flex flex-col items-center gap-2 min-w-[80px] sm:min-w-[100px]">
+        <!-- Suit icon -->
+        <div class="text-3xl sm:text-4xl md:text-5xl" [style.color]="getSuitColor(suit)">
+          {{ getSuitSymbol(suit) }}
+        </div>
+
+        <!-- Badge -->
+        <span
+          class="px-2 py-1 sm:px-3 sm:py-1 text-xs sm:text-sm rounded-full transition-all duration-300"
+          [ngClass]="getBadgeClass(suit)"
+        >
+          {{ getBadgeText(suit) }}
+        </span>
+      </div>
+    }
+  </div>
+
+  <!-- Hierarchy rules explanation -->
+  <div class="text-center mt-4 px-2">
+    <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+      {{ 'game.hierarchy.rules' | transloco }}
+    </p>
+  </div>
+</div>

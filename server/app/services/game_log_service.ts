@@ -110,12 +110,7 @@ export class GameLogService {
   /**
    * Log cheat detection
    */
-  logCheatDetection(
-    gameId: string,
-    playerId: number,
-    cheatType: string,
-    evidence: any
-  ): void {
+  logCheatDetection(gameId: string, playerId: number, cheatType: string, evidence: any): void {
     this.log({
       gameId,
       actionType: 'CHEAT_DETECTED',
