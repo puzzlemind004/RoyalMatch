@@ -1,6 +1,8 @@
 /**
  * Card Comparison Service Unit Tests
  * Tests all scenarios of card comparison logic
+ *
+ * NOTE: compareCards() now uses "color first, then value" logic
  */
 
 import { test } from '@japa/runner'
@@ -8,21 +10,21 @@ import CardComparisonService from '#services/card_comparison_service'
 import { CardSuit } from '#types/card'
 import type { ComparableCard } from '#services/card_comparison_service'
 
-test.group('Card Comparison Service', () => {
-  test('should compare cards by value when values differ', ({ assert }) => {
-    const card1: ComparableCard = { value: 14, suit: CardSuit.HEARTS } // Ace
-    const card2: ComparableCard = { value: 2, suit: CardSuit.HEARTS }
-    const result = CardComparisonService.compareCards(card1, card2, CardSuit.CLUBS)
+test.group('Card Comparison Service - compareCards()', () => {
+  test('should compare cards by color first, then value', ({ assert }) => {
+    const card1: ComparableCard = { value: 2, suit: CardSuit.HEARTS } // 2 of dominant
+    const card2: ComparableCard = { value: 14, suit: CardSuit.DIAMONDS } // Ace of neutral
+    const result = CardComparisonService.compareCards(card1, card2, CardSuit.HEARTS)
 
-    assert.equal(result, 1, 'Ace should beat 2')
+    assert.equal(result, 1, 'Dominant color should beat neutral, regardless of value')
   })
 
-  test('should compare cards by value regardless of color hierarchy', ({ assert }) => {
-    const aceClubs: ComparableCard = { value: 14, suit: CardSuit.CLUBS }
+  test('should compare by value when same color', ({ assert }) => {
+    const aceHearts: ComparableCard = { value: 14, suit: CardSuit.HEARTS }
     const twoHearts: ComparableCard = { value: 2, suit: CardSuit.HEARTS }
-    const result = CardComparisonService.compareCards(aceClubs, twoHearts, CardSuit.HEARTS)
+    const result = CardComparisonService.compareCards(aceHearts, twoHearts, CardSuit.CLUBS)
 
-    assert.equal(result, 1, 'Ace of weak color should still beat 2 of dominant color')
+    assert.equal(result, 1, 'Ace should beat 2 when same color')
   })
 
   test('dominant color beats all others with same value', ({ assert }) => {
@@ -91,7 +93,7 @@ test.group('Card Comparison Service', () => {
     assert.equal(CardComparisonService.compareCards(hearts5, diamonds5, CardSuit.CLUBS), 1)
   })
 
-  test('should find winner among multiple cards', ({ assert }) => {
+  test('should find winner among multiple cards (color first)', ({ assert }) => {
     const playedCards = new Map<number, ComparableCard>([
       [1, { value: 10, suit: CardSuit.HEARTS }],
       [2, { value: 10, suit: CardSuit.DIAMONDS }],
@@ -101,19 +103,19 @@ test.group('Card Comparison Service', () => {
 
     const winner = CardComparisonService.findWinner(playedCards, CardSuit.HEARTS)
 
-    assert.equal(winner, 1, 'Player 1 with hearts should win')
+    assert.equal(winner, 1, 'Player 1 with hearts (dominant) should win')
   })
 
-  test('should find winner based on value even with weak color', ({ assert }) => {
+  test('should find winner based on color hierarchy, NOT value', ({ assert }) => {
     const playedCards = new Map<number, ComparableCard>([
       [1, { value: 14, suit: CardSuit.SPADES }], // Ace of weak color
-      [2, { value: 10, suit: CardSuit.HEARTS }], // 10 of dominant color
+      [2, { value: 2, suit: CardSuit.HEARTS }], // 2 of dominant color
       [3, { value: 12, suit: CardSuit.DIAMONDS }], // Queen of neutral color
     ])
 
     const winner = CardComparisonService.findWinner(playedCards, CardSuit.HEARTS)
 
-    assert.equal(winner, 1, 'Player 1 with Ace should win despite weak color')
+    assert.equal(winner, 2, 'Player 2 with dominant color should win, even with value 2')
   })
 
   test('should never return 0 (no ties)', ({ assert }) => {
@@ -203,7 +205,21 @@ test.group('Card Comparison Service', () => {
     ])
   })
 
-  test('should provide comparison explanation for value win', ({ assert }) => {
+  test('should provide comparison explanation for color win', ({ assert }) => {
+    const winner: ComparableCard = { value: 2, suit: CardSuit.HEARTS }
+    const loser: ComparableCard = { value: 14, suit: CardSuit.DIAMONDS }
+
+    const explanation = CardComparisonService.getComparisonExplanation(
+      winner,
+      loser,
+      CardSuit.HEARTS
+    )
+
+    assert.include(explanation, 'Dominant color')
+    assert.include(explanation, CardSuit.HEARTS)
+  })
+
+  test('should provide comparison explanation for value win (same color)', ({ assert }) => {
     const winner: ComparableCard = { value: 14, suit: CardSuit.HEARTS }
     const loser: ComparableCard = { value: 10, suit: CardSuit.HEARTS }
 
@@ -216,20 +232,6 @@ test.group('Card Comparison Service', () => {
     assert.include(explanation, 'Higher value')
     assert.include(explanation, '14')
     assert.include(explanation, '10')
-  })
-
-  test('should provide comparison explanation for dominant color win', ({ assert }) => {
-    const winner: ComparableCard = { value: 10, suit: CardSuit.HEARTS }
-    const loser: ComparableCard = { value: 10, suit: CardSuit.DIAMONDS }
-
-    const explanation = CardComparisonService.getComparisonExplanation(
-      winner,
-      loser,
-      CardSuit.HEARTS
-    )
-
-    assert.include(explanation, 'Dominant color')
-    assert.include(explanation, CardSuit.HEARTS)
   })
 
   test('should get color relation between same colors', ({ assert }) => {
@@ -261,27 +263,31 @@ test.group('Card Comparison Service', () => {
     )
   })
 
-  test('should handle 2 player scenario', ({ assert }) => {
+  test('should handle 2 player scenario (color first)', ({ assert }) => {
     const playedCards = new Map<number, ComparableCard>([
-      [1, { value: 10, suit: CardSuit.HEARTS }],
-      [2, { value: 12, suit: CardSuit.DIAMONDS }],
+      [1, { value: 10, suit: CardSuit.HEARTS }], // Red neutral
+      [2, { value: 12, suit: CardSuit.DIAMONDS }], // WEAK (opposite of Clubs)
     ])
 
+    // Clubs is dominant (black) → Diamonds is WEAK (opposite)
+    // Hearts is red neutral, Diamonds is weak
+    // Neutral beats weak, regardless of value
     const winner = CardComparisonService.findWinner(playedCards, CardSuit.CLUBS)
 
-    assert.equal(winner, 2, 'Player with higher value should win')
+    assert.equal(winner, 1, 'Player 1 with neutral should win (even with lower value)')
   })
 
-  test('should handle 4 player scenario', ({ assert }) => {
+  test('should handle 4 player scenario (color first)', ({ assert }) => {
     const playedCards = new Map<number, ComparableCard>([
       [1, { value: 8, suit: CardSuit.HEARTS }],
-      [2, { value: 10, suit: CardSuit.DIAMONDS }],
+      [2, { value: 10, suit: CardSuit.DIAMONDS }], // Dominant!
       [3, { value: 12, suit: CardSuit.CLUBS }],
       [4, { value: 14, suit: CardSuit.HEARTS }],
     ])
 
+    // Diamonds is dominant → Player 2 wins even with value 10
     const winner = CardComparisonService.findWinner(playedCards, CardSuit.DIAMONDS)
 
-    assert.equal(winner, 4, 'Player 4 with Ace should win')
+    assert.equal(winner, 2, 'Player 2 with dominant color should win (not Player 4 with Ace)')
   })
 })

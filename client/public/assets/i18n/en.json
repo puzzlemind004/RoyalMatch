@@ -265,6 +265,19 @@
       "spinning": "The roulette is spinning...",
       "result": "Dominant color:"
     },
+    "tricks": {
+      "winner": "Trick Winner",
+      "onlyCardPlayed": "Only card played",
+      "onlyDominantColor": "Only card of the dominant color",
+      "onlyCardOfStrongestColor": "Only card of the strongest color",
+      "highestAmongDominant": "Highest value among dominant cards ({{value}})",
+      "highestAmongColor": "Highest value among cards of this color ({{value}})",
+      "highestValue": "Highest value ({{value}})",
+      "dominantColor": "Dominant color",
+      "opponentWeakColor": "Opponent has weak color",
+      "redNeutral": "Red neutral beats black neutral (red is dominant)",
+      "blackNeutral": "Black neutral beats red neutral (black is dominant)"
+    },
     "effects": {
       "hearts": {
         "2": { "name": "Small Bonus", "desc": "+1 point if you win this trick" },

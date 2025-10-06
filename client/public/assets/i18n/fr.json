@@ -265,6 +265,19 @@
       "spinning": "La roulette tourne...",
       "result": "Couleur dominante :"
     },
+    "tricks": {
+      "winner": "Gagnant du pli",
+      "onlyCardPlayed": "Seule carte jouée",
+      "onlyDominantColor": "Seule carte de la couleur forte",
+      "onlyCardOfStrongestColor": "Seule carte de la couleur la plus forte",
+      "highestAmongDominant": "Plus haute valeur parmi les cartes fortes ({{value}})",
+      "highestAmongColor": "Plus haute valeur parmi les cartes de cette couleur ({{value}})",
+      "highestValue": "Plus haute valeur ({{value}})",
+      "dominantColor": "Couleur dominante",
+      "opponentWeakColor": "Adversaire a la couleur faible",
+      "redNeutral": "Neutre rouge bat neutre noir (rouge dominant)",
+      "blackNeutral": "Neutre noir bat neutre rouge (noir dominant)"
+    },
     "effects": {
       "hearts": {
         "2": { "name": "Petit Bonus", "desc": "+1 point si vous gagnez ce pli" },
