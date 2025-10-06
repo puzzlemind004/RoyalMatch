@@ -4,20 +4,23 @@
  * Demonstrates the color hierarchy system with interactive controls
  */
 
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
 import { CardSuit } from '../../../../models/card.model';
 import { ColorHierarchyComponent } from '../../../game/components/color-hierarchy/color-hierarchy.component';
 
 @Component({
   selector: 'app-hierarchy-demo',
   standalone: true,
-  imports: [CommonModule, RouterLink, ColorHierarchyComponent],
+  imports: [CommonModule, RouterLink, ColorHierarchyComponent, TranslocoPipe],
   templateUrl: './hierarchy-demo.component.html',
   styleUrls: ['./hierarchy-demo.component.css'],
 })
 export class HierarchyDemoComponent {
+  private transloco = inject(TranslocoService);
+
   /**
    * Current dominant color (signal for reactivity)
    */
@@ -29,14 +32,11 @@ export class HierarchyDemoComponent {
   allSuits: CardSuit[] = [CardSuit.HEARTS, CardSuit.DIAMONDS, CardSuit.CLUBS, CardSuit.SPADES];
 
   /**
-   * Suit display names
+   * Get the translated name for a suit
    */
-  suitNames: Record<CardSuit, string> = {
-    [CardSuit.HEARTS]: 'Cœur ♥',
-    [CardSuit.DIAMONDS]: 'Carreau ♦',
-    [CardSuit.CLUBS]: 'Trèfle ♣',
-    [CardSuit.SPADES]: 'Pique ♠',
-  };
+  getSuitName(suit: CardSuit): string {
+    return this.transloco.translate(`game.suits.${suit}`);
+  }
 
   /**
    * Change the dominant color

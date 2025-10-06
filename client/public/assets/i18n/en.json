@@ -224,9 +224,40 @@
       "block": "Block",
       "activate": "Activate",
       "allSuits": "All suits"
+    },
+    "hierarchyDemo": {
+      "title": "Color Hierarchy",
+      "subtitle": "Task 3.2: Determination of weak (opposite) color",
+      "selectStrong": "Select STRONG color",
+      "explanations": "Explanations",
+      "dominantTitle": "STRONG Color (Dominant)",
+      "dominantDesc": "The color selected by the roulette. It beats all other colors, regardless of card value.",
+      "weakTitle": "WEAK Color",
+      "weakDesc": "The color opposite to the strong one. It is beaten by neutral colors.",
+      "weakRule1": "Hearts ♥ (red) ↔ Spades ♠ (black)",
+      "weakRule2": "Diamonds ♦ (red) ↔ Clubs ♣ (black)",
+      "neutralTitle": "NEUTRAL Colors",
+      "neutralDesc": "The two other colors. They beat the weak color but are beaten by the strong one. Between neutrals, the one matching the strong color (red/black) wins.",
+      "oppositionTitle": "Opposition Rules",
+      "oppositionRule1": "Opposites are always of different color (red/black)",
+      "oppositionRule2": "Relationships are fixed and symmetrical",
+      "oppositionRule3": "Each color has exactly one opposite color",
+      "backToDemo": "← Back to demos"
     }
   },
   "game": {
+    "hierarchy": {
+      "dominant": "STRONG",
+      "weak": "WEAK",
+      "neutral": "Neutral",
+      "rules": "Strong beats all • Neutral beats Weak • Same color as strong wins between neutrals"
+    },
+    "suits": {
+      "hearts": "Hearts ♥",
+      "diamonds": "Diamonds ♦",
+      "clubs": "Clubs ♣",
+      "spades": "Spades ♠"
+    },
     "roulette": {
       "strong": "Strong",
       "weak": "Weak",

@@ -224,9 +224,40 @@
       "block": "Bloquer",
       "activate": "Activer",
       "allSuits": "Toutes les enseignes"
+    },
+    "hierarchyDemo": {
+      "title": "Hiérarchie des Couleurs",
+      "subtitle": "Tâche 3.2 : Détermination de la couleur faible (opposée)",
+      "selectStrong": "Sélectionnez la couleur FORTE",
+      "explanations": "Explications",
+      "dominantTitle": "Couleur FORTE (Dominante)",
+      "dominantDesc": "La couleur sélectionnée par la roulette. Elle bat toutes les autres couleurs, quelle que soit la valeur de la carte.",
+      "weakTitle": "Couleur FAIBLE",
+      "weakDesc": "La couleur opposée à la forte. Elle est battue par les couleurs neutres.",
+      "weakRule1": "Cœur ♥ (rouge) ↔ Pique ♠ (noir)",
+      "weakRule2": "Carreau ♦ (rouge) ↔ Trèfle ♣ (noir)",
+      "neutralTitle": "Couleurs NEUTRES",
+      "neutralDesc": "Les deux autres couleurs. Elles battent la couleur faible mais sont battues par la forte. Entre neutres, celle de la même couleur (rouge/noir) que la forte l'emporte.",
+      "oppositionTitle": "Règles d'opposition",
+      "oppositionRule1": "Les opposées sont toujours de couleur différente (rouge/noir)",
+      "oppositionRule2": "Les relations sont fixes et symétriques",
+      "oppositionRule3": "Chaque couleur a exactement une couleur opposée",
+      "backToDemo": "← Retour aux démos"
     }
   },
   "game": {
+    "hierarchy": {
+      "dominant": "FORTE",
+      "weak": "FAIBLE",
+      "neutral": "Neutre",
+      "rules": "Forte bat tout • Neutre bat Faible • Même couleur que forte gagne entre neutres"
+    },
+    "suits": {
+      "hearts": "Cœur ♥",
+      "diamonds": "Carreau ♦",
+      "clubs": "Trèfle ♣",
+      "spades": "Pique ♠"
+    },
     "roulette": {
       "strong": "Forte",
       "weak": "Faible",

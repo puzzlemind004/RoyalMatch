@@ -3,17 +3,17 @@
     <!-- Header -->
     <div class="text-center mb-6 sm:mb-8">
       <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2">
-        Hiérarchie des Couleurs
+        {{ 'demo.hierarchyDemo.title' | transloco }}
       </h1>
       <p class="text-sm sm:text-base text-gray-600">
-        Tâche 3.2 : Détermination de la couleur faible (opposée)
+        {{ 'demo.hierarchyDemo.subtitle' | transloco }}
       </p>
     </div>
 
     <!-- Color Selector -->
     <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 mb-6 sm:mb-8">
       <h2 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4 text-center">
-        Sélectionnez la couleur FORTE
+        {{ 'demo.hierarchyDemo.selectStrong' | transloco }}
       </h2>
 
       <div class="flex flex-wrap gap-2 sm:gap-3 justify-center">
@@ -23,7 +23,7 @@
             [ngClass]="getButtonClass(suit)"
             class="min-w-[120px] sm:min-w-[140px]"
           >
-            {{ suitNames[suit] }}
+            {{ getSuitName(suit) }}
           </button>
         }
       </div>
@@ -36,42 +36,50 @@
 
     <!-- Explanation Panel -->
     <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6">
-      <h2 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Explications</h2>
+      <h2 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">
+        {{ 'demo.hierarchyDemo.explanations' | transloco }}
+      </h2>
 
       <div class="space-y-4 text-sm sm:text-base">
         <div class="bg-yellow-50 border-l-4 border-yellow-500 p-3 sm:p-4">
-          <h3 class="font-semibold text-yellow-800 mb-2">Couleur FORTE (Dominante)</h3>
+          <h3 class="font-semibold text-yellow-800 mb-2">
+            {{ 'demo.hierarchyDemo.dominantTitle' | transloco }}
+          </h3>
           <p class="text-yellow-700">
-            La couleur sélectionnée par la roulette. Elle bat toutes les autres couleurs, quelle que
-            soit la valeur de la carte.
+            {{ 'demo.hierarchyDemo.dominantDesc' | transloco }}
           </p>
         </div>
 
         <div class="bg-gray-50 border-l-4 border-gray-500 p-3 sm:p-4">
-          <h3 class="font-semibold text-gray-800 mb-2">Couleur FAIBLE</h3>
+          <h3 class="font-semibold text-gray-800 mb-2">
+            {{ 'demo.hierarchyDemo.weakTitle' | transloco }}
+          </h3>
           <p class="text-gray-700">
-            La couleur opposée à la forte. Elle est battue par les couleurs neutres.
+            {{ 'demo.hierarchyDemo.weakDesc' | transloco }}
           </p>
           <ul class="list-disc list-inside mt-2 space-y-1">
-            <li>Cœur ♥ (rouge) ↔ Pique ♠ (noir)</li>
-            <li>Carreau ♦ (rouge) ↔ Trèfle ♣ (noir)</li>
+            <li>{{ 'demo.hierarchyDemo.weakRule1' | transloco }}</li>
+            <li>{{ 'demo.hierarchyDemo.weakRule2' | transloco }}</li>
           </ul>
         </div>
 
         <div class="bg-blue-50 border-l-4 border-blue-500 p-3 sm:p-4">
-          <h3 class="font-semibold text-blue-800 mb-2">Couleurs NEUTRES</h3>
+          <h3 class="font-semibold text-blue-800 mb-2">
+            {{ 'demo.hierarchyDemo.neutralTitle' | transloco }}
+          </h3>
           <p class="text-blue-700">
-            Les deux autres couleurs. Elles battent la couleur faible mais sont battues par la
-            forte. Entre neutres, celle de la même couleur (rouge/noir) que la forte l'emporte.
+            {{ 'demo.hierarchyDemo.neutralDesc' | transloco }}
           </p>
         </div>
 
         <div class="bg-green-50 border-l-4 border-green-500 p-3 sm:p-4">
-          <h3 class="font-semibold text-green-800 mb-2">Règles d'opposition</h3>
+          <h3 class="font-semibold text-green-800 mb-2">
+            {{ 'demo.hierarchyDemo.oppositionTitle' | transloco }}
+          </h3>
           <ul class="list-disc list-inside text-green-700 space-y-1">
-            <li>Les opposées sont toujours de couleur différente (rouge/noir)</li>
-            <li>Les relations sont fixes et symétriques</li>
-            <li>Chaque couleur a exactement une couleur opposée</li>
+            <li>{{ 'demo.hierarchyDemo.oppositionRule1' | transloco }}</li>
+            <li>{{ 'demo.hierarchyDemo.oppositionRule2' | transloco }}</li>
+            <li>{{ 'demo.hierarchyDemo.oppositionRule3' | transloco }}</li>
           </ul>
         </div>
       </div>
@@ -83,7 +91,7 @@
         routerLink="/demo"
         class="inline-block px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors duration-300"
       >
-        ← Retour aux démos
+        {{ 'demo.hierarchyDemo.backToDemo' | transloco }}
       </a>
     </div>
   </div>

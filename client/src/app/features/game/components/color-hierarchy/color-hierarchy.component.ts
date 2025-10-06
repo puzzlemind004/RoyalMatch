@@ -4,8 +4,9 @@
  * Displays the current color hierarchy based on the dominant color
  */
 
-import { Component, input, computed } from '@angular/core';
+import { Component, input, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslocoService, TranslocoPipe } from '@jsverse/transloco';
 import { CardSuit, SUIT_SYMBOLS } from '../../../../models/card.model';
 import {
   getOppositeColor,
@@ -17,11 +18,12 @@ import {
 @Component({
   selector: 'app-color-hierarchy',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslocoPipe],
   templateUrl: './color-hierarchy.component.html',
   styleUrls: ['./color-hierarchy.component.css'],
 })
 export class ColorHierarchyComponent {
+  private transloco = inject(TranslocoService);
   /**
    * The current dominant/strong color
    */
@@ -55,9 +57,9 @@ export class ColorHierarchyComponent {
    * Get the badge text for a suit
    */
   getBadgeText(suit: CardSuit): string {
-    if (suit === this.dominantColor()) return 'FORTE';
-    if (suit === this.weakColor()) return 'FAIBLE';
-    return 'Neutre';
+    if (suit === this.dominantColor()) return this.transloco.translate('game.hierarchy.dominant');
+    if (suit === this.weakColor()) return this.transloco.translate('game.hierarchy.weak');
+    return this.transloco.translate('game.hierarchy.neutral');
   }
 
   /**
