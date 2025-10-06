@@ -281,7 +281,9 @@
       "weak": "Weak",
       "neutral": "Neutral",
       "spinning": "The roulette is spinning...",
-      "result": "Dominant color:"
+      "result": "Dominant color:",
+      "skip": "Skip",
+      "hierarchy": "Color hierarchy"
     },
     "tricks": {
       "winner": "Trick Winner",

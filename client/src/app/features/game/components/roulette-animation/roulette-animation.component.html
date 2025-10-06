@@ -1,25 +1,59 @@
 <!-- Roulette Container -->
-<div class="flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
-  <!-- Roulette Wheel -->
-  <div class="mb-6">
-    <div
-      class="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full border-4 border-gray-300 bg-white shadow-2xl overflow-hidden transition-transform duration-[2000ms] ease-out mx-auto"
-      [style.transform]="isSpinning() ? 'rotate(1800deg)' : 'rotate(0deg)'"
+<div class="flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 relative">
+  <!-- Skip Button -->
+  @if (allowSkip() && isSpinning() && canSkip()) {
+    <button
+      (click)="skipAnimation()"
+      class="absolute top-2 right-2 sm:top-4 sm:right-4 px-4 py-2 bg-gray-700 hover:bg-gray-800 text-white font-semibold rounded-lg shadow-lg transition-all duration-200 text-sm sm:text-base z-10"
     >
-      <!-- Grid 2x2 for the 4 suits -->
+      ⏭️ {{ 'game.roulette.skip' | transloco }}
+    </button>
+  }
+
+  <!-- Roulette Wheel Container -->
+  <div class="mb-6 relative">
+    <!-- Top Indicator (Arrow) -->
+    <div
+      class="absolute -top-8 left-1/2 transform -translate-x-1/2 text-4xl text-yellow-500 z-10"
+      [class.animate-bounce]="!isSpinning()"
+    >
+      ▼
+    </div>
+
+    <!-- Roulette Wheel (2x2 Grid) -->
+    <div
+      class="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full border-8 border-gray-900 bg-white shadow-lg overflow-hidden mx-auto"
+      [style.transform]="getRotation()"
+      [style.transition]="
+        isSpinning() ? 'transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99)' : 'none'
+      "
+    >
+      <!-- Grid 2x2 for the 4 suits - IMPORTANT: order must match suits array -->
+      <!-- suits = [HEARTS, CLUBS, SPADES, DIAMONDS] -->
+      <!-- Layout: [Hearts (red), Clubs (black)] -->
+      <!--         [Spades (black), Diamonds (red)] -->
       <div class="grid grid-cols-2 grid-rows-2 w-full h-full">
-        @for (suit of suits; track suit) {
+        @for (suit of suits; track suit; let i = $index) {
           <div
-            class="flex items-center justify-center text-4xl sm:text-5xl md:text-6xl font-bold transition-all duration-300 border border-gray-200 p-4 sm:p-6 md:p-8"
-            [ngClass]="
-              suit === selectedSuit() ? 'bg-gradient-to-r from-yellow-400 to-orange-400' : ''
-            "
+            class="flex items-center justify-center text-4xl sm:text-5xl md:text-6xl font-bold transition-all duration-500"
+            [ngClass]="getSegmentBackgroundClass(suit)"
           >
-            <span [ngClass]="getSuitColorClass(suit)">{{ getSuitSymbol(suit) }}</span>
+            <span
+              [ngClass]="getSuitColorClass(suit)"
+              class="drop-shadow-sm"
+              [style.transform]="getSuitRotation(i)"
+            >
+              {{ getSuitSymbol(suit) }}
+            </span>
           </div>
         }
       </div>
     </div>
+
+    <!-- Center Overlay (decorative) -->
+    <div
+      class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 sm:w-16 sm:h-16 bg-white rounded-full border-4 border-gray-900 shadow-lg pointer-events-none"
+    ></div>
   </div>
 
   <!-- Spinning Message -->
@@ -31,17 +65,41 @@
     </div>
   }
 
-  <!-- Result Display -->
-  @if (selectedSuit() && !isSpinning()) {
-    <div class="text-center">
-      <div class="flex items-center justify-center gap-2 sm:gap-3">
-        <span
-          class="text-4xl sm:text-5xl md:text-6xl"
-          [ngClass]="getSuitColorClass(selectedSuit()!)"
-        >
-          {{ getSuitSymbol(selectedSuit()!) }}
-        </span>
-        <span class="text-3xl sm:text-4xl">👑</span>
+  <!-- Result Display with Hierarchy Panel -->
+  @if (showResult() && selectedSuit() && !isSpinning()) {
+    <div class="w-full max-w-2xl mt-4 opacity-0 translate-y-5 transition-all duration-500 ease-out"
+         [class.opacity-100]="showResult()"
+         [class.translate-y-0]="showResult()">
+      <!-- Dominant Color Announcement -->
+      <div class="text-center mb-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
+          {{ 'game.roulette.result' | transloco }}
+        </h2>
+        <div class="flex items-center justify-center gap-3">
+          <span class="text-5xl sm:text-6xl" [ngClass]="getSuitColorClass(selectedSuit()!)">
+            {{ getSuitSymbol(selectedSuit()!) }}
+          </span>
+          <span class="text-4xl sm:text-5xl">👑</span>
+        </div>
+      </div>
+
+      <!-- Color Hierarchy Panel -->
+      <div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6">
+        <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">
+          {{ 'game.roulette.hierarchy' | transloco }}
+        </h3>
+        <app-color-hierarchy
+          [dominantColor]="selectedSuit()!"
+          [weakColor]="weakSuit()!"
+          [neutralColors]="neutralColors()"
+        />
+
+        <!-- Rules Reminder -->
+        <div class="mt-4 p-3 bg-blue-50 border-2 border-blue-300 rounded-lg">
+          <p class="text-sm text-blue-900 text-center">
+            {{ 'game.hierarchy.rules' | transloco }}
+          </p>
+        </div>
       </div>
     </div>
   }
