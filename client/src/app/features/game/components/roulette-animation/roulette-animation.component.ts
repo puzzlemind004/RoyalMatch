@@ -56,6 +56,16 @@ export class RouletteAnimationComponent {
     return this.suits.filter((s) => s !== final && s !== weak);
   });
 
+  // Rotation angles for each suit position to center under the top arrow
+  // Grid layout: [Hearts, Clubs, Spades, Diamonds]
+  // Each angle centers the corresponding quadrant under the arrow
+  private readonly suitAngles: Record<CardSuit, number> = {
+    [CardSuit.HEARTS]: 45, // Top-left: rotate 45° to center under arrow
+    [CardSuit.CLUBS]: -45, // Top-right: rotate -45° to center under arrow
+    [CardSuit.SPADES]: 135, // Bottom-left: rotate 135° to center under arrow
+    [CardSuit.DIAMONDS]: -135, // Bottom-right: rotate -135° to center under arrow
+  };
+
   /**
    * Starts the roulette animation
    * @param finalSuit - The suit that will be selected
@@ -76,20 +86,8 @@ export class RouletteAnimationComponent {
     this.isSpinning.set(true);
     this.canSkip.set(true);
 
-    // Calculate final rotation angle
-    // Grid layout: [Hearts, Clubs]
-    //              [Spades, Diamonds]
-    // The arrow points at the top center
-    // We rotate to center each suit under the arrow (adding 45° to center the top-left quadrant)
-    const suitAngles: Record<CardSuit, number> = {
-      [CardSuit.HEARTS]: 45, // Top-left: rotate 45° to center under arrow
-      [CardSuit.CLUBS]: -45, // Top-right: rotate -45° to center under arrow
-      [CardSuit.SPADES]: 135, // Bottom-left: rotate 135° to center under arrow
-      [CardSuit.DIAMONDS]: -135, // Bottom-right: rotate -135° to center under arrow
-    };
-
-    // 5 full rotations (1800°) + final angle
-    const targetAngle = 1800 + suitAngles[finalSuit];
+    // 5 full rotations (1800°) + final angle to center suit under arrow
+    const targetAngle = 1800 + this.suitAngles[finalSuit];
     this.rotation.set(targetAngle);
 
     // Wait for animation duration (3 seconds)
@@ -108,13 +106,7 @@ export class RouletteAnimationComponent {
     if (!final) return;
 
     // Force instant rotation to final position
-    const suitAngles: Record<CardSuit, number> = {
-      [CardSuit.HEARTS]: 45,
-      [CardSuit.CLUBS]: -45,
-      [CardSuit.SPADES]: 135,
-      [CardSuit.DIAMONDS]: -135,
-    };
-    this.rotation.set(1800 + suitAngles[final]);
+    this.rotation.set(1800 + this.suitAngles[final]);
 
     this.completeAnimation(final);
     this.animationSkipped.emit();
