@@ -3,7 +3,7 @@
  * UI for selecting and drawing objectives by difficulty
  */
 
-import { Component, OnInit, computed, signal, inject } from '@angular/core';
+import { Component, OnInit, computed, signal, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ObjectiveDistributionService } from '../../../core/services/objective-distribution.service';
@@ -18,6 +18,10 @@ import { DIFFICULTY_COLORS, CATEGORY_ICONS } from '../../../models/objective.mod
   styleUrl: './objective-distribution.component.css',
 })
 export class ObjectiveDistributionComponent implements OnInit {
+  // Inputs
+  gameId = input<string>('demo-game');
+  playerId = input<string>('demo-player');
+
   // Inject service
   public service = inject(ObjectiveDistributionService);
 
@@ -28,6 +32,9 @@ export class ObjectiveDistributionComponent implements OnInit {
 
   // Computed total
   totalCount = computed(() => this.easyCount() + this.mediumCount() + this.hardCount());
+
+  // Check if can draw (minimum 3 objectives)
+  canDraw = computed(() => this.totalCount() >= 3);
 
   // Expose service signals
   availableObjectives = this.service.availableObjectives;
@@ -101,7 +108,7 @@ export class ObjectiveDistributionComponent implements OnInit {
       hard: this.hardCount(),
     };
 
-    this.service.drawObjectives(selection).subscribe();
+    this.service.drawObjectives(selection, this.gameId(), this.playerId()).subscribe();
   }
 
   /**

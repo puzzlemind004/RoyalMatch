@@ -372,7 +372,24 @@
     "difficulty": {
       "easy": "Easy",
       "medium": "Medium",
-      "hard": "Hard"
+      "hard": "Hard",
+      "very_hard": "Very Hard"
+    },
+    "validation": {
+      "title": "Validate Your Objectives",
+      "drawnObjectives": "Your drawn objectives",
+      "objectivesCount": "{{count}} objective(s)",
+      "timeRemaining": "Time remaining: {{time}}s",
+      "validateButton": "Validate these objectives",
+      "redrawButton": "Redraw (1 time)",
+      "redrawUsed": "Redraw used",
+      "rejectButton": "Reject",
+      "rejectLimit": "Maximum {{max}} rejections",
+      "rejected": "Rejected",
+      "autoValidation": "Auto-validation in {{time}}s...",
+      "validated": "Objectives validated!",
+      "points": "{{points}} pts",
+      "totalPoints": "Total: {{points}} points"
     }
   },
   "game": {
@@ -511,7 +528,14 @@
       "failedToDrawObjectives": "Failed to draw objectives",
       "invalidSelection": "Invalid selection",
       "negativeSelection": "Number of objectives cannot be negative",
-      "notEnoughObjectives": "Not enough objectives available: you requested {{requested}} {{difficulty}} objectives but only {{available}} are available"
+      "notEnoughObjectives": "Not enough objectives available: you requested {{requested}} {{difficulty}} objectives but only {{available}} are available",
+      "noObjectivesToRedraw": "No objectives to redraw",
+      "failedToRedrawObjectives": "Failed to redraw objectives",
+      "tooManyRejections": "You can only reject 2 objectives maximum",
+      "failedToRejectObjectives": "Failed to reject objectives",
+      "failedToValidateObjectives": "Failed to validate objectives",
+      "maxRejectsReached": "You have reached the rejection limit (2 maximum)",
+      "minimumThreeObjectives": "You must select at least 3 objectives"
     },
     "messages": {
       "chanceSuccess": "Success! You draw 1 card",

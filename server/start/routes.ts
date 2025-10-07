@@ -62,5 +62,8 @@ router
   .group(() => {
     router.get('/available', [ObjectivesController, 'available'])
     router.post('/draw', [ObjectivesController, 'draw'])
+    router.post('/redraw', [ObjectivesController, 'redraw'])
+    router.post('/reject', [ObjectivesController, 'reject'])
+    router.post('/validate', [ObjectivesController, 'validate'])
   })
   .prefix('/api/objectives')

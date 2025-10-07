@@ -372,7 +372,24 @@
     "difficulty": {
       "easy": "Facile",
       "medium": "Moyen",
-      "hard": "Difficile"
+      "hard": "Difficile",
+      "very_hard": "Très difficile"
+    },
+    "validation": {
+      "title": "Validation de vos Objectifs",
+      "drawnObjectives": "Vos objectifs piochés",
+      "objectivesCount": "{{count}} objectif(s)",
+      "timeRemaining": "Temps restant : {{time}}s",
+      "validateButton": "Valider ces objectifs",
+      "redrawButton": "Re-piocher (1 fois)",
+      "redrawUsed": "Re-pioche utilisée",
+      "rejectButton": "Rejeter",
+      "rejectLimit": "Maximum {{max}} rejets",
+      "rejected": "Rejeté",
+      "autoValidation": "Validation automatique dans {{time}}s...",
+      "validated": "Objectifs validés !",
+      "points": "{{points}} pts",
+      "totalPoints": "Total : {{points}} points"
     }
   },
   "game": {
@@ -511,7 +528,14 @@
       "failedToDrawObjectives": "Échec de la pioche des objectifs",
       "invalidSelection": "Sélection invalide",
       "negativeSelection": "Le nombre d'objectifs ne peut pas être négatif",
-      "notEnoughObjectives": "Pas assez d'objectifs disponibles : vous demandez {{requested}} objectifs {{difficulty}} mais seulement {{available}} sont disponibles"
+      "notEnoughObjectives": "Pas assez d'objectifs disponibles : vous demandez {{requested}} objectifs {{difficulty}} mais seulement {{available}} sont disponibles",
+      "noObjectivesToRedraw": "Aucun objectif à re-piocher",
+      "failedToRedrawObjectives": "Échec de la re-pioche des objectifs",
+      "tooManyRejections": "Vous ne pouvez rejeter que 2 objectifs maximum",
+      "failedToRejectObjectives": "Échec du rejet des objectifs",
+      "failedToValidateObjectives": "Échec de la validation des objectifs",
+      "maxRejectsReached": "Vous avez atteint la limite de rejets (2 maximum)",
+      "minimumThreeObjectives": "Vous devez sélectionner au minimum 3 objectifs"
     },
     "messages": {
       "chanceSuccess": "Chance réussie ! Vous piochez 1 carte",

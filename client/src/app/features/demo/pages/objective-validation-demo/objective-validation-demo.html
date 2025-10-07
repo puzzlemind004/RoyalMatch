@@ -1,0 +1,161 @@
+<!-- Objective Validation Demo Page -->
+<div class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4">
+  <div class="mx-auto max-w-7xl">
+    <!-- Page Header -->
+    <div class="mb-8 text-center">
+      <h1 class="mb-2 text-4xl font-bold text-gray-800 sm:text-5xl">
+        {{ 'objectives.validation.title' | transloco }}
+      </h1>
+      <p class="text-lg text-gray-600">
+        Tâche 4.4 : Interface de validation des objectifs avec timer, re-pioche, et rejet
+      </p>
+    </div>
+
+    <!-- Phase: Drawing Objectives -->
+    @if (phase() === 'draw') {
+      <div class="rounded-lg bg-white p-6 shadow-lg">
+        <div class="mb-6 rounded-lg bg-blue-50 p-4">
+          <h2 class="mb-2 text-xl font-bold text-blue-900">Étape 1 : Piocher des objectifs</h2>
+          <p class="text-sm text-blue-700">
+            Commencez par sélectionner et piocher des objectifs. Une fois piochés, vous pourrez les
+            valider.
+          </p>
+        </div>
+
+        <!-- Objective Distribution Component -->
+        <app-objective-distribution />
+
+        <!-- Continue Button -->
+        <div class="mt-6 text-center">
+          <button
+            type="button"
+            class="rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-3 text-lg font-bold text-white shadow-lg transition-all hover:from-blue-600 hover:to-purple-700 disabled:cursor-not-allowed disabled:opacity-50"
+            [disabled]="!hasDrawnObjectives()"
+            (click)="onObjectivesDrawn()"
+          >
+            Continuer vers la validation →
+          </button>
+          @if (!hasDrawnObjectives()) {
+            <p class="mt-2 text-sm text-gray-600">
+              Piochez au moins 3 objectifs pour continuer
+            </p>
+          }
+        </div>
+      </div>
+    }
+
+    <!-- Phase: Validating Objectives -->
+    @if (phase() === 'validate') {
+      <div class="rounded-lg bg-white p-6 shadow-lg">
+        <div class="mb-6 rounded-lg bg-purple-50 p-4">
+          <h2 class="mb-2 text-xl font-bold text-purple-900">
+            Étape 2 : Valider vos objectifs
+          </h2>
+          <p class="mb-2 text-sm text-purple-700">
+            Vous avez <strong>45 secondes</strong> pour valider vos objectifs. Vous pouvez :
+          </p>
+          <ul class="list-inside list-disc space-y-1 text-sm text-purple-700">
+            <li><strong>Re-piocher</strong> tous les objectifs (1 fois maximum)</li>
+            <li><strong>Rejeter</strong> jusqu'à 2 objectifs individuels</li>
+            <li><strong>Valider</strong> vos objectifs pour les confirmer</li>
+          </ul>
+          <p class="mt-2 text-xs text-purple-600">
+            ⏱️ Si le temps expire, vos objectifs seront validés automatiquement.
+          </p>
+        </div>
+
+        <!-- Objective Validation Component -->
+        <app-objective-validation
+          [initialObjectives]="drawnObjectives()"
+          [autoStart]="true"
+          (validated)="onObjectivesValidated($event)"
+          (timeout)="onValidationTimeout()"
+        />
+
+        <!-- Back Button -->
+        <div class="mt-6 text-center">
+          <button
+            type="button"
+            class="rounded-lg border-2 border-gray-300 bg-white px-6 py-2 text-gray-700 transition-all hover:bg-gray-50"
+            (click)="resetDemo()"
+          >
+            ← Recommencer la démo
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- Phase: Completed -->
+    @if (phase() === 'completed') {
+      <div class="rounded-lg bg-white p-6 shadow-lg">
+        <div class="mb-6 rounded-lg bg-green-50 p-6 text-center">
+          <div class="mb-4 text-6xl">✅</div>
+          <h2 class="mb-2 text-2xl font-bold text-green-900">Objectifs validés avec succès !</h2>
+          <p class="text-green-700">
+            Vous avez validé <strong>{{ validatedObjectives().length }}</strong> objectif(s).
+          </p>
+        </div>
+
+        <!-- Display Validated Objectives -->
+        <div class="mb-6">
+          <h3 class="mb-4 text-xl font-bold text-gray-800">Vos objectifs validés :</h3>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            @for (objective of validatedObjectives(); track objective.id) {
+              <div class="rounded-lg border-2 border-green-500 bg-green-50 p-4">
+                <h4 class="mb-2 text-lg font-bold text-gray-800">
+                  {{ objective.nameKey | transloco }}
+                </h4>
+                <p class="mb-2 text-sm text-gray-600">
+                  {{ objective.descriptionKey | transloco }}
+                </p>
+                <p class="text-xl font-bold text-green-600">{{ objective.points }} pts</p>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Reset Button -->
+        <div class="text-center">
+          <button
+            type="button"
+            class="rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-3 text-lg font-bold text-white shadow-lg transition-all hover:from-blue-600 hover:to-purple-700"
+            (click)="resetDemo()"
+          >
+            Recommencer la démo
+          </button>
+        </div>
+      </div>
+    }
+
+    <!-- Feature Information -->
+    <div class="mt-8 rounded-lg bg-white p-6 shadow-lg">
+      <h2 class="mb-4 text-2xl font-bold text-gray-800">Fonctionnalités implémentées</h2>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div class="rounded-lg border-2 border-blue-200 bg-blue-50 p-4">
+          <h3 class="mb-2 font-bold text-blue-900">⏱️ Timer de 45 secondes</h3>
+          <p class="text-sm text-blue-700">
+            Compte à rebours avec changement de couleur (vert → orange → rouge pulsant)
+          </p>
+        </div>
+        <div class="rounded-lg border-2 border-purple-200 bg-purple-50 p-4">
+          <h3 class="mb-2 font-bold text-purple-900">🔄 Re-pioche (1 fois)</h3>
+          <p class="text-sm text-purple-700">
+            Possibilité de re-piocher tous les objectifs une seule fois
+          </p>
+        </div>
+        <div class="rounded-lg border-2 border-orange-200 bg-orange-50 p-4">
+          <h3 class="mb-2 font-bold text-orange-900">❌ Rejet d'objectifs (max 2)</h3>
+          <p class="text-sm text-orange-700">
+            Rejet individuel d'objectifs avec limite de 2 maximum
+          </p>
+        </div>
+        <div class="rounded-lg border-2 border-green-200 bg-green-50 p-4">
+          <h3 class="mb-2 font-bold text-green-900">✅ Validation automatique</h3>
+          <p class="text-sm text-green-700">
+            Si le timer expire, les objectifs sont validés automatiquement
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

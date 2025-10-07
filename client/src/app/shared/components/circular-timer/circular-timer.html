@@ -1,0 +1,50 @@
+<!-- Circular Timer Component -->
+<div class="flex items-center justify-center">
+  <div class="relative" [style.width.px]="size()" [style.height.px]="size()">
+    <!-- SVG Circle Progress -->
+    <svg
+      class="transform -rotate-90"
+      [attr.width]="size()"
+      [attr.height]="size()"
+    >
+      <!-- Background circle (light color) -->
+      <circle
+        [attr.cx]="size() / 2"
+        [attr.cy]="size() / 2"
+        [attr.r]="radius()"
+        fill="none"
+        [ngClass]="getBackgroundColorClass()"
+        stroke-width="8"
+      />
+
+      <!-- Progress circle (animated) -->
+      <circle
+        [attr.cx]="size() / 2"
+        [attr.cy]="size() / 2"
+        [attr.r]="radius()"
+        fill="none"
+        [ngClass]="getStrokeColorClass()"
+        stroke-width="8"
+        stroke-linecap="round"
+        [attr.stroke-dasharray]="circumference()"
+        [attr.stroke-dashoffset]="strokeDashoffset()"
+        class="transition-all duration-500 ease-linear"
+      />
+    </svg>
+
+    <!-- Timer text (centered) -->
+    <div
+      class="absolute inset-0 flex flex-col items-center justify-center"
+    >
+      <div
+        class="text-5xl transition-colors duration-300"
+        [ngClass]="getTextColorClass()"
+      >
+        {{ remainingTime() }}
+      </div>
+      <div class="mt-1 text-sm text-gray-500">
+        secondes
+      </div>
+    </div>
+  </div>
+</div>
