@@ -45,7 +45,9 @@ export class ObjectiveDistributionService {
           this.loading.set(false);
         },
         error: (err) => {
-          this.error.set(err.message || 'game.errors.failedToLoadObjectives');
+          // Extract translation key from backend response if available
+          const errorKey = err.error?.message || 'game.errors.failedToLoadObjectives';
+          this.error.set(errorKey);
           this.loading.set(false);
         },
       })
@@ -68,7 +70,9 @@ export class ObjectiveDistributionService {
           this.loading.set(false);
         },
         error: (err) => {
-          this.error.set(err.message || 'game.errors.failedToDrawObjectives');
+          // Extract translation key from backend response if available
+          const errorKey = err.error?.message || 'game.errors.failedToDrawObjectives';
+          this.error.set(errorKey);
           this.loading.set(false);
         },
       })

@@ -4,10 +4,11 @@
  *
  * Features:
  * - No limit on number of objectives a player can draw
- * - Random drawing from each difficulty pool
+ * - Random drawing from each difficulty pool using cryptographically secure randomness
  * - Ensures uniqueness (no duplicate objectives)
  */
 
+import crypto from 'node:crypto'
 import type { ObjectiveDefinition } from '../types/objective.js'
 import { ObjectiveDifficulty } from '../types/objective.js'
 import { ALL_OBJECTIVES, getObjectivesByDifficulty } from '../data/objectives.js'
@@ -121,7 +122,7 @@ export default class ObjectiveDistributionService {
 
   /**
    * Draw random objectives from a pool without replacement
-   * Uses Fisher-Yates shuffle for uniform randomness
+   * Uses Fisher-Yates shuffle with cryptographically secure randomness
    * @param pool - Pool of objectives to draw from
    * @param count - Number to draw
    * @returns Array of randomly selected objectives
@@ -130,9 +131,9 @@ export default class ObjectiveDistributionService {
     // Clone pool to avoid mutation
     const shuffled = [...pool]
 
-    // Fisher-Yates shuffle
+    // Fisher-Yates shuffle with crypto.randomInt for better randomness
     for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
+      const j = crypto.randomInt(0, i + 1)
       ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
     }
 
