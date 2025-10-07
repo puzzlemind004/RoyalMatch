@@ -40,6 +40,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'objective-distribution',
+        loadComponent: () =>
+          import('./features/demo/objective-distribution-demo/objective-distribution-demo.component').then(
+            (m) => m.ObjectiveDistributionDemoComponent,
+          ),
+      },
+      {
         path: '',
         redirectTo: 'cards',
         pathMatch: 'full',

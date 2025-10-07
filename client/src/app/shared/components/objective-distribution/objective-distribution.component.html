@@ -1,0 +1,199 @@
+<div class="objective-distribution-container p-4 md:p-6 max-w-6xl mx-auto">
+  <!-- Header -->
+  <div class="mb-6">
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+      {{ 'objectives.distribution.title' | transloco }}
+    </h2>
+    <p class="text-gray-600">
+      {{ 'objectives.distribution.subtitle' | transloco }}
+    </p>
+  </div>
+
+  <!-- Loading State -->
+  @if (loading()) {
+    <div class="flex items-center justify-center py-12">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      <span class="ml-3 text-gray-600">{{ 'common.loading' | transloco }}</span>
+    </div>
+  }
+
+  <!-- Error State -->
+  @if (error()) {
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+      <p class="font-bold">{{ 'common.error' | transloco }}</p>
+      <p>{{ error() | transloco }}</p>
+    </div>
+  }
+
+  <!-- Selection Interface -->
+  @if (availableObjectives() && !loading()) {
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <!-- Easy -->
+      <div class="bg-green-50 border-2 border-green-200 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-lg font-semibold text-green-700">
+            {{ 'objectives.difficulty.easy' | transloco }}
+          </h3>
+          <span class="text-sm text-green-600">
+            {{ getAvailableCount('easy') }} {{ 'objectives.distribution.available' | transloco }}
+          </span>
+        </div>
+
+        <div class="flex items-center justify-center space-x-4">
+          <button
+            (click)="decrement('easy')"
+            [disabled]="easyCount() === 0"
+            class="w-10 h-10 rounded-full bg-green-600 text-white font-bold disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-green-700 transition"
+          >
+            -
+          </button>
+
+          <span class="text-3xl font-bold text-green-700 w-12 text-center">
+            {{ easyCount() }}
+          </span>
+
+          <button
+            (click)="increment('easy')"
+            [disabled]="!canIncrement('easy')"
+            class="w-10 h-10 rounded-full bg-green-600 text-white font-bold disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-green-700 transition"
+          >
+            +
+          </button>
+        </div>
+
+        <p class="text-xs text-center text-green-600 mt-2">
+          1-2 {{ 'objectives.distribution.points' | transloco }}
+        </p>
+      </div>
+
+      <!-- Medium -->
+      <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-lg font-semibold text-blue-700">
+            {{ 'objectives.difficulty.medium' | transloco }}
+          </h3>
+          <span class="text-sm text-blue-600">
+            {{ getAvailableCount('medium') }} {{ 'objectives.distribution.available' | transloco }}
+          </span>
+        </div>
+
+        <div class="flex items-center justify-center space-x-4">
+          <button
+            (click)="decrement('medium')"
+            [disabled]="mediumCount() === 0"
+            class="w-10 h-10 rounded-full bg-blue-600 text-white font-bold disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-blue-700 transition"
+          >
+            -
+          </button>
+
+          <span class="text-3xl font-bold text-blue-700 w-12 text-center">
+            {{ mediumCount() }}
+          </span>
+
+          <button
+            (click)="increment('medium')"
+            [disabled]="!canIncrement('medium')"
+            class="w-10 h-10 rounded-full bg-blue-600 text-white font-bold disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-blue-700 transition"
+          >
+            +
+          </button>
+        </div>
+
+        <p class="text-xs text-center text-blue-600 mt-2">
+          3-4 {{ 'objectives.distribution.points' | transloco }}
+        </p>
+      </div>
+
+      <!-- Hard -->
+      <div class="bg-red-50 border-2 border-red-200 rounded-lg p-4">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-lg font-semibold text-red-700">
+            {{ 'objectives.difficulty.hard' | transloco }}
+          </h3>
+          <span class="text-sm text-red-600">
+            {{ getAvailableCount('hard') }} {{ 'objectives.distribution.available' | transloco }}
+          </span>
+        </div>
+
+        <div class="flex items-center justify-center space-x-4">
+          <button
+            (click)="decrement('hard')"
+            [disabled]="hardCount() === 0"
+            class="w-10 h-10 rounded-full bg-red-600 text-white font-bold disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-red-700 transition"
+          >
+            -
+          </button>
+
+          <span class="text-3xl font-bold text-red-700 w-12 text-center">
+            {{ hardCount() }}
+          </span>
+
+          <button
+            (click)="increment('hard')"
+            [disabled]="!canIncrement('hard')"
+            class="w-10 h-10 rounded-full bg-red-600 text-white font-bold disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-red-700 transition"
+          >
+            +
+          </button>
+        </div>
+
+        <p class="text-xs text-center text-red-600 mt-2">
+          5-10 {{ 'objectives.distribution.points' | transloco }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex flex-col sm:flex-row gap-3 justify-center mb-6">
+      <button
+        (click)="drawObjectives()"
+        [disabled]="totalCount() === 0 || loading()"
+        class="px-8 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+      >
+        {{ 'objectives.distribution.draw' | transloco }} ({{ totalCount() }})
+      </button>
+
+      <button
+        (click)="reset()"
+        [disabled]="totalCount() === 0 && drawnObjectives().length === 0"
+        class="px-8 py-3 bg-gray-500 text-white font-semibold rounded-lg hover:bg-gray-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+      >
+        {{ 'objectives.distribution.reset' | transloco }}
+      </button>
+    </div>
+
+    <!-- Drawn Objectives -->
+    @if (drawnObjectives().length > 0) {
+      <div class="bg-white border-2 border-purple-200 rounded-lg p-6">
+        <h3 class="text-xl font-bold text-purple-700 mb-4">
+          {{ 'objectives.distribution.drawnTitle' | transloco }} ({{ drawnObjectives().length }})
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          @for (objective of drawnObjectives(); track objective.id) {
+            <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+              <div class="flex items-start justify-between mb-2">
+                <span class="text-2xl">{{ CATEGORY_ICONS[objective.category] }}</span>
+                <span class="px-2 py-1 text-xs font-semibold rounded {{ DIFFICULTY_COLORS[objective.difficulty] }}">
+                  {{ objective.points }} pts
+                </span>
+              </div>
+
+              <h4 class="font-bold text-gray-800 mb-1">
+                {{ objective.nameKey | transloco }}
+              </h4>
+
+              <p class="text-sm text-gray-600">
+                {{ objective.descriptionKey | transloco }}
+              </p>
+            </div>
+          }
+        </div>
+
+        <div class="mt-4 text-center text-lg font-semibold text-purple-700">
+          {{ 'objectives.distribution.totalPoints' | transloco }}: {{ service.getTotalPoints() }}
+        </div>
+      </div>
+    }
+  }
+</div>

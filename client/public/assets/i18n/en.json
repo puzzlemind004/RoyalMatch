@@ -261,6 +261,17 @@
       "step2": "<strong>Then value</strong>: Among cards of that color, the highest value wins",
       "step3": "<strong>Hierarchy</strong>: STRONG > Neutral (same color) > Neutral (other color) > WEAK",
       "step4": "<strong>Example</strong>: A 2♥ STRONG beats an A♦ Neutral! 🎯"
+    },
+    "objectiveDistribution": {
+      "title": "Demo: Objective Distribution",
+      "description": "Discover the semi-random objective distribution system. Choose your strategy!",
+      "infoTitle": "How does it work?",
+      "info1": "Select the number of objectives to draw for each difficulty level",
+      "info2": "No limit: draw as many objectives as you want!",
+      "info3": "Easy objectives are worth 1-2 points, medium 3-4 points, hard 5-10 points",
+      "info4": "Click 'Draw' to receive your random objectives",
+      "footer": "This demo uses the real-time RoyalMatch API",
+      "apiEndpoints": "API endpoints:"
     }
   },
   "objectives": {
@@ -347,6 +358,21 @@
     "never_activate_effects": {
       "name": "Purist",
       "description": "Never activate effects"
+    },
+    "distribution": {
+      "title": "Objective Distribution",
+      "subtitle": "Choose how many objectives you want to draw per difficulty level",
+      "available": "available",
+      "points": "points",
+      "draw": "Draw",
+      "reset": "Reset",
+      "drawnTitle": "Your Drawn Objectives",
+      "totalPoints": "Total Points"
+    },
+    "difficulty": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
     }
   },
   "game": {
@@ -480,7 +506,12 @@
       "invalidAction": "Invalid action",
       "authRequired": "Authentication required",
       "playerBanned": "You have been temporarily banned for suspicious activity",
-      "rateLimitExceeded": "Too many actions too quickly. Please slow down."
+      "rateLimitExceeded": "Too many actions too quickly. Please slow down.",
+      "failedToLoadObjectives": "Failed to load objectives",
+      "failedToDrawObjectives": "Failed to draw objectives",
+      "invalidSelection": "Invalid selection",
+      "negativeSelection": "Number of objectives cannot be negative",
+      "notEnoughObjectives": "Not enough objectives available: you requested {{requested}} {{difficulty}} objectives but only {{available}} are available"
     },
     "messages": {
       "chanceSuccess": "Success! You draw 1 card",
@@ -489,5 +520,9 @@
       "noTargetSelected": "No target selected",
       "fortune": "Fortune: +{{points}} points"
     }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error"
   }
 }
