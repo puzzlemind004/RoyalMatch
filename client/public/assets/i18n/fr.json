@@ -261,6 +261,17 @@
       "step2": "<strong>Puis valeur</strong> : Parmi les cartes de cette couleur, la plus haute valeur gagne",
       "step3": "<strong>Hiérarchie</strong> : FORTE > Neutre (même couleur) > Neutre (autre couleur) > FAIBLE",
       "step4": "<strong>Exemple</strong> : Un 2♥ FORTE bat un As♦ Neutre ! 🎯"
+    },
+    "objectiveDistribution": {
+      "title": "Démo : Distribution des Objectifs",
+      "description": "Découvrez le système de distribution semi-aléatoire des objectifs. Choisissez votre stratégie !",
+      "infoTitle": "Comment ça fonctionne ?",
+      "info1": "Sélectionnez le nombre d'objectifs à piocher pour chaque niveau de difficulté",
+      "info2": "Aucune limite : piochez autant d'objectifs que vous le souhaitez !",
+      "info3": "Les objectifs faciles valent 1-2 points, moyens 3-4 points, difficiles 5-10 points",
+      "info4": "Cliquez sur 'Piocher' pour recevoir vos objectifs aléatoires",
+      "footer": "Cette démo utilise l'API RoyalMatch en temps réel",
+      "apiEndpoints": "Points d'API :"
     }
   },
   "objectives": {
@@ -347,6 +358,21 @@
     "never_activate_effects": {
       "name": "Puriste",
       "description": "Ne jamais activer d'effets"
+    },
+    "distribution": {
+      "title": "Distribution des Objectifs",
+      "subtitle": "Choisissez combien d'objectifs vous souhaitez piocher par niveau de difficulté",
+      "available": "disponibles",
+      "points": "points",
+      "draw": "Piocher",
+      "reset": "Réinitialiser",
+      "drawnTitle": "Vos Objectifs Piochés",
+      "totalPoints": "Total de Points"
+    },
+    "difficulty": {
+      "easy": "Facile",
+      "medium": "Moyen",
+      "hard": "Difficile"
     }
   },
   "game": {
@@ -480,7 +506,12 @@
       "invalidAction": "Action invalide",
       "authRequired": "Authentification requise",
       "playerBanned": "Vous avez été temporairement banni pour activité suspecte",
-      "rateLimitExceeded": "Trop d'actions trop rapidement. Ralentissez."
+      "rateLimitExceeded": "Trop d'actions trop rapidement. Ralentissez.",
+      "failedToLoadObjectives": "Échec du chargement des objectifs",
+      "failedToDrawObjectives": "Échec de la pioche des objectifs",
+      "invalidSelection": "Sélection invalide",
+      "negativeSelection": "Le nombre d'objectifs ne peut pas être négatif",
+      "notEnoughObjectives": "Pas assez d'objectifs disponibles : vous demandez {{requested}} objectifs {{difficulty}} mais seulement {{available}} sont disponibles"
     },
     "messages": {
       "chanceSuccess": "Chance réussie ! Vous piochez 1 carte",
@@ -489,5 +520,9 @@
       "noTargetSelected": "Aucune cible sélectionnée",
       "fortune": "Fortune : +{{points}} points"
     }
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur"
   }
 }

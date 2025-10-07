@@ -49,3 +49,18 @@ router
     router.post('/card-played', [WebSocketTestController, 'testCardPlayed'])
   })
   .prefix('/api/ws-test')
+
+/*
+|--------------------------------------------------------------------------
+| Objectives routes
+|--------------------------------------------------------------------------
+*/
+
+const ObjectivesController = () => import('#controllers/objectives_controller')
+
+router
+  .group(() => {
+    router.get('/available', [ObjectivesController, 'available'])
+    router.post('/draw', [ObjectivesController, 'draw'])
+  })
+  .prefix('/api/objectives')

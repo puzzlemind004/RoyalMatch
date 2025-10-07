@@ -28,35 +28,6 @@ import {
 } from '#services/objective_verifiers'
 
 test.group('Objective Verifiers - Tricks-Based', () => {
-  // Helper to create a card
-  const createCard = (value: CardValue, suit: CardSuit): Card => ({
-    id: `${suit}-${value}`,
-    value,
-    suit,
-    effect: { type: 'none' },
-    numericValue: getNumericValue(value),
-  })
-
-  // Helper to get numeric value
-  function getNumericValue(value: CardValue): number {
-    const map: Record<CardValue, number> = {
-      [CardValue.TWO]: 2,
-      [CardValue.THREE]: 3,
-      [CardValue.FOUR]: 4,
-      [CardValue.FIVE]: 5,
-      [CardValue.SIX]: 6,
-      [CardValue.SEVEN]: 7,
-      [CardValue.EIGHT]: 8,
-      [CardValue.NINE]: 9,
-      [CardValue.TEN]: 10,
-      [CardValue.JACK]: 11,
-      [CardValue.QUEEN]: 12,
-      [CardValue.KING]: 13,
-      [CardValue.ACE]: 14,
-    }
-    return map[value]
-  }
-
   // Helper to create player state
   const createPlayerState = (overrides?: Partial<PlayerRoundState>): PlayerRoundState => ({
     playerId: 'player1',
