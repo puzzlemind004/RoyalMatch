@@ -15,11 +15,13 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import type { ObjectiveDefinition } from '../types/objective.js'
 import ObjectiveDistributionService from '#services/objective_distribution_service'
+import ObjectiveVerificationService from '#services/objective_verification_service'
 import objectiveStorageService from '#services/objective_storage_service'
 import { drawObjectivesValidator } from '#validators/objective_distribution_validator'
 
 export default class ObjectivesController {
   private distributionService = new ObjectiveDistributionService()
+  private verificationService = new ObjectiveVerificationService()
 
   /**
    * GET /api/objectives/available
@@ -259,6 +261,51 @@ export default class ObjectivesController {
       return response.internalServerError({
         success: false,
         message: 'game.errors.failedToValidateObjectives',
+      })
+    }
+  }
+
+  /**
+   * POST /api/objectives/verify
+   * Verify objectives for a round and calculate points
+   * Body: { roundId: string, mockRoundData?: object }
+   *
+   * TODO: Remove mockRoundData when Round model is implemented
+   * TODO: Get roundId from authenticated user's current game state
+   */
+  async verify({ request, response }: HttpContext) {
+    try {
+      const { roundId, mockRoundData } = request.only(['roundId', 'mockRoundData'])
+
+      if (!roundId) {
+        return response.badRequest({
+          success: false,
+          message: 'game.errors.roundIdRequired',
+        })
+      }
+
+      // Verify objectives for the round
+      const result = await this.verificationService.verifyRound(roundId, mockRoundData)
+
+      // Convert Map to object for JSON serialization
+      const playersData: Record<string, unknown> = {}
+      result.players.forEach((playerResult, playerId) => {
+        playersData[playerId] = playerResult
+      })
+
+      return response.ok({
+        success: true,
+        data: {
+          roundId: result.roundId,
+          gameId: result.gameId,
+          players: playersData,
+          timestamp: result.timestamp,
+        },
+      })
+    } catch (error) {
+      return response.internalServerError({
+        success: false,
+        message: 'game.errors.failedToVerifyObjectives',
       })
     }
   }

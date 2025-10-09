@@ -65,5 +65,6 @@ router
     router.post('/redraw', [ObjectivesController, 'redraw'])
     router.post('/reject', [ObjectivesController, 'reject'])
     router.post('/validate', [ObjectivesController, 'validate'])
+    router.post('/verify', [ObjectivesController, 'verify'])
   })
   .prefix('/api/objectives')
