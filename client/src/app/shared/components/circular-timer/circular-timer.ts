@@ -45,8 +45,15 @@ export class CircularTimerComponent implements OnDestroy {
   strokeDashoffset = computed(() => {
     const circ = this.circumference();
     const pct = this.percentage();
-    // Circle should be full at start (offset = 0) and empty at end (offset = circ)
-    // So we use (100 - pct) to invert: 100% remaining = 0 offset, 0% remaining = full offset
+    // SVG stroke-dashoffset behavior:
+    // - offset = 0 → circle fully visible (drawn)
+    // - offset = circumference → circle fully hidden (not drawn)
+    //
+    // We want:
+    // - 100% time remaining → offset = 0 (full circle visible)
+    // - 0% time remaining → offset = circ (circle hidden)
+    //
+    // Formula: offset = circ * (1 - percentage/100)
     return circ * (1 - pct / 100);
   });
 
