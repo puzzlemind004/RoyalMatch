@@ -318,6 +318,46 @@
         "back": "← Restart the demo",
         "restart": "Restart the demo"
       }
+    },
+    "objectiveVerificationDemo": {
+      "title": "Demo - Objective Verification",
+      "subtitle": "Task 4.5: Automatic objective verification system at end of round",
+      "mockData": {
+        "title": "Mock Round Data",
+        "tricks": "Tricks",
+        "tricksWon": "Tricks won: {{count}}",
+        "cards": "Cards",
+        "cardsPlayed": "Cards played: {{count}}"
+      },
+      "buttons": {
+        "verify": "🔍 Verify Objectives",
+        "reset": "🔄 Reset"
+      },
+      "results": {
+        "title": "Verification Results",
+        "summary": "{{completed}}/{{total}} objectives completed • {{points}} points earned",
+        "details": "Objective Details",
+        "progress": "Progress"
+      },
+      "features": {
+        "title": "Implemented Features",
+        "automatic": {
+          "title": "✅ Automatic Verification",
+          "description": "Automatic verification of all objectives at the end of the round"
+        },
+        "strategy": {
+          "title": "🎯 Strategy Pattern",
+          "description": "Each objective uses its own verifier for precise verification"
+        },
+        "points": {
+          "title": "💰 Point Calculation",
+          "description": "Automatic point attribution for each completed objective"
+        },
+        "logs": {
+          "title": "📝 Detailed Logs",
+          "description": "Detailed server logs for debugging and analysis"
+        }
+      }
     }
   },
   "objectives": {
@@ -581,7 +621,9 @@
       "failedToRejectObjectives": "Failed to reject objectives",
       "failedToValidateObjectives": "Failed to validate objectives",
       "maxRejectsReached": "You have reached the rejection limit (2 maximum)",
-      "minimumThreeObjectives": "You must select at least 3 objectives"
+      "minimumThreeObjectives": "You must select at least 3 objectives",
+      "roundIdRequired": "Round ID is required",
+      "failedToVerifyObjectives": "Failed to verify objectives"
     },
     "messages": {
       "chanceSuccess": "Success! You draw 1 card",

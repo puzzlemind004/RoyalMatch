@@ -318,6 +318,46 @@
         "back": "← Recommencer la démo",
         "restart": "Recommencer la démo"
       }
+    },
+    "objectiveVerificationDemo": {
+      "title": "Démo - Vérification des Objectifs",
+      "subtitle": "Tâche 4.5 : Système de vérification automatique des objectifs en fin de manche",
+      "mockData": {
+        "title": "Données Simulées de Manche",
+        "tricks": "Plis",
+        "tricksWon": "Plis gagnés : {{count}}",
+        "cards": "Cartes",
+        "cardsPlayed": "Cartes jouées : {{count}}"
+      },
+      "buttons": {
+        "verify": "🔍 Vérifier les Objectifs",
+        "reset": "🔄 Recommencer"
+      },
+      "results": {
+        "title": "Résultats de la Vérification",
+        "summary": "{{completed}}/{{total}} objectifs complétés • {{points}} points gagnés",
+        "details": "Détails des Objectifs",
+        "progress": "Progression"
+      },
+      "features": {
+        "title": "Fonctionnalités Implémentées",
+        "automatic": {
+          "title": "✅ Vérification Automatique",
+          "description": "Vérification automatique de tous les objectifs à la fin de la manche"
+        },
+        "strategy": {
+          "title": "🎯 Strategy Pattern",
+          "description": "Chaque objectif utilise son propre vérificateur pour une vérification précise"
+        },
+        "points": {
+          "title": "💰 Calcul des Points",
+          "description": "Attribution automatique des points pour chaque objectif complété"
+        },
+        "logs": {
+          "title": "📝 Logs Détaillés",
+          "description": "Logs serveur détaillés pour le debugging et l'analyse"
+        }
+      }
     }
   },
   "objectives": {
@@ -581,7 +621,9 @@
       "failedToRejectObjectives": "Échec du rejet des objectifs",
       "failedToValidateObjectives": "Échec de la validation des objectifs",
       "maxRejectsReached": "Vous avez atteint la limite de rejets (2 maximum)",
-      "minimumThreeObjectives": "Vous devez sélectionner au minimum 3 objectifs"
+      "minimumThreeObjectives": "Vous devez sélectionner au minimum 3 objectifs",
+      "roundIdRequired": "L'identifiant de la manche est requis",
+      "failedToVerifyObjectives": "Échec de la vérification des objectifs"
     },
     "messages": {
       "chanceSuccess": "Chance réussie ! Vous piochez 1 carte",

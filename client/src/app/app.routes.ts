@@ -54,6 +54,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'objective-verification',
+        loadComponent: () =>
+          import('./features/demo/pages/objective-verification-demo/objective-verification-demo').then(
+            (m) => m.ObjectiveVerificationDemoComponent,
+          ),
+      },
+      {
         path: '',
         redirectTo: 'cards',
         pathMatch: 'full',
