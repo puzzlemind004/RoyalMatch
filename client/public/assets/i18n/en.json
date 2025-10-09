@@ -358,6 +358,51 @@
           "description": "Detailed server logs for debugging and analysis"
         }
       }
+    },
+    "scoringDemo": {
+      "title": "Demo - Scoring System",
+      "subtitle": "Task 4.6: Point attribution with completion bonus",
+      "mockData": {
+        "title": "Mock Round Data",
+        "objectives": "Objectives",
+        "objectivesCount": "{{count}} objectives to complete",
+        "tricks": "Tricks",
+        "tricksWon": "{{count}} tricks won",
+        "bonus": "Bonus",
+        "bonusPoints": "+{{points}} pts if all completed"
+      },
+      "buttons": {
+        "calculate": "🏆 Calculate Scores",
+        "reset": "🔄 Reset"
+      },
+      "results": {
+        "title": "Round Results",
+        "roundPoints": "Points this round",
+        "objectivesSummary": "{{completed}}/{{total}} objectives completed",
+        "bonusApplied": "BONUS +{{points}} pts",
+        "totalScore": "Total Score",
+        "objectivesDetails": "Objective Details",
+        "progress": "Progress"
+      },
+      "features": {
+        "title": "Implemented Features",
+        "calculation": {
+          "title": "💯 Automatic Calculation",
+          "description": "Automatic point calculation based on completed objectives"
+        },
+        "bonus": {
+          "title": "🌟 Completion Bonus",
+          "description": "+5 bonus points if all objectives are completed"
+        },
+        "tracking": {
+          "title": "📊 Score Tracking",
+          "description": "Track cumulative total score for each player"
+        },
+        "cumulative": {
+          "title": "🔄 Cumulative Score",
+          "description": "Points accumulate round after round"
+        }
+      }
     }
   },
   "objectives": {
@@ -623,13 +668,17 @@
       "maxRejectsReached": "You have reached the rejection limit (2 maximum)",
       "minimumThreeObjectives": "You must select at least 3 objectives",
       "roundIdRequired": "Round ID is required",
-      "failedToVerifyObjectives": "Failed to verify objectives"
+      "failedToVerifyObjectives": "Failed to verify objectives",
+      "failedToCalculateScores": "Failed to calculate scores",
+      "failedToResetScores": "Failed to reset scores",
+      "failedToLoadScores": "Failed to load scores"
     },
     "messages": {
       "chanceSuccess": "Success! You draw 1 card",
       "noLuck": "No luck this time",
       "randomDraw": "Random draw: {{count}} card(s)",
       "noTargetSelected": "No target selected",
+      "scoresReset": "All scores have been reset",
       "fortune": "Fortune: +{{points}} points"
     }
   },
