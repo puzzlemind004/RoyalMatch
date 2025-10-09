@@ -24,7 +24,12 @@ export class CircularTimerComponent implements OnDestroy {
   timerComplete = output<void>(); // Emitted when timer reaches 0
 
   // Internal state
-  remainingTime = signal<number>(0); // Current remaining time
+  // Initialize with totalTime to avoid flash of 0% on component creation
+  remainingTime = computed(() => {
+    // If timer hasn't started yet, show full time
+    return this._remainingTime() || this.totalTime();
+  });
+  private _remainingTime = signal<number>(0); // Internal remaining time tracker
   private timerInterval?: ReturnType<typeof setInterval>;
   private startTime: number = 0;
   private pausedTime: number = 0;
@@ -40,7 +45,7 @@ export class CircularTimerComponent implements OnDestroy {
   });
 
   // SVG circle properties (radius proportional to size)
-  radius = computed(() => (this.size() / 2) - 10); // 10px padding for stroke
+  radius = computed(() => this.size() / 2 - 10); // 10px padding for stroke
   circumference = computed(() => 2 * Math.PI * this.radius());
   strokeDashoffset = computed(() => {
     const circ = this.circumference();
@@ -90,7 +95,7 @@ export class CircularTimerComponent implements OnDestroy {
     // Initialize
     this.startTime = Date.now();
     this.pausedTime = 0;
-    this.remainingTime.set(this.totalTime());
+    this._remainingTime.set(this.totalTime());
 
     // Use interval for smooth updates
     this.timerInterval = setInterval(() => {
@@ -98,11 +103,11 @@ export class CircularTimerComponent implements OnDestroy {
       const newTime = this.totalTime() - elapsed;
 
       if (newTime <= 0) {
-        this.remainingTime.set(0);
+        this._remainingTime.set(0);
         this.stop();
         this.timerComplete.emit();
       } else {
-        this.remainingTime.set(newTime);
+        this._remainingTime.set(newTime);
       }
     }, this.updateInterval());
   }
@@ -142,7 +147,7 @@ export class CircularTimerComponent implements OnDestroy {
    */
   reset(): void {
     this.stop();
-    this.remainingTime.set(this.totalTime());
+    this._remainingTime.set(0); // Reset to 0 so computed returns totalTime
     this.pausedTime = 0;
   }
 
