@@ -16,15 +16,12 @@
   <!-- Circular Timer -->
   <div class="mb-6 rounded-lg border-2 border-gray-300 bg-white p-6 text-center shadow-md">
     <app-circular-timer
-      [remainingTime]="remainingTime()"
+      #timer
       [totalTime]="TIMER_TOTAL_DURATION"
       [size]="160"
+      [updateInterval]="100"
+      (timerComplete)="onTimerComplete()"
     />
-    @if (remainingTime() <= 10 && !isValidated()) {
-      <p class="mt-4 text-sm font-semibold text-red-600 animate-pulse">
-        {{ 'objectives.validation.autoValidation' | transloco: { time: remainingTime() } }}
-      </p>
-    }
   </div>
 
   <!-- Error Message -->

@@ -3,21 +3,34 @@
  * Reusable circular progress timer with color transitions
  */
 
-import { Component, input, computed } from '@angular/core';
+import { Component, input, computed, signal, output, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-circular-timer',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslocoModule],
   templateUrl: './circular-timer.html',
   styleUrl: './circular-timer.css',
 })
-export class CircularTimerComponent {
+export class CircularTimerComponent implements OnDestroy {
   // Inputs
-  remainingTime = input.required<number>(); // Remaining time in seconds
   totalTime = input.required<number>(); // Total duration in seconds
   size = input<number>(160); // Size in pixels (default 160px)
+  updateInterval = input<number>(100); // Update interval in ms for smooth animation (default 100ms)
+
+  // Outputs
+  timerComplete = output<void>(); // Emitted when timer reaches 0
+
+  // Internal state
+  remainingTime = signal<number>(0); // Current remaining time
+  private timerInterval?: ReturnType<typeof setInterval>;
+  private startTime: number = 0;
+  private pausedTime: number = 0;
+
+  // Expose Math for template
+  readonly Math = Math;
 
   // Computed values
   percentage = computed(() => {
@@ -57,4 +70,74 @@ export class CircularTimerComponent {
     if (pct <= 44) return 'stroke-orange-100';
     return 'stroke-green-100';
   });
+
+  /**
+   * Start the timer countdown
+   */
+  start(): void {
+    // Stop any existing timer
+    this.stop();
+
+    // Initialize
+    this.startTime = Date.now();
+    this.pausedTime = 0;
+    this.remainingTime.set(this.totalTime());
+
+    // Use interval for smooth updates
+    this.timerInterval = setInterval(() => {
+      const elapsed = (Date.now() - this.startTime) / 1000; // Convert to seconds
+      const newTime = this.totalTime() - elapsed;
+
+      if (newTime <= 0) {
+        this.remainingTime.set(0);
+        this.stop();
+        this.timerComplete.emit();
+      } else {
+        this.remainingTime.set(newTime);
+      }
+    }, this.updateInterval());
+  }
+
+  /**
+   * Stop the timer
+   */
+  stop(): void {
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+      this.timerInterval = undefined;
+    }
+  }
+
+  /**
+   * Pause the timer
+   */
+  pause(): void {
+    if (this.timerInterval) {
+      this.pausedTime = Date.now() - this.startTime;
+      this.stop();
+    }
+  }
+
+  /**
+   * Resume the timer from paused state
+   */
+  resume(): void {
+    if (this.pausedTime > 0) {
+      this.startTime = Date.now() - this.pausedTime;
+      this.start();
+    }
+  }
+
+  /**
+   * Reset the timer to initial state
+   */
+  reset(): void {
+    this.stop();
+    this.remainingTime.set(this.totalTime());
+    this.pausedTime = 0;
+  }
+
+  ngOnDestroy(): void {
+    this.stop();
+  }
 }

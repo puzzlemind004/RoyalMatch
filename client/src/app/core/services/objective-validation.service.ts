@@ -28,7 +28,6 @@ export class ObjectiveValidationService {
   objectives = signal<ObjectiveDefinition[]>([]);
   hasRedrawn = signal<boolean>(false);
   rejectedIds = signal<string[]>([]);
-  remainingTime = signal<number>(45); // VALIDATION_CONSTANTS.TIMER_DURATION
   isValidated = signal<boolean>(false);
   loading = signal<boolean>(false);
   error = signal<string | null>(null);
@@ -42,7 +41,6 @@ export class ObjectiveValidationService {
     this.objectives.set(objectives);
     this.hasRedrawn.set(false);
     this.rejectedIds.set([]);
-    this.remainingTime.set(45);
     this.isValidated.set(false);
     this.error.set(null);
   }
@@ -148,31 +146,12 @@ export class ObjectiveValidationService {
   }
 
   /**
-   * Start the timer countdown
-   * Auto-validates when timer reaches 0
-   */
-  startTimer(onTimeout: () => void): void {
-    const interval = setInterval(() => {
-      this.remainingTime.update((time) => {
-        const newTime = time - 1;
-        if (newTime <= 0) {
-          clearInterval(interval);
-          onTimeout();
-          return 0;
-        }
-        return newTime;
-      });
-    }, 1000);
-  }
-
-  /**
    * Reset the validation state
    */
   reset(): void {
     this.objectives.set([]);
     this.hasRedrawn.set(false);
     this.rejectedIds.set([]);
-    this.remainingTime.set(45);
     this.isValidated.set(false);
     this.error.set(null);
   }

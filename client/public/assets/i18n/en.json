@@ -272,6 +272,52 @@
       "info4": "Click 'Draw' to receive your random objectives",
       "footer": "This demo uses the real-time RoyalMatch API",
       "apiEndpoints": "API endpoints:"
+    },
+    "objectiveValidationDemo": {
+      "subtitle": "Task 4.4: Objective validation interface with timer, redraw, and rejection",
+      "step1": {
+        "title": "Step 1: Draw Objectives",
+        "description": "Start by selecting and drawing objectives. Once drawn, you can validate them."
+      },
+      "step2": {
+        "title": "Step 2: Validate Your Objectives",
+        "description": "You have <strong>45 seconds</strong> to validate your objectives. You can:",
+        "redraw": "<strong>Redraw</strong> all objectives (1 time maximum)",
+        "reject": "<strong>Reject</strong> up to 2 individual objectives",
+        "validate": "<strong>Validate</strong> your objectives to confirm them",
+        "timeout": "⏱️ If the timer expires, your objectives will be validated automatically."
+      },
+      "completed": {
+        "title": "Objectives validated successfully!",
+        "count": "You have validated <strong>{{count}}</strong> objective(s).",
+        "yourObjectives": "Your validated objectives:",
+        "points": "pts"
+      },
+      "features": {
+        "title": "Implemented Features",
+        "timer": {
+          "title": "⏱️ 45-second Timer",
+          "description": "Countdown with color changes (green → orange → pulsing red)"
+        },
+        "redraw": {
+          "title": "🔄 Redraw (once)",
+          "description": "Ability to redraw all objectives once"
+        },
+        "reject": {
+          "title": "❌ Reject Objectives (max 2)",
+          "description": "Individual objective rejection with limit of 2 maximum"
+        },
+        "autoValidation": {
+          "title": "✅ Automatic Validation",
+          "description": "If the timer expires, objectives are validated automatically"
+        }
+      },
+      "buttons": {
+        "continue": "Continue to validation →",
+        "drawMinimum": "Draw at least 3 objectives to continue",
+        "back": "← Restart the demo",
+        "restart": "Restart the demo"
+      }
     }
   },
   "objectives": {
@@ -547,6 +593,7 @@
   },
   "common": {
     "loading": "Loading...",
-    "error": "Error"
+    "error": "Error",
+    "seconds": "seconds"
   }
 }

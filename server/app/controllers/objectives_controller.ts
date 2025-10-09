@@ -13,6 +13,7 @@
  */
 
 import type { HttpContext } from '@adonisjs/core/http'
+import type { ObjectiveDefinition } from '../types/objective.js'
 import ObjectiveDistributionService from '#services/objective_distribution_service'
 import objectiveStorageService from '#services/objective_storage_service'
 import { drawObjectivesValidator } from '#validators/objective_distribution_validator'
@@ -143,7 +144,7 @@ export default class ObjectivesController {
         hard: 0,
       }
 
-      currentObjectives.forEach((obj: any) => {
+      currentObjectives.forEach((obj: ObjectiveDefinition) => {
         const diff = obj.difficulty
         if (diff === 'easy') distribution.easy++
         else if (diff === 'medium') distribution.medium++
@@ -199,7 +200,7 @@ export default class ObjectivesController {
 
       // Remove rejected objectives
       const remainingObjectives = currentObjectives.filter(
-        (obj: any) => !objectiveIds.includes(obj.id)
+        (obj: ObjectiveDefinition) => !objectiveIds.includes(obj.id)
       )
 
       // Store remaining objectives in storage service
@@ -241,7 +242,7 @@ export default class ObjectivesController {
 
       // Apply final rejections if provided
       if (rejectedIds && rejectedIds.length > 0) {
-        objectives = objectives.filter((obj: any) => !rejectedIds.includes(obj.id))
+        objectives = objectives.filter((obj: ObjectiveDefinition) => !rejectedIds.includes(obj.id))
       }
 
       // TODO: In production, save validated objectives to database
