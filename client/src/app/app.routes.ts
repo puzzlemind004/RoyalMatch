@@ -47,6 +47,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'objective-validation',
+        loadComponent: () =>
+          import('./features/demo/pages/objective-validation-demo/objective-validation-demo').then(
+            (m) => m.ObjectiveValidationDemoComponent,
+          ),
+      },
+      {
         path: '',
         redirectTo: 'cards',
         pathMatch: 'full',

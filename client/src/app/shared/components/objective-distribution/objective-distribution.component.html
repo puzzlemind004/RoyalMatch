@@ -147,11 +147,17 @@
     <div class="flex flex-col sm:flex-row gap-3 justify-center mb-6">
       <button
         (click)="drawObjectives()"
-        [disabled]="totalCount() === 0 || loading()"
+        [disabled]="!canDraw() || loading()"
         class="px-8 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
       >
         {{ 'objectives.distribution.draw' | transloco }} ({{ totalCount() }})
       </button>
+
+      @if (totalCount() > 0 && totalCount() < 3) {
+        <p class="text-sm text-red-600 font-semibold">
+          {{ 'game.errors.minimumThreeObjectives' | transloco }}
+        </p>
+      }
 
       <button
         (click)="reset()"

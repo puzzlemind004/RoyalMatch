@@ -13,5 +13,7 @@ export const drawObjectivesValidator = vine.compile(
     easy: vine.number().min(0).optional(),
     medium: vine.number().min(0).optional(),
     hard: vine.number().min(0).optional(),
+    gameId: vine.string().optional(),
+    playerId: vine.string().optional(),
   })
 )

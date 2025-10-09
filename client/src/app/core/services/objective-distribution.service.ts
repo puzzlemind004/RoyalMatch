@@ -57,11 +57,21 @@ export class ObjectiveDistributionService {
   /**
    * Draw objectives based on player's selection
    */
-  drawObjectives(selection: ObjectiveSelection): Observable<DrawObjectivesResponse> {
+  drawObjectives(
+    selection: ObjectiveSelection,
+    gameId: string = 'demo-game',
+    playerId: string = 'demo-player'
+  ): Observable<DrawObjectivesResponse> {
     this.loading.set(true);
     this.error.set(null);
 
-    return this.http.post<DrawObjectivesResponse>(`${this.apiUrl}/draw`, selection).pipe(
+    const payload = {
+      ...selection,
+      gameId,
+      playerId,
+    };
+
+    return this.http.post<DrawObjectivesResponse>(`${this.apiUrl}/draw`, payload).pipe(
       tap({
         next: (response) => {
           if (response.success) {

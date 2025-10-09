@@ -272,6 +272,52 @@
       "info4": "Cliquez sur 'Piocher' pour recevoir vos objectifs aléatoires",
       "footer": "Cette démo utilise l'API RoyalMatch en temps réel",
       "apiEndpoints": "Points d'API :"
+    },
+    "objectiveValidationDemo": {
+      "subtitle": "Tâche 4.4 : Interface de validation des objectifs avec timer, re-pioche, et rejet",
+      "step1": {
+        "title": "Étape 1 : Piocher des objectifs",
+        "description": "Commencez par sélectionner et piocher des objectifs. Une fois piochés, vous pourrez les valider."
+      },
+      "step2": {
+        "title": "Étape 2 : Valider vos objectifs",
+        "description": "Vous avez <strong>45 secondes</strong> pour valider vos objectifs. Vous pouvez :",
+        "redraw": "<strong>Re-piocher</strong> tous les objectifs (1 fois maximum)",
+        "reject": "<strong>Rejeter</strong> jusqu'à 2 objectifs individuels",
+        "validate": "<strong>Valider</strong> vos objectifs pour les confirmer",
+        "timeout": "⏱️ Si le temps expire, vos objectifs seront validés automatiquement."
+      },
+      "completed": {
+        "title": "Objectifs validés avec succès !",
+        "count": "Vous avez validé <strong>{{count}}</strong> objectif(s).",
+        "yourObjectives": "Vos objectifs validés :",
+        "points": "pts"
+      },
+      "features": {
+        "title": "Fonctionnalités implémentées",
+        "timer": {
+          "title": "⏱️ Timer de 45 secondes",
+          "description": "Compte à rebours avec changement de couleur (vert → orange → rouge pulsant)"
+        },
+        "redraw": {
+          "title": "🔄 Re-pioche (1 fois)",
+          "description": "Possibilité de re-piocher tous les objectifs une seule fois"
+        },
+        "reject": {
+          "title": "❌ Rejet d'objectifs (max 2)",
+          "description": "Rejet individuel d'objectifs avec limite de 2 maximum"
+        },
+        "autoValidation": {
+          "title": "✅ Validation automatique",
+          "description": "Si le timer expire, les objectifs sont validés automatiquement"
+        }
+      },
+      "buttons": {
+        "continue": "Continuer vers la validation →",
+        "drawMinimum": "Piochez au moins 3 objectifs pour continuer",
+        "back": "← Recommencer la démo",
+        "restart": "Recommencer la démo"
+      }
     }
   },
   "objectives": {
@@ -372,7 +418,24 @@
     "difficulty": {
       "easy": "Facile",
       "medium": "Moyen",
-      "hard": "Difficile"
+      "hard": "Difficile",
+      "very_hard": "Très difficile"
+    },
+    "validation": {
+      "title": "Validation de vos Objectifs",
+      "drawnObjectives": "Vos objectifs piochés",
+      "objectivesCount": "{{count}} objectif(s)",
+      "timeRemaining": "Temps restant : {{time}}s",
+      "validateButton": "Valider ces objectifs",
+      "redrawButton": "Re-piocher (1 fois)",
+      "redrawUsed": "Re-pioche utilisée",
+      "rejectButton": "Rejeter",
+      "rejectLimit": "Maximum {{max}} rejets",
+      "rejected": "Rejeté",
+      "autoValidation": "Validation automatique dans {{time}}s...",
+      "validated": "Objectifs validés !",
+      "points": "{{points}} pts",
+      "totalPoints": "Total : {{points}} points"
     }
   },
   "game": {
@@ -511,7 +574,14 @@
       "failedToDrawObjectives": "Échec de la pioche des objectifs",
       "invalidSelection": "Sélection invalide",
       "negativeSelection": "Le nombre d'objectifs ne peut pas être négatif",
-      "notEnoughObjectives": "Pas assez d'objectifs disponibles : vous demandez {{requested}} objectifs {{difficulty}} mais seulement {{available}} sont disponibles"
+      "notEnoughObjectives": "Pas assez d'objectifs disponibles : vous demandez {{requested}} objectifs {{difficulty}} mais seulement {{available}} sont disponibles",
+      "noObjectivesToRedraw": "Aucun objectif à re-piocher",
+      "failedToRedrawObjectives": "Échec de la re-pioche des objectifs",
+      "tooManyRejections": "Vous ne pouvez rejeter que 2 objectifs maximum",
+      "failedToRejectObjectives": "Échec du rejet des objectifs",
+      "failedToValidateObjectives": "Échec de la validation des objectifs",
+      "maxRejectsReached": "Vous avez atteint la limite de rejets (2 maximum)",
+      "minimumThreeObjectives": "Vous devez sélectionner au minimum 3 objectifs"
     },
     "messages": {
       "chanceSuccess": "Chance réussie ! Vous piochez 1 carte",
@@ -523,6 +593,7 @@
   },
   "common": {
     "loading": "Chargement...",
-    "error": "Erreur"
+    "error": "Erreur",
+    "seconds": "secondes"
   }
 }
