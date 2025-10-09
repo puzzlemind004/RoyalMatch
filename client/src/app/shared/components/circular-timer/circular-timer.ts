@@ -45,7 +45,9 @@ export class CircularTimerComponent implements OnDestroy {
   strokeDashoffset = computed(() => {
     const circ = this.circumference();
     const pct = this.percentage();
-    return circ - (pct / 100) * circ;
+    // Circle should be full at start (offset = 0) and empty at end (offset = circ)
+    // So we use (100 - pct) to invert: 100% remaining = 0 offset, 0% remaining = full offset
+    return circ * (1 - pct / 100);
   });
 
   // Color classes based on remaining percentage
