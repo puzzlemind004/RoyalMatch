@@ -68,3 +68,19 @@ router
     router.post('/verify', [ObjectivesController, 'verify'])
   })
   .prefix('/api/objectives')
+
+/*
+|--------------------------------------------------------------------------
+| Scoring routes
+|--------------------------------------------------------------------------
+*/
+
+const ScoringController = () => import('#controllers/scoring_controller')
+
+router
+  .group(() => {
+    router.post('/calculate', [ScoringController, 'calculate'])
+    router.post('/reset', [ScoringController, 'reset'])
+    router.get('/all', [ScoringController, 'all'])
+  })
+  .prefix('/api/scoring')

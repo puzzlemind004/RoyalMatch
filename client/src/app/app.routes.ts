@@ -61,6 +61,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'scoring',
+        loadComponent: () =>
+          import('./features/demo/pages/scoring-demo/scoring-demo').then(
+            (m) => m.ScoringDemoComponent,
+          ),
+      },
+      {
         path: '',
         redirectTo: 'cards',
         pathMatch: 'full',
