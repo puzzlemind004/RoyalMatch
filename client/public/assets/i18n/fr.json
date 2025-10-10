@@ -358,6 +358,51 @@
           "description": "Logs serveur détaillés pour le debugging et l'analyse"
         }
       }
+    },
+    "scoringDemo": {
+      "title": "Démo - Système de Scoring",
+      "subtitle": "Tâche 4.6 : Attribution des points avec bonus de complétion",
+      "mockData": {
+        "title": "Données Simulées de Manche",
+        "objectives": "Objectifs",
+        "objectivesCount": "{{count}} objectifs à compléter",
+        "tricks": "Plis",
+        "tricksWon": "{{count}} plis gagnés",
+        "bonus": "Bonus",
+        "bonusPoints": "+{{points}} pts si tous complétés"
+      },
+      "buttons": {
+        "calculate": "🏆 Calculer les Scores",
+        "reset": "🔄 Recommencer"
+      },
+      "results": {
+        "title": "Résultats de la Manche",
+        "roundPoints": "Points de cette manche",
+        "objectivesSummary": "{{completed}}/{{total}} objectifs complétés",
+        "bonusApplied": "BONUS +{{points}} pts",
+        "totalScore": "Score Total",
+        "objectivesDetails": "Détails des Objectifs",
+        "progress": "Progression"
+      },
+      "features": {
+        "title": "Fonctionnalités Implémentées",
+        "calculation": {
+          "title": "💯 Calcul Automatique",
+          "description": "Calcul automatique des points basé sur les objectifs complétés"
+        },
+        "bonus": {
+          "title": "🌟 Bonus de Complétion",
+          "description": "+5 points bonus si tous les objectifs sont réussis"
+        },
+        "tracking": {
+          "title": "📊 Suivi des Scores",
+          "description": "Suivi du score total cumulé pour chaque joueur"
+        },
+        "cumulative": {
+          "title": "🔄 Score Cumulatif",
+          "description": "Les points s'accumulent manche après manche"
+        }
+      }
     }
   },
   "objectives": {
@@ -623,13 +668,17 @@
       "maxRejectsReached": "Vous avez atteint la limite de rejets (2 maximum)",
       "minimumThreeObjectives": "Vous devez sélectionner au minimum 3 objectifs",
       "roundIdRequired": "L'identifiant de la manche est requis",
-      "failedToVerifyObjectives": "Échec de la vérification des objectifs"
+      "failedToVerifyObjectives": "Échec de la vérification des objectifs",
+      "failedToCalculateScores": "Échec du calcul des scores",
+      "failedToResetScores": "Échec de la réinitialisation des scores",
+      "failedToLoadScores": "Échec du chargement des scores"
     },
     "messages": {
       "chanceSuccess": "Chance réussie ! Vous piochez 1 carte",
       "noLuck": "Pas de chance cette fois",
       "randomDraw": "Pioche aléatoire : {{count}} carte(s)",
       "noTargetSelected": "Aucune cible sélectionnée",
+      "scoresReset": "Tous les scores ont été réinitialisés",
       "fortune": "Fortune : +{{points}} points"
     }
   },
