@@ -3,6 +3,24 @@
  */
 
 /**
+ * Rank tiers for competitive play
+ * Used for visual representation and matchmaking
+ */
+export type RankTier = 'unranked' | 'iron' | 'bronze' | 'silver' | 'gold' | 'emerald' | 'diamond'
+
+/**
+ * Player display information
+ * Used to show player info in UI (name, rank icon, etc.)
+ */
+export interface PlayerDisplayInfo {
+  type: 'ai' | 'user'
+  name: string
+  order: number
+  rank: RankTier | null
+  elo: number | null
+}
+
+/**
  * Player statistics tracked during a game
  * Stores cumulative stats for analytics and progression
  */

@@ -79,9 +79,13 @@ export default class PlayerTestsController {
       const stats = player.getStats()
       testResults.statsManagement = stats.tricksWon === 3 && stats.cardsPlayed === 2
 
-      // Test 4: Display name
-      const displayName = player.getDisplayName()
-      testResults.displayName = displayName === 'Player 1'
+      // Test 4: Display info
+      const displayInfo = player.getDisplayInfo()
+      testResults.displayName =
+        displayInfo.type === 'user' &&
+        displayInfo.order === 1 &&
+        displayInfo.rank === null &&
+        displayInfo.elo === null
 
       return response.ok({
         success: true,

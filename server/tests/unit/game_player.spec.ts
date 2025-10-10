@@ -217,4 +217,31 @@ test.group('GamePlayer Model', () => {
     const stats = player.getStats()
     assert.equal(stats.cardsPlayed, 2)
   })
+
+  test('should return correct display info for AI player', ({ assert }) => {
+    const player = new GamePlayer()
+    player.isAi = true
+    player.playerOrder = 2
+
+    const displayInfo = player.getDisplayInfo()
+
+    assert.equal(displayInfo.type, 'ai')
+    assert.equal(displayInfo.name, 'AI')
+    assert.equal(displayInfo.order, 2)
+    assert.isNull(displayInfo.rank)
+    assert.isNull(displayInfo.elo)
+  })
+
+  test('should return correct display info for user player', ({ assert }) => {
+    const player = new GamePlayer()
+    player.isAi = false
+    player.playerOrder = 1
+
+    const displayInfo = player.getDisplayInfo()
+
+    assert.equal(displayInfo.type, 'user')
+    assert.equal(displayInfo.order, 1)
+    assert.isNull(displayInfo.rank) // Will be populated when ranking system is added
+    assert.isNull(displayInfo.elo) // Will be populated when ranking system is added
+  })
 })

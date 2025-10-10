@@ -6,7 +6,7 @@ import User from '#models/user'
 import PlayerObjective from '#models/player_objective'
 import PlayedCard from '#models/played_card'
 import type { Card } from '#types/card'
-import type { PlayerStats } from '#types/player'
+import type { PlayerStats, PlayerDisplayInfo } from '#types/player'
 import { DEFAULT_PLAYER_STATS } from '#types/player'
 
 export default class GamePlayer extends BaseModel {
@@ -199,15 +199,28 @@ export default class GamePlayer extends BaseModel {
   }
 
   /**
-   * Get display name for the player
-   * Returns username if human player, or "AI Player X" if AI
-   * Note: For AI players, returns a formatted name. For human players, requires user relation to be preloaded.
+   * Get display information for the player
+   * Returns structured data for UI rendering (supports i18n)
+   * Note: For human players, requires user relation to be preloaded.
+   * Note: rank and elo will be null until the ranking system is implemented
    */
-  getDisplayName(): string {
+  getDisplayInfo(): PlayerDisplayInfo {
     if (this.isAi) {
-      return `AI Player ${this.playerOrder}`
+      return {
+        type: 'ai',
+        name: this.user?.username || 'AI', // AI name (will be customizable later)
+        order: this.playerOrder,
+        rank: null, // AIs don't have ranks
+        elo: null, // AIs don't have ELO
+      }
     }
 
-    return this.user?.username || `Player ${this.playerOrder}`
+    return {
+      type: 'user',
+      name: this.user?.username || '', // Empty string if not loaded
+      order: this.playerOrder,
+      rank: null, // TODO: Will be populated when User model has rank column
+      elo: null, // TODO: Will be populated when User model has elo column
+    }
   }
 }
