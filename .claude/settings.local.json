@@ -41,7 +41,9 @@
       "Bash(npm run test:*)",
       "Bash(npm test:*)",
       "Bash(npm run docker:dev:build:*)",
-      "Bash(git checkout:*)"
+      "Bash(git checkout:*)",
+      "Bash(npm start)",
+      "Bash(npm start:*)"
     ],
     "deny": [],
     "ask": []

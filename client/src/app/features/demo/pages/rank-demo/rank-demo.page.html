@@ -1,0 +1,135 @@
+<div class="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 p-4 md:p-8">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-8 md:mb-12">
+      <h1 class="text-3xl md:text-5xl font-bold text-white mb-4">
+        Système de Rangs
+      </h1>
+      <p class="text-gray-300 text-sm md:text-base max-w-2xl mx-auto">
+        Démonstration du système de rangs basé sur l'ELO. Les joueurs non classés n'ont pas d'icône.
+      </p>
+    </div>
+
+    <!-- Players List -->
+    <div class="bg-gray-800/50 backdrop-blur rounded-2xl p-6 md:p-8 mb-8 shadow-2xl border border-gray-700">
+      <h2 class="text-xl md:text-2xl font-semibold text-white mb-6">
+        Exemples de Joueurs
+      </h2>
+
+      <div class="space-y-3">
+        @for (player of players; track player.username) {
+          <div class="bg-gray-700/50 rounded-xl p-4 flex items-center justify-between hover:bg-gray-700/70 transition-colors">
+            <!-- Player info -->
+            <div class="flex items-center gap-3 flex-1">
+              <!-- Rank Icon (or empty space for unranked) -->
+              <div class="w-6 flex items-center justify-center">
+                <app-rank-icon [rank]="player.rank" />
+              </div>
+
+              <!-- Username -->
+              <span class="font-semibold text-white text-sm md:text-base">
+                {{ player.username }}
+              </span>
+            </div>
+
+            <!-- ELO (if ranked) -->
+            <div class="text-right">
+              @if (player.elo !== undefined) {
+                <span class="text-xs md:text-sm text-gray-400">
+                  {{ player.elo }} ELO
+                </span>
+              } @else {
+                <span class="text-xs md:text-sm text-gray-500 italic">
+                  Aucune partie
+                </span>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Rank Details Table -->
+    <div class="bg-gray-800/50 backdrop-blur rounded-2xl p-6 md:p-8 shadow-2xl border border-gray-700">
+      <h2 class="text-xl md:text-2xl font-semibold text-white mb-6">
+        Détails des Rangs
+      </h2>
+
+      <!-- Desktop Table -->
+      <div class="hidden md:block overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-gray-700">
+              <th class="text-left py-3 px-4 text-gray-400 font-medium text-sm">Icône</th>
+              <th class="text-left py-3 px-4 text-gray-400 font-medium text-sm">Rang</th>
+              <th class="text-left py-3 px-4 text-gray-400 font-medium text-sm">Percentile</th>
+              <th class="text-left py-3 px-4 text-gray-400 font-medium text-sm">Plage ELO</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (player of players; track player.username) {
+              <tr class="border-b border-gray-700/50 hover:bg-gray-700/30 transition-colors">
+                <td class="py-4 px-4">
+                  <div class="w-6">
+                    <app-rank-icon [rank]="player.rank" />
+                  </div>
+                </td>
+                <td class="py-4 px-4 text-white font-medium">
+                  {{ rankDescriptions[player.rank].label }}
+                </td>
+                <td class="py-4 px-4 text-gray-300">
+                  {{ rankDescriptions[player.rank].percentile }}
+                </td>
+                <td class="py-4 px-4 text-gray-400 font-mono text-sm">
+                  {{ rankDescriptions[player.rank].eloRange }}
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Mobile Cards -->
+      <div class="md:hidden space-y-4">
+        @for (player of players; track player.username) {
+          <div class="bg-gray-700/50 rounded-xl p-4 space-y-2">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-6">
+                <app-rank-icon [rank]="player.rank" />
+              </div>
+              <span class="text-white font-semibold">
+                {{ rankDescriptions[player.rank].label }}
+              </span>
+            </div>
+            <div class="space-y-1 text-sm">
+              <div class="flex justify-between">
+                <span class="text-gray-400">Percentile:</span>
+                <span class="text-gray-300">{{ rankDescriptions[player.rank].percentile }}</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-400">Plage ELO:</span>
+                <span class="text-gray-400 font-mono text-xs">{{ rankDescriptions[player.rank].eloRange }}</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Info Box -->
+    <div class="mt-8 bg-blue-900/20 border border-blue-700/50 rounded-xl p-4 md:p-6">
+      <div class="flex gap-3">
+        <div class="text-blue-400 text-xl">ℹ️</div>
+        <div class="flex-1">
+          <h3 class="text-blue-300 font-semibold mb-2">À propos du système de rangs</h3>
+          <ul class="text-blue-200 text-sm space-y-1 list-disc list-inside">
+            <li>Les joueurs <strong>non classés</strong> n'ont pas d'icône (motivation à jouer en classé)</li>
+            <li>Les rangs sont calculés par <strong>percentiles</strong> (relatif aux autres joueurs)</li>
+            <li>Les icônes deviennent <strong>progressivement plus complexes</strong> (fer → diamant)</li>
+            <li>Chaque rang a une <strong>couleur unique</strong> facilement reconnaissable</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

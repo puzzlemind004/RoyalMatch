@@ -84,3 +84,17 @@ router
     router.get('/all', [ScoringController, 'all'])
   })
   .prefix('/api/scoring')
+
+/*
+|--------------------------------------------------------------------------
+| Test routes (Development only - remove in production)
+|--------------------------------------------------------------------------
+*/
+
+const PlayerTestsController = () => import('#controllers/player_tests_controller')
+
+router
+  .group(() => {
+    router.get('/player', [PlayerTestsController, 'test'])
+  })
+  .prefix('/api/test')

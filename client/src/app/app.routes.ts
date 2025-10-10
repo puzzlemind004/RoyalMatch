@@ -68,6 +68,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'ranks',
+        loadComponent: () =>
+          import('./features/demo/pages/rank-demo/rank-demo.page').then(
+            (m) => m.RankDemoPage,
+          ),
+      },
+      {
         path: '',
         redirectTo: 'cards',
         pathMatch: 'full',

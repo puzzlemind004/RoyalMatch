@@ -19,6 +19,7 @@ export class DemoLayoutComponent {
     { path: '/demo/objective-validation', label: 'Objectifs', icon: '🎯' },
     { path: '/demo/objective-verification', label: 'Vérification', icon: '✅' },
     { path: '/demo/scoring', label: 'Scores', icon: '🏆' },
+    { path: '/demo/ranks', label: 'Rangs', icon: '💎' },
     // Future demos will be added here
     // { path: '/demo/game', label: 'Partie', icon: '🎮' },
     // { path: '/demo/players', label: 'Joueurs', icon: '👥' },
