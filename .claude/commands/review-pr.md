@@ -16,13 +16,15 @@ Automated code review of a Pull Request with focus on quality, performance, and 
 
 1. **Load PR details** using `gh pr view` for the task
 2. **Analyze all changes** in the PR (git diff)
-3. **Deep code review** focusing on critical points
-4. **Generate review report** in `review-pr-recap-<task-number>.md`
-5. **Provide verdict** - Issues found or all good ✅
+3. **Check if PR diff fix corresponding issue**
+4. **Deep code review** focusing on critical points
+5. **Generate review report** in `review-pr-recap-<task-number>.md`
+6. **Provide verdict** - Issues found or all good ✅
 
 ## Review Criteria (in order of importance)
 
 ### 1. Internationalization (i18n) ⚠️ CRITICAL
+
 - ✅ All user-facing text uses Transloco (`this.transloco.translate()`)
 - ✅ No hardcoded French or English text in UI
 - ✅ Server responses use translation keys, not raw text
@@ -30,6 +32,7 @@ Automated code review of a Pull Request with focus on quality, performance, and 
 - ❌ Flag ANY hardcoded text that users will see
 
 ### 2. Code Quality & Cleanliness
+
 - ✅ No `console.log()` statements
 - ✅ No commented-out code
 - ✅ No unused imports or variables
@@ -38,6 +41,7 @@ Automated code review of a Pull Request with focus on quality, performance, and 
 - ✅ Code follows SOLID principles
 
 ### 3. Architecture & Design Patterns
+
 - ✅ Follows Angular best practices (standalone components, signals)
 - ✅ Follows AdonisJS patterns (services, controllers separation)
 - ✅ Design patterns used appropriately (Factory, Strategy, etc.)
@@ -45,6 +49,7 @@ Automated code review of a Pull Request with focus on quality, performance, and 
 - ✅ Proper separation of concerns
 
 ### 4. Performance
+
 - ✅ No unnecessary re-renders (Angular change detection)
 - ✅ Efficient database queries (no N+1 problems)
 - ✅ Proper use of signals vs observables
@@ -52,24 +57,28 @@ Automated code review of a Pull Request with focus on quality, performance, and 
 - ✅ Optimized imports (tree-shaking friendly)
 
 ### 5. Responsive Design (if UI changes)
+
 - ✅ Mobile-first approach with Tailwind breakpoints
 - ✅ Works on mobile (320px), tablet (768px), desktop (1024px+)
 - ✅ No custom CSS (TailwindCSS only)
 - ✅ Proper use of Tailwind responsive utilities
 
 ### 6. Testing & Validation
+
 - ✅ TypeScript compiles without errors
 - ✅ All tests pass (if tests exist)
 - ✅ No linting errors
 - ✅ Code is formatted correctly
 
 ### 7. Security
+
 - ✅ No sensitive data in code (API keys, passwords)
 - ✅ Proper input validation (client AND server)
 - ✅ No SQL injection risks
 - ✅ No XSS vulnerabilities
 
 ### 8. Documentation
+
 - ✅ Complex logic has comments
 - ✅ Functions have clear names (self-documenting)
 - ✅ Interfaces/types properly defined
@@ -78,77 +87,97 @@ Automated code review of a Pull Request with focus on quality, performance, and 
 ## Implementation Steps
 
 ### Step 1: Load PR Information
+
 ```bash
 gh pr view <task-number> --json number,title,body,files,commits
 git diff master...feature/<task-number>-<task-name>
 ```
 
 ### Step 2: Analyze Each File
+
 - Read all modified files
 - Check against review criteria
 - Note issues with line numbers
 - Suggest improvements
 
 ### Step 3: Generate Review Report
+
 Create `review-pr-recap-<task-number>.md` with:
+
 ```markdown
 # PR Review Report - Task <task-number>
 
 ## Summary
+
 <One-line summary of the PR>
 
 ## Review Status
+
 - [ ] ✅ All Good - Ready to Merge
 - [ ] ⚠️ Minor Issues - Can merge after fixes
 - [ ] ❌ Major Issues - Must fix before merge
 
 ## Critical Issues (MUST FIX) 🔴
+
 <List of blocking issues>
 
 ## Important Issues (SHOULD FIX) 🟡
+
 <List of important but non-blocking issues>
 
 ## Suggestions (NICE TO HAVE) 🟢
+
 <List of improvements and optimizations>
 
 ## Detailed Analysis
 
 ### Internationalization (i18n)
+
 <Detailed findings>
 
 ### Code Quality
+
 <Detailed findings>
 
 ### Architecture
+
 <Detailed findings>
 
 ### Performance
+
 <Detailed findings>
 
 ### Responsive Design
+
 <Detailed findings>
 
 ### Security
+
 <Detailed findings>
 
 ## Files Reviewed
+
 - ✅ file1.ts - Clean
 - ⚠️ file2.ts - Minor issues (line 42, 67)
 - ❌ file3.ts - Critical issues (line 15, 89)
 
 ## Verdict
+
 <Final decision: Ready to merge / Needs fixes>
 
 ## Next Steps
+
 <What user should do next>
 ```
 
 ### Step 4: Provide Verdict
+
 - If **no critical issues**: ✅ "All good! Ready for your manual testing and merge."
 - If **minor issues**: ⚠️ "Found some minor issues. Please review and I'll fix them."
 - If **major issues**: ❌ "Found critical issues that must be fixed. I'll start fixing them now."
 
 ### Step 5: Auto-fix if Possible
+
 - If issues are found and user confirms, fix them automatically
 - Re-run review after fixes
 - Iterate until clean
