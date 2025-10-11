@@ -224,3 +224,4 @@ PostgreSQL configuration in `server/.env`:
 - Password: `postgres`
 - Host: `127.0.0.1`
 - Port: `5432`
+- Utiliser uniquement les couleurs de la palette dans @theme. Vérifier si il n'existepas déjà une classe dans style.css qui fait ce qu'il faut avant de mettre du style tailwind.

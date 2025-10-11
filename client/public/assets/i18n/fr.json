@@ -686,5 +686,55 @@
     "loading": "Chargement...",
     "error": "Erreur",
     "seconds": "secondes"
+  },
+  "auth": {
+    "button": {
+      "login": "Connexion",
+      "register": "Inscription",
+      "logout": "Se déconnecter"
+    },
+    "login": {
+      "title": "Connexion",
+      "uid": "Nom d'utilisateur ou email",
+      "uidPlaceholder": "votre_pseudo ou vous@exemple.com",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Votre mot de passe",
+      "submit": "Se connecter",
+      "loading": "Connexion en cours...",
+      "noAccount": "Pas encore de compte ?",
+      "registerLink": "S'inscrire"
+    },
+    "register": {
+      "title": "Inscription",
+      "username": "Nom d'utilisateur",
+      "usernamePlaceholder": "Votre pseudo",
+      "email": "Adresse email",
+      "emailPlaceholder": "vous@exemple.com",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Au moins 8 caractères",
+      "passwordConfirmation": "Confirmer le mot de passe",
+      "passwordConfirmationPlaceholder": "Retapez votre mot de passe",
+      "submit": "S'inscrire",
+      "loading": "Inscription en cours...",
+      "hasAccount": "Déjà un compte ?",
+      "loginLink": "Se connecter"
+    },
+    "errors": {
+      "fillAllFields": "Veuillez remplir tous les champs",
+      "passwordMismatch": "Les mots de passe ne correspondent pas",
+      "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères",
+      "invalidCredentials": "Email ou mot de passe incorrect",
+      "loginFailed": "Échec de la connexion",
+      "registerFailed": "Échec de l'inscription",
+      "validationFailed": "Erreur de validation",
+      "notAuthenticated": "Vous devez être connecté",
+      "logoutFailed": "Échec de la déconnexion",
+      "unknownError": "Une erreur est survenue"
+    },
+    "success": {
+      "login": "Connexion réussie",
+      "register": "Inscription réussie",
+      "logout": "Déconnexion réussie"
+    }
   }
 }

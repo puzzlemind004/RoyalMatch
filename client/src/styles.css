@@ -1,1 +1,116 @@
 @import 'tailwindcss';
+
+@theme {
+  /* Couleur principale - Violet (brand) */
+  --color-primary-500: var(--color-rose-500);
+  --color-primary-600: var(--color-rose-600);
+  --color-primary-700: var(--color-rose-700);
+
+  /* Couleur secondaire - Rose (accent) */
+  --color-secondary-500: var(--color-orange-500);
+  --color-secondary-600: var(--color-orange-600);
+  --color-secondary-700: var(--color-orange-700);
+
+  /* Couleurs des cartes */
+  --color-card-red: var(--color-red-600); /* red-600 - pour ♥♦ */
+  --color-card-black: var(--color-gray-900); /* gray-900 - pour ♣♠ */
+
+  /* Couleurs neutres (grays) */
+  --color-neutral-50: var(--color-gray-50);
+  --color-neutral-100: var(--color-gray-100);
+  --color-neutral-200: var(--color-gray-200);
+  --color-neutral-300: var(--color-gray-300);
+  --color-neutral-400: var(--color-gray-400);
+  --color-neutral-500: var(--color-gray-500);
+  --color-neutral-600: var(--color-gray-600);
+  --color-neutral-700: var(--color-gray-700);
+  --color-neutral-800: var(--color-gray-800);
+
+  /* États et feedback */
+  --color-danger-100: var(--color-red-100); /* red-100 */
+  --color-danger-400: var(--color-red-400); /* red-400 */
+  --color-danger-600: var(--color-red-600); /* red-600 */
+  --color-danger-700: var(--color-red-700); /* red-700 */
+
+  --color-success-500: var(--color-green-500); /* green-500 */
+  --color-warning-500: var(--color-amber-500); /* amber-500 */
+}
+
+/* ===== CARTES ===== */
+
+/* Carte coeur background */
+.bg-card-heart {
+  @apply from-rose-600 to-rose-700;
+}
+
+/* Carte carreau background */
+.bg-card-diamond {
+  @apply from-orange-500 to-orange-600;
+}
+
+/* Carte trèfle background */
+.bg-card-club {
+  @apply from-emerald-900 to-slate-900;
+}
+
+/* Carte pique background */
+.bg-card-spade {
+  @apply from-purple-900 to-purple-950;
+}
+
+/* ===== BOUTONS ===== */
+
+/* Bouton principal avec gradient */
+.primary-btn {
+  @apply bg-gradient-to-br from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 transition-colors;
+}
+
+/* Bouton secondaire (hover subtle) */
+.secondary-btn {
+  @apply text-neutral-700 hover:bg-neutral-100 transition-colors;
+}
+
+/* ===== FORMULAIRES ===== */
+
+/* Input standard */
+.input-field {
+  @apply w-full px-4 py-2 border border-neutral-300 rounded-lg
+         focus:ring-2 focus:ring-primary-500 focus:border-transparent
+         transition disabled:bg-neutral-100 disabled:cursor-not-allowed;
+}
+
+/* Label de formulaire */
+.form-label {
+  @apply block text-sm font-medium text-neutral-700 mb-2;
+}
+
+/* Message d'erreur */
+.error-message {
+  @apply text-danger-600 text-sm mt-1;
+}
+
+/* Box d'erreur */
+.error-box {
+  @apply bg-danger-100 border border-danger-400 text-danger-700 px-4 py-3 rounded-lg;
+}
+
+/* ===== AVATARS ===== */
+
+/* Avatar avec gradient */
+.avatar-gradient {
+  @apply bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center;
+}
+
+/* ===== CARTES & CONTAINERS ===== */
+
+/* Carte blanche avec ombre */
+.card {
+  @apply bg-white rounded-lg shadow-xl border border-neutral-200;
+}
+
+/* ===== NAVIGATION ===== */
+
+/* Item de menu */
+.menu-item {
+  @apply flex items-center space-x-3 px-3 py-2 rounded-lg text-neutral-700 hover:bg-neutral-100 transition-colors;
+}

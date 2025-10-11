@@ -8,7 +8,7 @@ import type { HasMany } from '@adonisjs/lucid/types/relations'
 import GamePlayer from '#models/game_player'
 
 const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
-  uids: ['email'],
+  uids: ['email', 'username'],
   passwordColumnName: 'password',
 })
 

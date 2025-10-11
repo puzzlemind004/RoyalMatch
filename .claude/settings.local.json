@@ -43,7 +43,9 @@
       "Bash(npm run docker:dev:build:*)",
       "Bash(git checkout:*)",
       "Bash(npm start)",
-      "Bash(npm start:*)"
+      "Bash(npm start:*)",
+      "Bash(docker compose logs:*)",
+      "Bash(docker compose:*)"
     ],
     "deny": [],
     "ask": []

@@ -1,6 +1,19 @@
 import { Routes } from '@angular/router';
+import { guestGuard } from './core/guards/guest.guard';
 
 export const routes: Routes = [
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./features/auth/pages/login/login.page').then((m) => m.LoginPage),
+    canActivate: [guestGuard],
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./features/auth/pages/register/register.page').then((m) => m.RegisterPage),
+    canActivate: [guestGuard],
+  },
   {
     path: 'demo',
     loadComponent: () =>
@@ -72,6 +85,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/demo/pages/rank-demo/rank-demo.page').then(
             (m) => m.RankDemoPage,
+          ),
+      },
+      {
+        path: 'auth',
+        loadComponent: () =>
+          import('./features/demo/pages/auth-demo/auth-demo.page').then(
+            (m) => m.AuthDemoPage,
           ),
       },
       {
