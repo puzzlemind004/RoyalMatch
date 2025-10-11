@@ -764,5 +764,45 @@
       "heartbeatActive": "Heartbeat active",
       "disconnected": "Disconnected successfully"
     }
+  },
+  "profile": {
+    "title": "My Profile",
+    "sections": {
+      "winLoss": "Wins / Losses",
+      "objectives": "Objectives & Effects",
+      "history": "Game History"
+    },
+    "stats": {
+      "gamesPlayed": "Games Played",
+      "gamesWon": "Games Won",
+      "gamesLost": "Games Lost",
+      "winRate": "Win Rate",
+      "bestScore": "Best Score",
+      "averageScore": "Average Score",
+      "totalPoints": "Total Points",
+      "objectivesCompleted": "Objectives Completed",
+      "effectsActivated": "Effects Activated",
+      "tricksWon": "Tricks Won",
+      "perGame": "per game"
+    },
+    "history": {
+      "date": "Date",
+      "result": "Result",
+      "score": "Score",
+      "players": "Players",
+      "victory": "Victory",
+      "defeat": "Defeat",
+      "empty": "No games played yet"
+    },
+    "actions": {
+      "reset": "Reset Statistics"
+    },
+    "errors": {
+      "loadFailed": "Failed to load profile",
+      "statisticsNotFound": "Statistics not found"
+    },
+    "success": {
+      "statisticsReset": "Statistics reset"
+    }
   }
 }
