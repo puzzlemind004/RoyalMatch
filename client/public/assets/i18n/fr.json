@@ -797,6 +797,9 @@
     "actions": {
       "reset": "Réinitialiser les statistiques"
     },
+    "confirm": {
+      "reset": "Êtes-vous sûr de vouloir réinitialiser vos statistiques ?"
+    },
     "errors": {
       "loadFailed": "Échec du chargement du profil",
       "statisticsNotFound": "Statistiques introuvables"

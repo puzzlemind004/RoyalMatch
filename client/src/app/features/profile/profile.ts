@@ -1,6 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslocoModule } from '@jsverse/transloco';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { ProfileService } from '../../core/services/profile.service';
 import { UserStatistics, GameHistoryEntry } from '../../models/statistics.model';
 
@@ -16,7 +16,10 @@ export class Profile implements OnInit {
   loading = signal<boolean>(true);
   error = signal<string | null>(null);
 
-  constructor(private profileService: ProfileService) {}
+  constructor(
+    private profileService: ProfileService,
+    private transloco: TranslocoService
+  ) {}
 
   async ngOnInit() {
     await this.loadProfile();
@@ -40,7 +43,8 @@ export class Profile implements OnInit {
   }
 
   async resetStatistics() {
-    if (confirm('Êtes-vous sûr de vouloir réinitialiser vos statistiques ?')) {
+    const confirmMessage = this.transloco.translate('profile.confirm.reset');
+    if (confirm(confirmMessage)) {
       const success = await this.profileService.resetMyStatistics();
       if (success) {
         await this.loadProfile();
@@ -56,7 +60,10 @@ export class Profile implements OnInit {
 
   formatDate(dateStr: string): string {
     const date = new Date(dateStr);
-    return date.toLocaleDateString('fr-FR', {
+    const currentLang = this.transloco.getActiveLang();
+    const locale = currentLang === 'fr' ? 'fr-FR' : 'en-US';
+
+    return date.toLocaleDateString(locale, {
       day: '2-digit',
       month: '2-digit',
       year: 'numeric',

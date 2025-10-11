@@ -35,6 +35,7 @@
 
   --color-success-500: var(--color-green-500); /* green-500 */
   --color-warning-500: var(--color-amber-500); /* amber-500 */
+  --color-info-500: var(--color-blue-500); /* blue-500 */
 }
 
 /* ===== CARTES ===== */
@@ -69,6 +70,11 @@
 /* Bouton secondaire (hover subtle) */
 .secondary-btn {
   @apply text-neutral-700 hover:bg-neutral-100 transition-colors;
+}
+
+/* Bouton danger */
+.danger-btn {
+  @apply bg-danger-600 text-white hover:bg-danger-700 transition-colors px-4 py-2 rounded-lg;
 }
 
 /* ===== FORMULAIRES ===== */
@@ -114,4 +120,36 @@
 /* Item de menu */
 .menu-item {
   @apply flex items-center space-x-3 px-3 py-2 rounded-lg text-neutral-700 hover:bg-neutral-100 transition-colors;
+}
+
+/* ===== STATISTIQUES & PROFIL ===== */
+
+/* Container de statistiques */
+.stats-card {
+  @apply bg-white rounded-lg shadow p-6;
+}
+
+/* Label de statistique */
+.stats-label {
+  @apply text-sm text-neutral-600 mb-1;
+}
+
+/* Valeur de statistique */
+.stats-value {
+  @apply text-3xl font-bold;
+}
+
+/* Texte secondaire (descriptif) */
+.text-secondary-muted {
+  @apply text-neutral-500;
+}
+
+/* En-tête de tableau */
+.table-header {
+  @apply px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase;
+}
+
+/* Cellule de tableau */
+.table-cell {
+  @apply px-4 py-3 text-sm;
 }

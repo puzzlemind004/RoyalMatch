@@ -797,6 +797,9 @@
     "actions": {
       "reset": "Reset Statistics"
     },
+    "confirm": {
+      "reset": "Are you sure you want to reset your statistics?"
+    },
     "errors": {
       "loadFailed": "Failed to load profile",
       "statisticsNotFound": "Statistics not found"
