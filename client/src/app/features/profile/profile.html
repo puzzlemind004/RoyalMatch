@@ -30,36 +30,36 @@
       <!-- Statistics Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <!-- Games Played -->
-        <div class="stats-card">
-          <div class="stats-label">{{ 'profile.stats.gamesPlayed' | transloco }}</div>
-          <div class="stats-value text-primary">{{ statistics()?.gamesPlayed || 0 }}</div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <div class="text-sm text-neutral-600 mb-1">{{ 'profile.stats.gamesPlayed' | transloco }}</div>
+          <div class="text-3xl font-bold text-primary">{{ statistics()?.gamesPlayed || 0 }}</div>
         </div>
 
         <!-- Win Rate -->
-        <div class="stats-card">
-          <div class="stats-label">{{ 'profile.stats.winRate' | transloco }}</div>
-          <div class="stats-value" [ngClass]="getWinRateColor(statistics()?.winRate || 0)">
+        <div class="bg-white rounded-lg shadow p-6">
+          <div class="text-sm text-neutral-600 mb-1">{{ 'profile.stats.winRate' | transloco }}</div>
+          <div class="text-3xl font-bold" [ngClass]="getWinRateColor(statistics()?.winRate || 0)">
             {{ (statistics()?.winRate || 0).toFixed(1) }}%
           </div>
         </div>
 
         <!-- Best Score -->
-        <div class="stats-card">
-          <div class="stats-label">{{ 'profile.stats.bestScore' | transloco }}</div>
-          <div class="stats-value text-success">{{ statistics()?.bestScore || 0 }}</div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <div class="text-sm text-neutral-600 mb-1">{{ 'profile.stats.bestScore' | transloco }}</div>
+          <div class="text-3xl font-bold text-success">{{ statistics()?.bestScore || 0 }}</div>
         </div>
 
         <!-- Average Score -->
-        <div class="stats-card">
-          <div class="stats-label">{{ 'profile.stats.averageScore' | transloco }}</div>
-          <div class="stats-value text-info">{{ (statistics()?.averageScore || 0).toFixed(1) }}</div>
+        <div class="bg-white rounded-lg shadow p-6">
+          <div class="text-sm text-neutral-600 mb-1">{{ 'profile.stats.averageScore' | transloco }}</div>
+          <div class="text-3xl font-bold text-info">{{ (statistics()?.averageScore || 0).toFixed(1) }}</div>
         </div>
       </div>
 
       <!-- Detailed Stats -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
         <!-- Win/Loss Stats -->
-        <div class="stats-card">
+        <div class="bg-white rounded-lg shadow p-6">
           <h2 class="text-xl font-bold mb-4">{{ 'profile.sections.winLoss' | transloco }}</h2>
           <div class="space-y-3">
             <div class="flex justify-between">
@@ -78,7 +78,7 @@
         </div>
 
         <!-- Objectives & Effects -->
-        <div class="stats-card">
+        <div class="bg-white rounded-lg shadow p-6">
           <h2 class="text-xl font-bold mb-4">{{ 'profile.sections.objectives' | transloco }}</h2>
           <div class="space-y-3">
             <div class="flex justify-between">
@@ -98,37 +98,37 @@
       </div>
 
       <!-- Game History -->
-      <div class="stats-card mb-8">
+      <div class="bg-white rounded-lg shadow p-6 mb-8">
         <h2 class="text-xl font-bold mb-4">{{ 'profile.sections.history' | transloco }}</h2>
         @if (gameHistory().length > 0) {
           <div class="overflow-x-auto">
             <table class="min-w-full">
               <thead class="bg-neutral-50">
                 <tr>
-                  <th class="table-header">{{ 'profile.history.date' | transloco }}</th>
-                  <th class="table-header">{{ 'profile.history.result' | transloco }}</th>
-                  <th class="table-header">{{ 'profile.history.score' | transloco }}</th>
-                  <th class="table-header">{{ 'profile.history.players' | transloco }}</th>
+                  <th class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase">{{ 'profile.history.date' | transloco }}</th>
+                  <th class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase">{{ 'profile.history.result' | transloco }}</th>
+                  <th class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase">{{ 'profile.history.score' | transloco }}</th>
+                  <th class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase">{{ 'profile.history.players' | transloco }}</th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-neutral-200">
                 @for (game of gameHistory(); track game.gameId) {
                   <tr>
-                    <td class="table-cell">{{ formatDate(game.playedAt) }}</td>
-                    <td class="table-cell">
+                    <td class="px-4 py-3 text-sm">{{ formatDate(game.playedAt) }}</td>
+                    <td class="px-4 py-3 text-sm">
                       <span [ngClass]="game.won ? 'text-success font-semibold' : 'text-danger'">
                         {{ (game.won ? 'profile.history.victory' : 'profile.history.defeat') | transloco }}
                       </span>
                     </td>
-                    <td class="table-cell font-semibold">{{ game.score }}</td>
-                    <td class="table-cell">{{ game.playerCount }}</td>
+                    <td class="px-4 py-3 text-sm font-semibold">{{ game.score }}</td>
+                    <td class="px-4 py-3 text-sm">{{ game.playerCount }}</td>
                   </tr>
                 }
               </tbody>
             </table>
           </div>
         } @else {
-          <p class="text-secondary-muted text-center py-4">{{ 'profile.history.empty' | transloco }}</p>
+          <p class="text-neutral-500 text-center py-4">{{ 'profile.history.empty' | transloco }}</p>
         }
       </div>
 
