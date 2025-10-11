@@ -2,14 +2,8 @@
  * Scoring Controller
  * Handles API endpoints for score calculation and management
  *
- * TODO: REMOVE roundId/mockRoundData FROM PAYLOADS WHEN GAME/ROUND MODELS ARE IMPLEMENTED
- *
- * Current implementation accepts roundId/mockRoundData in request payloads for demo purposes.
- * When database models are implemented:
- * - Get roundId from authenticated user's current game state
- * - Fetch round data from database instead of mock data
- * - Store scores in Player model
- * - Check victory conditions in Game model
+ * Authentication: All routes require auth.user
+ * Game context: Supports both demo mode and real game sessions
  */
 
 import type { HttpContext } from '@adonisjs/core/http'
@@ -23,11 +17,12 @@ export default class ScoringController {
    * Calculate scores for a round based on completed objectives
    * Body: { roundId: string, mockRoundData?: object }
    *
-   * TODO: Remove mockRoundData when Round model is implemented
-   * TODO: Get roundId from authenticated user's current game state
+   * TODO: Remove mockRoundData when Round model is fully integrated
+   * TODO: Get roundId from authenticated user's current active round
    */
-  async calculate({ request, response }: HttpContext) {
+  async calculate({ request, response, auth }: HttpContext) {
     try {
+      await auth.authenticate()
       const { roundId, mockRoundData } = request.only(['roundId', 'mockRoundData'])
 
       if (!roundId) {
@@ -67,10 +62,11 @@ export default class ScoringController {
    * POST /api/scoring/reset
    * Reset all player scores (demo/testing only)
    *
-   * TODO: Remove this endpoint when database is implemented
+   * TODO: Remove this endpoint when database is fully integrated
    */
-  async reset({ response }: HttpContext) {
+  async reset({ response, auth }: HttpContext) {
     try {
+      await auth.authenticate()
       this.scoringService.resetAllScores()
 
       return response.ok({
@@ -89,10 +85,11 @@ export default class ScoringController {
    * GET /api/scoring/all
    * Get all player scores (demo/testing only)
    *
-   * TODO: Remove this endpoint when database is implemented
+   * TODO: Remove this endpoint when database is fully integrated
    */
-  async all({ response }: HttpContext) {
+  async all({ response, auth }: HttpContext) {
     try {
+      await auth.authenticate()
       const scores = this.scoringService.getAllScores()
 
       // Convert Map to object

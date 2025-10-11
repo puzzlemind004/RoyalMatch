@@ -94,9 +94,12 @@ router
 
 const ObjectivesController = () => import('#controllers/objectives_controller')
 
+// Public route (no auth required)
+router.get('/api/objectives/available', [ObjectivesController, 'available'])
+
+// Protected routes (auth required)
 router
   .group(() => {
-    router.get('/available', [ObjectivesController, 'available'])
     router.post('/draw', [ObjectivesController, 'draw'])
     router.post('/redraw', [ObjectivesController, 'redraw'])
     router.post('/reject', [ObjectivesController, 'reject'])
@@ -104,6 +107,7 @@ router
     router.post('/verify', [ObjectivesController, 'verify'])
   })
   .prefix('/api/objectives')
+  .use(middleware.auth())
 
 /*
 |--------------------------------------------------------------------------
@@ -120,6 +124,7 @@ router
     router.get('/all', [ScoringController, 'all'])
   })
   .prefix('/api/scoring')
+  .use(middleware.auth())
 
 /*
 |--------------------------------------------------------------------------
