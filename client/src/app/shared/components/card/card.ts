@@ -50,13 +50,13 @@ export class CardComponent {
     const suit = this.card().suit;
     switch (suit) {
       case CardSuit.HEARTS:
-        return 'from-rose-600 to-rose-700'; // Rouge framboise
+        return 'bg-card-heart'; // Rouge framboise
       case CardSuit.DIAMONDS:
-        return 'from-orange-500 to-orange-600'; // Orange
+        return 'bg-card-diamond'; // Orange
       case CardSuit.SPADES:
-        return 'from-purple-900 to-purple-950'; // Violet foncé
+        return 'bg-card-spade'; // Violet foncé
       case CardSuit.CLUBS:
-        return 'from-emerald-900 to-slate-900'; // Noir verdâtre
+        return 'bg-card-club'; // Noir verdâtre
       default:
         return 'from-gray-800 to-gray-700';
     }

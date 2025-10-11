@@ -1,0 +1,189 @@
+<div class="max-w-4xl mx-auto py-8">
+    <!-- Header -->
+    <div class="bg-white rounded-lg shadow-xl p-6 mb-6">
+      <h1 class="text-3xl font-bold text-gray-800 mb-2">
+        Démo - Système d'Authentification
+      </h1>
+      <p class="text-gray-600">
+        Tâche 5.2 : Test des fonctionnalités d'authentification (inscription, connexion, déconnexion)
+      </p>
+    </div>
+
+    <!-- User Info Card -->
+    <div class="bg-white rounded-lg shadow-xl p-8 mb-6">
+      @if (loading()) {
+        <div class="text-center py-8">
+          <div class="inline-block w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
+          <p class="text-gray-600 mt-4">{{ 'common.loading' | transloco }}</p>
+        </div>
+      } @else if (error()) {
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">
+          {{ error() }}
+        </div>
+      } @else if (user()) {
+        <div class="space-y-6">
+          <div class="flex items-center space-x-4 pb-4 border-b">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-2xl font-bold">
+              {{ user()!.username.charAt(0).toUpperCase() }}
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-gray-800">{{ user()!.username }}</h2>
+              <p class="text-gray-600">{{ user()!.email }}</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <p class="text-sm text-gray-600 mb-1">ID Utilisateur</p>
+              <p class="font-mono text-sm text-gray-800">{{ user()!.id }}</p>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <p class="text-sm text-gray-600 mb-1">Membre depuis</p>
+              <p class="text-gray-800">{{ user()!.createdAt ? (user()!.createdAt | date: 'medium') : 'N/A' }}</p>
+            </div>
+          </div>
+
+          <div class="pt-4">
+            <button
+              (click)="logout()"
+              [disabled]="loading()"
+              class="w-full md:w-auto bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
+            >
+              Se déconnecter
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Features Card -->
+    <div class="bg-white rounded-lg shadow-xl p-8 mb-6">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Fonctionnalités Implémentées</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Backend Features -->
+        <div>
+          <h3 class="text-lg font-semibold text-purple-600 mb-4">🔧 Backend</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <div>
+                <strong>AuthController</strong>
+                <p class="text-sm text-gray-600">register, login, logout, me</p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <div>
+                <strong>Validators</strong>
+                <p class="text-sm text-gray-600">VineJS pour inscription et connexion</p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <div>
+                <strong>Access Tokens</strong>
+                <p class="text-sm text-gray-600">JWT avec expiration de 30 jours</p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <div>
+                <strong>Middleware Auth</strong>
+                <p class="text-sm text-gray-600">Protection des routes /logout et /me</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Frontend Features -->
+        <div>
+          <h3 class="text-lg font-semibold text-blue-600 mb-4">🎨 Frontend</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <div>
+                <strong>AuthService</strong>
+                <p class="text-sm text-gray-600">Gestion de l'état avec Signals</p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <div>
+                <strong>AuthGuard</strong>
+                <p class="text-sm text-gray-600">Protection des routes privées</p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <div>
+                <strong>AuthInterceptor</strong>
+                <p class="text-sm text-gray-600">Ajout automatique du token Bearer</p>
+              </div>
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <div>
+                <strong>Pages Login/Register</strong>
+                <p class="text-sm text-gray-600">Design responsive avec Tailwind</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Test Instructions -->
+    <div class="bg-white rounded-lg shadow-xl p-8">
+      <h2 class="text-2xl font-bold text-gray-800 mb-6">Comment Tester ?</h2>
+
+      <div class="space-y-4">
+        <div class="flex items-start">
+          <span class="bg-purple-100 text-purple-700 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">1</span>
+          <div>
+            <h3 class="font-semibold text-gray-800">Créer un compte</h3>
+            <p class="text-gray-600">
+              Allez sur <a routerLink="/register" class="text-purple-600 hover:underline">/register</a> et créez un nouveau compte
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <span class="bg-purple-100 text-purple-700 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">2</span>
+          <div>
+            <h3 class="font-semibold text-gray-800">Se connecter</h3>
+            <p class="text-gray-600">
+              Utilisez <a routerLink="/login" class="text-purple-600 hover:underline">/login</a> avec vos identifiants
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <span class="bg-purple-100 text-purple-700 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">3</span>
+          <div>
+            <h3 class="font-semibold text-gray-800">Voir votre profil</h3>
+            <p class="text-gray-600">
+              Vos informations s'affichent automatiquement sur cette page
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start">
+          <span class="bg-purple-100 text-purple-700 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">4</span>
+          <div>
+            <h3 class="font-semibold text-gray-800">Se déconnecter</h3>
+            <p class="text-gray-600">
+              Cliquez sur "Se déconnecter" pour tester la révocation du token
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+        <p class="text-sm text-blue-800">
+          <strong>💡 Note :</strong> Le token est stocké dans localStorage et persiste entre les sessions. Il expire automatiquement après 30 jours.
+        </p>
+      </div>
+    </div>
+
+</div>

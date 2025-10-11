@@ -686,5 +686,55 @@
     "loading": "Loading...",
     "error": "Error",
     "seconds": "seconds"
+  },
+  "auth": {
+    "button": {
+      "login": "Login",
+      "register": "Sign up",
+      "logout": "Logout"
+    },
+    "login": {
+      "title": "Login",
+      "uid": "Username or email",
+      "uidPlaceholder": "your_username or you@example.com",
+      "password": "Password",
+      "passwordPlaceholder": "Your password",
+      "submit": "Sign in",
+      "loading": "Signing in...",
+      "noAccount": "Don't have an account?",
+      "registerLink": "Sign up"
+    },
+    "register": {
+      "title": "Sign Up",
+      "username": "Username",
+      "usernamePlaceholder": "Your username",
+      "email": "Email address",
+      "emailPlaceholder": "you@example.com",
+      "password": "Password",
+      "passwordPlaceholder": "At least 8 characters",
+      "passwordConfirmation": "Confirm password",
+      "passwordConfirmationPlaceholder": "Retype your password",
+      "submit": "Sign up",
+      "loading": "Signing up...",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Sign in"
+    },
+    "errors": {
+      "fillAllFields": "Please fill in all fields",
+      "passwordMismatch": "Passwords do not match",
+      "passwordTooShort": "Password must be at least 8 characters long",
+      "invalidCredentials": "Invalid email or password",
+      "loginFailed": "Login failed",
+      "registerFailed": "Registration failed",
+      "validationFailed": "Validation error",
+      "notAuthenticated": "You must be logged in",
+      "logoutFailed": "Logout failed",
+      "unknownError": "An error occurred"
+    },
+    "success": {
+      "login": "Login successful",
+      "register": "Registration successful",
+      "logout": "Logout successful"
+    }
   }
 }

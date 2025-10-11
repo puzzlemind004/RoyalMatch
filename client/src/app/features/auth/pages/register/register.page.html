@@ -1,0 +1,114 @@
+<div class="min-h-screen flex items-center justify-center p-4">
+  <div class="card p-8 w-full max-w-md">
+    <h1 class="text-3xl font-bold text-center text-neutral-800 mb-6">
+      {{ 'auth.register.title' | transloco }}
+    </h1>
+
+    <form (ngSubmit)="onSubmit()" class="space-y-6">
+      <!-- Username -->
+      <div>
+        <label for="username" class="form-label">
+          {{ 'auth.register.username' | transloco }}
+        </label>
+        <input
+          id="username"
+          type="text"
+          [value]="username()"
+          (input)="updateUsername($event)"
+          [disabled]="loading()"
+          required
+          class="input-field"
+          [placeholder]="'auth.register.usernamePlaceholder' | transloco"
+        />
+        @if (validationErrors()['username']) {
+          <p class="error-message">{{ validationErrors()['username'][0] }}</p>
+        }
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label for="email" class="form-label">
+          {{ 'auth.register.email' | transloco }}
+        </label>
+        <input
+          id="email"
+          type="email"
+          [value]="email()"
+          (input)="updateEmail($event)"
+          [disabled]="loading()"
+          required
+          class="input-field"
+          [placeholder]="'auth.register.emailPlaceholder' | transloco"
+        />
+        @if (validationErrors()['email']) {
+          <p class="error-message">{{ validationErrors()['email'][0] }}</p>
+        }
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label for="password" class="form-label">
+          {{ 'auth.register.password' | transloco }}
+        </label>
+        <input
+          id="password"
+          type="password"
+          [value]="password()"
+          (input)="updatePassword($event)"
+          [disabled]="loading()"
+          required
+          class="input-field"
+          [placeholder]="'auth.register.passwordPlaceholder' | transloco"
+        />
+        @if (validationErrors()['password']) {
+          <p class="error-message">{{ validationErrors()['password'][0] }}</p>
+        }
+      </div>
+
+      <!-- Password Confirmation -->
+      <div>
+        <label for="password_confirmation" class="form-label">
+          {{ 'auth.register.passwordConfirmation' | transloco }}
+        </label>
+        <input
+          id="password_confirmation"
+          type="password"
+          [value]="passwordConfirmation()"
+          (input)="updatePasswordConfirmation($event)"
+          [disabled]="loading()"
+          required
+          class="input-field"
+          [placeholder]="'auth.register.passwordConfirmationPlaceholder' | transloco"
+        />
+      </div>
+
+      <!-- Error Message -->
+      @if (error()) {
+        <div class="error-box">
+          {{ error() }}
+        </div>
+      }
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        [disabled]="loading()"
+        class="w-full text-white py-3 rounded-lg font-semibold primary-btn disabled:bg-neutral-400 disabled:cursor-not-allowed"
+      >
+        @if (loading()) {
+          <span>{{ 'auth.register.loading' | transloco }}</span>
+        } @else {
+          <span>{{ 'auth.register.submit' | transloco }}</span>
+        }
+      </button>
+
+      <!-- Login Link -->
+      <div class="text-center text-sm text-neutral-600">
+        {{ 'auth.register.hasAccount' | transloco }}
+        <a routerLink="/login" class="text-primary-600 hover:text-primary-700 font-medium">
+          {{ 'auth.register.loginLink' | transloco }}
+        </a>
+      </div>
+    </form>
+  </div>
+</div>

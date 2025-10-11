@@ -9,6 +9,7 @@
 
 import router from '@adonisjs/core/services/router'
 import transmit from '@adonisjs/transmit/services/main'
+import { middleware } from '#start/kernel'
 
 router.get('/', async () => {
   return {
@@ -32,6 +33,23 @@ router.get('/api/health', async () => {
 
 // Register Transmit endpoint for WebSocket connections
 transmit.registerRoutes()
+
+/*
+|--------------------------------------------------------------------------
+| Authentication routes
+|--------------------------------------------------------------------------
+*/
+
+const AuthController = () => import('#controllers/auth_controller')
+
+router
+  .group(() => {
+    router.post('/register', [AuthController, 'register'])
+    router.post('/login', [AuthController, 'login'])
+    router.post('/logout', [AuthController, 'logout']).use(middleware.auth())
+    router.get('/me', [AuthController, 'me']).use(middleware.auth())
+  })
+  .prefix('/api/auth')
 
 /*
 |--------------------------------------------------------------------------
