@@ -71,7 +71,7 @@ export class WebSocketService {
   /**
    * Connect to WebSocket server with authentication
    */
-  connect(): void {
+  async connect(): Promise<void> {
     if (this.connectionState() === ConnectionState.CONNECTED) {
       return;
     }
@@ -99,6 +99,9 @@ export class WebSocketService {
 
       // Subscribe to global channel for connection events
       this.subscribeToGlobal();
+
+      // Fetch and store session ID
+      await this.fetchSessionId();
     } catch (error) {
       this.handleConnectionError(error);
     }
@@ -163,15 +166,58 @@ export class WebSocketService {
 
   /**
    * Send heartbeat to server
-   * This is handled automatically by Transmit, but we can track it
+   * Updates the last_heartbeat timestamp on the server
    */
-  private sendHeartbeat(): void {
+  private async sendHeartbeat(): Promise<void> {
     if (!this.transmit || this.connectionState() !== ConnectionState.CONNECTED) {
       return;
     }
 
-    // Transmit handles heartbeat automatically via pingInterval config
-    // We just track that we're still connected
+    try {
+      const response = await fetch(`${environment.apiUrl}/api/connection/heartbeat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this.authService.getToken()}`,
+        },
+      });
+
+      if (!response.ok) {
+        // If heartbeat fails, connection might be stale
+        if (response.status === 401) {
+          this.disconnect();
+        }
+      }
+    } catch (error) {
+      // Silently handle heartbeat errors
+      // Connection will be detected as stale by server
+    }
+  }
+
+  /**
+   * Fetch session ID from server
+   * Stores it in signal and localStorage for reconnection
+   */
+  private async fetchSessionId(): Promise<void> {
+    try {
+      const response = await fetch(`${environment.apiUrl}/api/connection/session`, {
+        headers: {
+          Authorization: `Bearer ${this.authService.getToken()}`,
+        },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success && data.sessionId) {
+          this.sessionId.set(data.sessionId);
+          // Store in localStorage for reconnection after page reload
+          localStorage.setItem('ws_session_id', data.sessionId);
+        }
+      }
+    } catch (error) {
+      // Session ID fetch failed, but connection can still work
+      // Session will be tracked server-side
+    }
   }
 
   /**

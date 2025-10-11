@@ -53,6 +53,24 @@ router
 
 /*
 |--------------------------------------------------------------------------
+| WebSocket Connection routes
+|--------------------------------------------------------------------------
+*/
+
+const ConnectionController = () => import('#controllers/connection_controller')
+
+router
+  .group(() => {
+    router.post('/heartbeat', [ConnectionController, 'heartbeat'])
+    router.get('/session', [ConnectionController, 'getSession'])
+    router.post('/disconnect', [ConnectionController, 'disconnect'])
+    router.get('/online', [ConnectionController, 'getOnlinePlayers'])
+  })
+  .prefix('/api/connection')
+  .use(middleware.auth())
+
+/*
+|--------------------------------------------------------------------------
 | WebSocket Test routes (Development only - remove in production)
 |--------------------------------------------------------------------------
 */

@@ -755,12 +755,14 @@
     "errors": {
       "notAuthenticated": "You must be authenticated to connect to WebSocket",
       "connectionFailed": "WebSocket connection failed",
-      "disconnected": "WebSocket connection lost"
+      "disconnected": "WebSocket connection lost",
+      "noActiveConnection": "No active connection"
     },
     "info": {
       "latency": "Latency: {{ms}}ms",
       "reconnectAttempt": "Reconnection attempt {{attempt}}/{{max}}",
-      "heartbeatActive": "Heartbeat active"
+      "heartbeatActive": "Heartbeat active",
+      "disconnected": "Disconnected successfully"
     }
   }
 }
