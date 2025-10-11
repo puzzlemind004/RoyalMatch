@@ -736,5 +736,31 @@
       "register": "Registration successful",
       "logout": "Logout successful"
     }
+  },
+  "websocket": {
+    "status": {
+      "connected": "Connected",
+      "connecting": "Connecting...",
+      "disconnected": "Disconnected",
+      "reconnecting": "Reconnecting...",
+      "error": "Connection error"
+    },
+    "events": {
+      "playerConnected": "{{username}} connected",
+      "playerDisconnected": "{{username}} disconnected",
+      "playerDisconnectedTemporary": "{{username}} disconnected (can reconnect)",
+      "playerReconnected": "{{username}} reconnected",
+      "aiTakeover": "{{username}} replaced by AI"
+    },
+    "errors": {
+      "notAuthenticated": "You must be authenticated to connect to WebSocket",
+      "connectionFailed": "WebSocket connection failed",
+      "disconnected": "WebSocket connection lost"
+    },
+    "info": {
+      "latency": "Latency: {{ms}}ms",
+      "reconnectAttempt": "Reconnection attempt {{attempt}}/{{max}}",
+      "heartbeatActive": "Heartbeat active"
+    }
   }
 }

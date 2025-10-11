@@ -736,5 +736,31 @@
       "register": "Inscription réussie",
       "logout": "Déconnexion réussie"
     }
+  },
+  "websocket": {
+    "status": {
+      "connected": "Connecté",
+      "connecting": "Connexion en cours...",
+      "disconnected": "Déconnecté",
+      "reconnecting": "Reconnexion...",
+      "error": "Erreur de connexion"
+    },
+    "events": {
+      "playerConnected": "{{username}} s'est connecté",
+      "playerDisconnected": "{{username}} s'est déconnecté",
+      "playerDisconnectedTemporary": "{{username}} s'est déconnecté (reconnexion possible)",
+      "playerReconnected": "{{username}} s'est reconnecté",
+      "aiTakeover": "{{username}} a été remplacé par l'IA"
+    },
+    "errors": {
+      "notAuthenticated": "Vous devez être authentifié pour vous connecter au WebSocket",
+      "connectionFailed": "Échec de la connexion WebSocket",
+      "disconnected": "Connexion WebSocket perdue"
+    },
+    "info": {
+      "latency": "Latence : {{ms}}ms",
+      "reconnectAttempt": "Tentative de reconnexion {{attempt}}/{{max}}",
+      "heartbeatActive": "Heartbeat actif"
+    }
   }
 }

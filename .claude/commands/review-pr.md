@@ -31,6 +31,12 @@ Automated code review of a Pull Request with focus on quality, performance, and 
 - ✅ Error messages use codes + translation keys
 - ❌ Flag ANY hardcoded text that users will see
 
+### 2. Client-side has to use only theme colors
+
+- ✅ Use only theme colors in styles.css
+- ✅ No random tailwind colors had to be used
+- ❌ Flag any random tailwind colors used
+
 ### 2. Code Quality & Cleanliness
 
 - ✅ No `console.log()` statements
