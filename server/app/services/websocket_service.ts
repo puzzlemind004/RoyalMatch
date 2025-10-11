@@ -4,6 +4,12 @@ import transmit from '@adonisjs/transmit/services/main'
  * WebSocket event types for real-time game communication
  */
 export enum WebSocketEvent {
+  // Connection events
+  PLAYER_CONNECTED = 'player:connected',
+  PLAYER_DISCONNECTED = 'player:disconnected',
+  PLAYER_RECONNECTED = 'player:reconnected',
+  AI_TAKEOVER = 'player:ai_takeover',
+
   // Player events
   PLAYER_JOINED = 'player:joined',
   PLAYER_LEFT = 'player:left',
@@ -55,6 +61,14 @@ export class WebSocketChannels {
  * Service to manage WebSocket communications using AdonisJS Transmit
  */
 export class WebSocketService {
+  /**
+   * Broadcast an event to all connected clients (global)
+   */
+  static broadcastGlobal<T = any>(event: WebSocketEvent, data: T): void {
+    const channel = 'global'
+    transmit.broadcast(channel, JSON.stringify({ event, data, timestamp: Date.now() }))
+  }
+
   /**
    * Broadcast an event to all clients in a game
    */

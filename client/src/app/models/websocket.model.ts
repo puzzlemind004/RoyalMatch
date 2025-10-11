@@ -13,6 +13,12 @@ export enum ConnectionState {
  * WebSocket event types matching backend
  */
 export enum WebSocketEvent {
+  // Connection events
+  PLAYER_CONNECTED = 'player:connected',
+  PLAYER_DISCONNECTED = 'player:disconnected',
+  PLAYER_RECONNECTED = 'player:reconnected',
+  AI_TAKEOVER = 'player:ai_takeover',
+
   // Player events
   PLAYER_JOINED = 'player:joined',
   PLAYER_LEFT = 'player:left',
@@ -89,4 +95,31 @@ export interface RoundData {
 export interface GameEndData {
   winner?: string;
   finalScores?: any;
+}
+
+/**
+ * Player connection data structure
+ */
+export interface PlayerConnectionData {
+  userId: string;
+  username: string;
+  status?: string;
+}
+
+/**
+ * Player disconnect data structure
+ */
+export interface PlayerDisconnectData {
+  userId: string;
+  username: string;
+  temporary: boolean;
+  timeout?: number;
+}
+
+/**
+ * AI takeover data structure
+ */
+export interface AITakeoverData {
+  userId: string;
+  username: string;
 }

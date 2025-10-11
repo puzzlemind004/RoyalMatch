@@ -1,11 +1,10 @@
 /**
  * Objectives database for RoyalMatch
- * Using Factory Pattern to generate multiple instances of each objective
  *
  * Strategy:
- * - Define ~17 unique objective templates
- * - Generate 3 instances of each (×3 multiplier)
- * - Total: ~51 objectives for deck variety
+ * - Define 20 unique objective templates
+ * - Each objective is unique (no duplication)
+ * - Total: 20 objectives available for selection
  */
 
 import type { ObjectiveDefinition, ObjectiveVerifier } from '../types/objective.js'
@@ -255,33 +254,30 @@ const OBJECTIVE_TEMPLATES: ObjectiveTemplate[] = [
 
 /**
  * Factory function to create objective instances
- * Generates 3 copies of each template for deck variety
+ * Each objective is now unique (no more multiplication)
  */
 function createObjectiveInstances(): ObjectiveDefinition[] {
   const objectives: ObjectiveDefinition[] = []
 
   for (const template of OBJECTIVE_TEMPLATES) {
-    // Create 3 instances of each objective
-    for (let instance = 1; instance <= 3; instance++) {
-      objectives.push({
-        id: `${template.baseId}_${instance}`,
-        baseId: template.baseId,
-        instanceNumber: instance,
-        nameKey: template.nameKey,
-        descriptionKey: template.descriptionKey,
-        category: template.category,
-        difficulty: template.difficulty,
-        points: template.points,
-        verifier: template.createVerifier(),
-      })
-    }
+    objectives.push({
+      id: template.baseId,
+      baseId: template.baseId,
+      instanceNumber: 1,
+      nameKey: template.nameKey,
+      descriptionKey: template.descriptionKey,
+      category: template.category,
+      difficulty: template.difficulty,
+      points: template.points,
+      verifier: template.createVerifier(),
+    })
   }
 
   return objectives
 }
 
 /**
- * All available objectives (51 total: 17 templates × 3 instances)
+ * All available objectives (20 unique objectives)
  * Exported as readonly to prevent modifications
  */
 export const ALL_OBJECTIVES: readonly ObjectiveDefinition[] = Object.freeze(
