@@ -7,6 +7,7 @@
   --color-primary-700: var(--color-rose-700);
 
   /* Couleur secondaire - Rose (accent) */
+  --color-secondary-400: var(--color-orange-400);
   --color-secondary-500: var(--color-orange-500);
   --color-secondary-600: var(--color-orange-600);
   --color-secondary-700: var(--color-orange-700);
@@ -34,6 +35,7 @@
 
   --color-success-500: var(--color-green-500); /* green-500 */
   --color-warning-500: var(--color-amber-500); /* amber-500 */
+  --color-info-500: var(--color-blue-500); /* blue-500 */
 }
 
 /* ===== CARTES ===== */
@@ -62,12 +64,17 @@
 
 /* Bouton principal avec gradient */
 .primary-btn {
-  @apply bg-gradient-to-br from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 transition-colors;
+  @apply bg-gradient-to-br from-primary-500 to-secondary-500 hover:from-secondary-400 hover:to-primary-600 transition-colors;
 }
 
 /* Bouton secondaire (hover subtle) */
 .secondary-btn {
   @apply text-neutral-700 hover:bg-neutral-100 transition-colors;
+}
+
+/* Bouton danger */
+.danger-btn {
+  @apply bg-danger-600 text-white hover:bg-danger-700 transition-colors px-4 py-2 rounded-lg;
 }
 
 /* ===== FORMULAIRES ===== */

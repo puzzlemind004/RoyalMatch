@@ -23,19 +23,50 @@ Automated code review of a Pull Request with focus on quality, performance, and 
 
 ## Review Criteria (in order of importance)
 
-### 1. Internationalization (i18n) ⚠️ CRITICAL
+### 1. Theme Colors Usage ⚠️⚠️⚠️ CRITICAL - ZERO TOLERANCE
+
+**RÈGLE ABSOLUE**: Aucune couleur Tailwind hardcodée n'est autorisée dans les templates/composants.
+
+**INTERDIT** ❌❌❌:
+- `text-gray-*`, `bg-gray-*`, `border-gray-*`
+- `text-red-*`, `bg-red-*`, `border-red-*`
+- `text-blue-*`, `bg-blue-*`, `border-blue-*`
+- `text-green-*`, `bg-green-*`, `border-green-*`
+- `text-yellow-*`, `bg-yellow-*`, `border-yellow-*`
+- `text-orange-*`, `bg-orange-*`, `border-orange-*`
+- TOUTE couleur Tailwind directe
+
+**AUTORISÉ** ✅:
+- Classes de `styles.css`: `text-primary`, `text-secondary`, `text-success`, `text-danger`, `text-warning`, `text-info`
+- Classes de `styles.css`: `text-neutral-*` (si définies dans @theme)
+- Classes de `styles.css`: `bg-white`, `bg-neutral-*` (si définies)
+- Classes utilitaires: `primary-btn`, `secondary-btn`, etc.
+
+**PROCESSUS DE VÉRIFICATION**:
+1. **Grep OBLIGATOIRE** sur tous les fichiers HTML/templates modifiés :
+   ```bash
+   grep -E "(text|bg|border)-(gray|red|blue|green|yellow|orange|rose|purple|pink|indigo|cyan|teal|lime|amber|emerald|violet|fuchsia|sky)-[0-9]+" fichier.html
+   ```
+2. Si ce grep retourne des résultats → **ÉCHEC AUTOMATIQUE DE LA REVIEW**
+3. Chaque couleur hardcodée doit être remplacée par une classe du thème
+4. Vérifier dans `styles.css` si une classe existe déjà pour ce cas d'usage
+5. Si aucune classe n'existe, proposer d'en ajouter une dans `styles.css`
+
+**IMPORTANCE**: Cette règle est NON-NÉGOCIABLE. Elle garantit:
+- Cohérence visuelle de toute l'application
+- Facilité de maintenance du thème
+- Possibilité de changer le thème global en un seul endroit
+- Respect de la charte graphique du projet
+
+⚠️ **NOTE SPÉCIALE**: Cette vérification doit être la **PREMIÈRE** de toute review. Si des couleurs hardcodées sont trouvées, la review doit s'arrêter immédiatement et demander correction.
+
+### 2. Internationalization (i18n) ⚠️ CRITICAL
 
 - ✅ All user-facing text uses Transloco (`this.transloco.translate()`)
 - ✅ No hardcoded French or English text in UI
 - ✅ Server responses use translation keys, not raw text
 - ✅ Error messages use codes + translation keys
 - ❌ Flag ANY hardcoded text that users will see
-
-### 2. Client-side has to use only theme colors
-
-- ✅ Use only theme colors in styles.css
-- ✅ No random tailwind colors had to be used
-- ❌ Flag any random tailwind colors used
 
 ### 2. Code Quality & Cleanliness
 

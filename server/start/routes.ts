@@ -128,6 +128,29 @@ router
 
 /*
 |--------------------------------------------------------------------------
+| Statistics routes
+|--------------------------------------------------------------------------
+*/
+
+const StatisticsController = () => import('#controllers/statistics_controller')
+
+// Protected routes (authenticated user) - MUST be defined BEFORE :userId routes
+router
+  .group(() => {
+    router.get('/me', [StatisticsController, 'getMyStatistics'])
+    router.get('/me/history', [StatisticsController, 'getMyGameHistory'])
+    router.delete('/me/reset', [StatisticsController, 'resetMyStatistics'])
+  })
+  .prefix('/api/statistics')
+  .use(middleware.auth())
+
+// Public routes - MUST be defined AFTER /me routes to avoid conflicts
+router.get('/api/statistics/leaderboard', [StatisticsController, 'getLeaderboard'])
+router.get('/api/statistics/:userId', [StatisticsController, 'getUserStatistics'])
+router.get('/api/statistics/:userId/history', [StatisticsController, 'getGameHistory'])
+
+/*
+|--------------------------------------------------------------------------
 | Test routes (Development only - remove in production)
 |--------------------------------------------------------------------------
 */

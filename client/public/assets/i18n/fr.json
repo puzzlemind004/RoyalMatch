@@ -764,5 +764,48 @@
       "heartbeatActive": "Heartbeat actif",
       "disconnected": "Déconnecté avec succès"
     }
+  },
+  "profile": {
+    "title": "Mon Profil",
+    "sections": {
+      "winLoss": "Victoires / Défaites",
+      "objectives": "Objectifs & Effets",
+      "history": "Historique des Parties"
+    },
+    "stats": {
+      "gamesPlayed": "Parties Jouées",
+      "gamesWon": "Parties Gagnées",
+      "gamesLost": "Parties Perdues",
+      "winRate": "Taux de Victoire",
+      "bestScore": "Meilleur Score",
+      "averageScore": "Score Moyen",
+      "totalPoints": "Points Totaux",
+      "objectivesCompleted": "Objectifs Complétés",
+      "effectsActivated": "Effets Activés",
+      "tricksWon": "Plis Gagnés",
+      "perGame": "par partie"
+    },
+    "history": {
+      "date": "Date",
+      "result": "Résultat",
+      "score": "Score",
+      "players": "Joueurs",
+      "victory": "Victoire",
+      "defeat": "Défaite",
+      "empty": "Aucune partie jouée pour le moment"
+    },
+    "actions": {
+      "reset": "Réinitialiser les statistiques"
+    },
+    "confirm": {
+      "reset": "Êtes-vous sûr de vouloir réinitialiser vos statistiques ?"
+    },
+    "errors": {
+      "loadFailed": "Échec du chargement du profil",
+      "statisticsNotFound": "Statistiques introuvables"
+    },
+    "success": {
+      "statisticsReset": "Statistiques réinitialisées"
+    }
   }
 }
