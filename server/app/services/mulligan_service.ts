@@ -26,19 +26,19 @@ export class MulliganService {
   ): MulliganResult {
     // Validation : la main doit contenir exactement 5 cartes
     if (currentHand.length !== 5) {
-      throw new Error('La main doit contenir exactement 5 cartes')
+      throw new Error('game.errors.invalidHandSize')
     }
 
     // Validation : impossible de remplacer plus de 5 cartes
     if (cardsToReplace.length > 5) {
-      throw new Error('Impossible de remplacer plus de 5 cartes')
+      throw new Error('game.errors.tooManyCardsToReplace')
     }
 
     // Validation : toutes les cartes à remplacer sont bien dans la main
     const handIds = new Set(currentHand.map((c) => c.id))
     for (const cardId of cardsToReplace) {
       if (!handIds.has(cardId)) {
-        throw new Error(`Carte ${cardId} non trouvée dans la main`)
+        throw new Error('game.errors.cardNotInHand')
       }
     }
 
@@ -76,7 +76,7 @@ export class MulliganService {
   static drawInitialHand(allCards: Card[]): { hand: Card[]; deck: Card[] } {
     // Validation : le joueur doit avoir exactement 13 cartes
     if (allCards.length !== 13) {
-      throw new Error('Le joueur doit avoir exactement 13 cartes')
+      throw new Error('game.errors.invalidDeckSize')
     }
 
     // Mélange des 13 cartes avec shuffle cryptographique
