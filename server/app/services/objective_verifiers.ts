@@ -9,11 +9,7 @@
  * - Cached calculations where possible
  */
 
-import type {
-  ObjectiveVerifier,
-  ObjectiveProgress,
-  PlayerRoundState,
-} from '../types/objective.js'
+import type { ObjectiveVerifier, ObjectiveProgress, PlayerRoundState } from '../types/objective.js'
 import {
   isRedCard,
   isBlackCard,

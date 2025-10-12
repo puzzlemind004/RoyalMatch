@@ -185,7 +185,10 @@ export default class GamePlayer extends BaseModel {
    * Note: Requires objectives to be preloaded
    */
   hasCompletedObjective(objectiveType: string): boolean {
-    return this.objectives?.some((obj) => obj.objectiveType === objectiveType && obj.isCompleted) ?? false
+    return (
+      this.objectives?.some((obj) => obj.objectiveType === objectiveType && obj.isCompleted) ??
+      false
+    )
   }
 
   /**

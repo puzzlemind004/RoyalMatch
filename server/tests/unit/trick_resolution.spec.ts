@@ -16,11 +16,7 @@ import type { PlayedCard } from '#services/card_comparison_service'
 
 test.group('Trick Resolution - Color First', () => {
   // Helper to create played cards
-  const createPlayedCard = (
-    playerId: number,
-    value: number,
-    suit: CardSuit
-  ): PlayedCard => ({
+  const createPlayedCard = (playerId: number, value: number, suit: CardSuit): PlayedCard => ({
     playerId,
     value,
     suit,
@@ -63,7 +59,7 @@ test.group('Trick Resolution - Color First', () => {
     )
   })
 
-  test('Exemple 3: Aucune forte, neutres s\'affrontent', ({ assert }) => {
+  test("Exemple 3: Aucune forte, neutres s'affrontent", ({ assert }) => {
     // Couleur forte : Cœur ♥️ (rouge)
     // Couleur faible : Pique ♠️
     const cards: PlayedCard[] = [

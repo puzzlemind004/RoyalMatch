@@ -3,6 +3,7 @@
 ## Vue d'ensemble
 
 Le modèle `Player` (alias de `GamePlayer`) représente un joueur dans une partie de RoyalMatch. Il gère :
+
 - La main du joueur (cartes actuellement en main)
 - Le deck personnel du joueur
 - Les statistiques de jeu
@@ -16,13 +17,13 @@ Le modèle `Player` (alias de `GamePlayer`) représente un joueur dans une parti
 interface GamePlayer {
   id: string
   gameId: string
-  userId: string | null  // null pour les joueurs IA
+  userId: string | null // null pour les joueurs IA
   isAi: boolean
   playerOrder: number
   totalScore: number
-  hand: Card[]           // Main actuelle (JSONB)
-  deck: Card[]           // Deck personnel (JSONB)
-  stats: PlayerStats     // Statistiques (JSONB)
+  hand: Card[] // Main actuelle (JSONB)
+  deck: Card[] // Deck personnel (JSONB)
+  stats: PlayerStats // Statistiques (JSONB)
   createdAt: DateTime
 }
 ```
@@ -31,13 +32,13 @@ interface GamePlayer {
 
 ```typescript
 interface PlayerStats {
-  tricksWon: number              // Nombre de plis remportés
-  cardsPlayed: number            // Nombre de cartes jouées
-  effectsActivated: number       // Nombre d'effets activés
-  objectivesCompleted: number    // Nombre d'objectifs complétés
-  maxConsecutiveTricks: number   // Maximum de plis consécutifs
-  totalCardValue: number         // Valeur totale des cartes gagnées
-  roundsPlayed: number           // Nombre de manches jouées
+  tricksWon: number // Nombre de plis remportés
+  cardsPlayed: number // Nombre de cartes jouées
+  effectsActivated: number // Nombre d'effets activés
+  objectivesCompleted: number // Nombre d'objectifs complétés
+  maxConsecutiveTricks: number // Maximum de plis consécutifs
+  totalCardValue: number // Valeur totale des cartes gagnées
+  roundsPlayed: number // Nombre de manches jouées
 }
 ```
 
@@ -88,8 +89,8 @@ const stats = player.getStats()
 player.updateStat('tricksWon', 5)
 
 // Incrémenter une stat
-player.incrementStat('tricksWon')        // +1
-player.incrementStat('cardsPlayed', 3)   // +3
+player.incrementStat('tricksWon') // +1
+player.incrementStat('cardsPlayed', 3) // +3
 ```
 
 ### Gestion des objectifs
@@ -141,7 +142,7 @@ const player = await Player.create({
   totalScore: 0,
   hand: [],
   deck: [],
-  stats: DEFAULT_PLAYER_STATS
+  stats: DEFAULT_PLAYER_STATS,
 })
 ```
 
@@ -198,6 +199,7 @@ await player.save()
 ## Tests
 
 Les tests unitaires se trouvent dans `tests/unit/game_player.spec.ts` et couvrent :
+
 - ✅ Gestion de la main (ajout, retrait, vérification)
 - ✅ Gestion du deck (initialisation, pioche, mélange)
 - ✅ Gestion des statistiques (initialisation, mise à jour, incrémentation)

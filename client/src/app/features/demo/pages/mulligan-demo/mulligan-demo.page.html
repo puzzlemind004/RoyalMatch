@@ -1,0 +1,211 @@
+<div class="min-h-screen p-4 md:p-8">
+  <!-- Header -->
+  <div class="mb-8 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold mb-2">
+      {{ 'demo.mulligan.title' | transloco }}
+    </h1>
+    <p class="text-lg opacity-80">
+      {{ 'demo.mulligan.subtitle' | transloco }}
+    </p>
+  </div>
+
+  <!-- Initial State -->
+  @if (phase() === 'initial') {
+    <div class="max-w-2xl mx-auto text-center">
+      <div class="mb-8 p-6 bg-surface-secondary rounded-lg">
+        <h2 class="text-xl font-bold mb-4">
+          {{ 'demo.mulligan.howItWorks' | transloco }}
+        </h2>
+        <ul class="text-left space-y-2 opacity-80">
+          <li>• {{ 'demo.mulligan.step1' | transloco }}</li>
+          <li>• {{ 'demo.mulligan.step2' | transloco }}</li>
+          <li>• {{ 'demo.mulligan.step3' | transloco }}</li>
+          <li>• {{ 'demo.mulligan.step4' | transloco }}</li>
+          <li>• {{ 'demo.mulligan.step5' | transloco }}</li>
+        </ul>
+      </div>
+
+      <button (click)="startMulligan()" class="px-8 py-4 text-lg primary-btn font-medium">
+        {{ 'demo.mulligan.startButton' | transloco }}
+      </button>
+    </div>
+  }
+
+  <!-- Distribution Phase: Show all 13 cards -->
+  @if (phase() === 'distribution') {
+    <div class="max-w-6xl mx-auto">
+      <div class="mb-6 p-6 bg-surface-secondary rounded-lg text-center">
+        <h2 class="text-xl font-bold mb-2">
+          {{ 'demo.mulligan.distribution.title' | transloco }}
+        </h2>
+        <p class="opacity-80">
+          {{ 'demo.mulligan.distribution.subtitle' | transloco }}
+        </p>
+      </div>
+
+      <!-- All 13 Cards -->
+      <div class="mb-6">
+        <h3 class="text-xl font-bold mb-4 text-center">
+          {{ 'demo.mulligan.distribution.allCards' | transloco }}
+        </h3>
+        <div class="flex flex-wrap gap-4 justify-center">
+          @for (card of allCards(); track card.id) {
+            <div class="w-20 md:w-24">
+              <app-card [card]="card" [faceUp]="true" [selectable]="false" [selected]="false" />
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Continue Button -->
+      <div class="text-center">
+        <button (click)="startMulliganPhase()" class="px-8 py-4 text-lg primary-btn font-medium">
+          {{ 'demo.mulligan.distribution.continue' | transloco }}
+        </button>
+      </div>
+    </div>
+  }
+
+  <!-- Mulligan Phase -->
+  @if (phase() === 'selecting') {
+    <div class="max-w-6xl mx-auto">
+      <!-- Timer & Instructions -->
+      <div class="mb-6 p-6 bg-surface-secondary rounded-lg">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="flex-1">
+            <h2 class="text-lg font-bold mb-2">
+              {{ 'demo.mulligan.instructions' | transloco }}
+            </h2>
+            <p class="opacity-80">
+              {{ 'demo.mulligan.selectedCount' | transloco: { count: selectedCount(), total: 5 } }}
+            </p>
+          </div>
+
+          <div class="flex items-center">
+            <app-circular-timer [totalTime]="60" [size]="120" (timerComplete)="onTimerComplete()" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Cards in Hand -->
+      <div class="mb-6">
+        <h3 class="text-xl font-bold mb-4 text-center">
+          {{ 'demo.mulligan.yourHand' | transloco }}
+        </h3>
+        <div class="flex flex-wrap gap-4 justify-center">
+          @for (card of currentHand(); track card.id) {
+            <div class="w-24 md:w-28 cursor-pointer" (click)="toggleCard(card)">
+              <app-card
+                [card]="card"
+                [faceUp]="true"
+                [selectable]="true"
+                [selected]="isSelected(card)"
+                [ringColor]="getSelectionRingColor(card.suit)"
+              />
+              @if (isSelected(card)) {
+                <div class="mt-2 text-center text-sm font-bold text-primary">
+                  {{ 'demo.mulligan.toReplace' | transloco }}
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button
+          (click)="skipMulligan()"
+          [disabled]="isLoading()"
+          class="px-6 py-3 secondary-btn font-medium disabled:opacity-50"
+        >
+          {{ 'demo.mulligan.keep' | transloco }}
+        </button>
+
+        <button
+          (click)="confirmMulligan()"
+          [disabled]="selectedCount() === 0 || isLoading()"
+          class="px-6 py-3 primary-btn font-medium disabled:opacity-50"
+        >
+          @if (selectedCount() > 0) {
+            {{ 'demo.mulligan.replace' | transloco: { count: selectedCount() } }}
+          } @else {
+            {{ 'demo.mulligan.selectCards' | transloco }}
+          }
+        </button>
+      </div>
+    </div>
+  }
+
+  <!-- Completed Phase -->
+  @if (phase() === 'completed') {
+    <div class="max-w-6xl mx-auto">
+      <!-- Result -->
+      <div class="mb-6 p-6 bg-surface-secondary rounded-lg text-center">
+        <h2 class="text-2xl font-bold mb-2 text-green-600">
+          {{ 'demo.mulligan.completed' | transloco }}
+        </h2>
+        <p class="opacity-80">
+          {{ 'demo.mulligan.result' | transloco }}
+        </p>
+      </div>
+
+      <!-- Final Hand -->
+      <div class="mb-6">
+        <h3 class="text-xl font-bold mb-4 text-center">
+          {{ 'demo.mulligan.finalHand' | transloco }}
+        </h3>
+
+        <div class="flex flex-wrap gap-4 justify-center">
+          @for (card of currentHand(); track card.id) {
+            <div class="w-24 md:w-28">
+              <app-card [card]="card" [faceUp]="true" [selectable]="false" [selected]="false" />
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="mb-6 p-6 bg-surface-secondary rounded-lg">
+        <h3 class="text-lg font-bold mb-4 text-center">
+          {{ 'demo.mulligan.stats' | transloco }}
+        </h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
+          <div>
+            <div class="text-3xl font-bold">5</div>
+            <div class="text-sm opacity-70">{{ 'demo.mulligan.cardsInHand' | transloco }}</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold">{{ deck().length }}</div>
+            <div class="text-sm opacity-70">{{ 'demo.mulligan.cardsInDeck' | transloco }}</div>
+          </div>
+          <div class="col-span-2 md:col-span-1">
+            <div class="text-3xl font-bold">13</div>
+            <div class="text-sm opacity-70">{{ 'demo.mulligan.totalCards' | transloco }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reset Button -->
+      <div class="text-center">
+        <button (click)="reset()" class="px-6 py-3 primary-btn font-medium">
+          {{ 'demo.mulligan.tryAgain' | transloco }}
+        </button>
+      </div>
+    </div>
+  }
+
+  <!-- Info Box -->
+  <div class="max-w-4xl mx-auto mt-8 p-6 bg-surface-secondary rounded-lg">
+    <h3 class="text-lg font-bold mb-2">
+      {{ 'demo.mulligan.infoTitle' | transloco }}
+    </h3>
+    <ul class="list-disc list-inside space-y-1 opacity-80">
+      <li>{{ 'demo.mulligan.info1' | transloco }}</li>
+      <li>{{ 'demo.mulligan.info2' | transloco }}</li>
+      <li>{{ 'demo.mulligan.info3' | transloco }}</li>
+      <li>{{ 'demo.mulligan.info4' | transloco }}</li>
+      <li>{{ 'demo.mulligan.info5' | transloco }}</li>
+    </ul>
+  </div>
+</div>

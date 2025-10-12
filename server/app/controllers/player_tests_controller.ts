@@ -67,9 +67,7 @@ export default class PlayerTestsController {
       const drawnCard = player.drawCard()
 
       testResults.deckManagement =
-        drawnCard !== undefined &&
-        player.getDeck().length === 1 &&
-        player.getHand().length === 1
+        drawnCard !== undefined && player.getDeck().length === 1 && player.getHand().length === 1
 
       // Test 3: Stats management
       player.initializeStats()

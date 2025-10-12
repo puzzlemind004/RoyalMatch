@@ -128,6 +128,23 @@ router
 
 /*
 |--------------------------------------------------------------------------
+| Mulligan routes
+|--------------------------------------------------------------------------
+*/
+
+const MulliganController = () => import('#controllers/mulligan_controller')
+
+router
+  .group(() => {
+    router.post('/games/:gameId/mulligan/draw', [MulliganController, 'drawInitialHand'])
+    router.post('/games/:gameId/mulligan/perform', [MulliganController, 'performMulligan'])
+    router.post('/games/:gameId/mulligan/skip', [MulliganController, 'skipMulligan'])
+  })
+  .prefix('/api')
+  .use(middleware.auth())
+
+/*
+|--------------------------------------------------------------------------
 | Statistics routes
 |--------------------------------------------------------------------------
 */

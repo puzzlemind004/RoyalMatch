@@ -20,6 +20,7 @@ export class HeaderComponent {
     { path: '/demo/roulette', label: 'Roulette', icon: '🎡' },
     { path: '/demo/hierarchy', label: 'Hiérarchie', icon: '🎯' },
     { path: '/demo/card-distribution', label: 'Distribution', icon: '🎲' },
+    { path: '/demo/mulligan', label: 'Mulligan', icon: '🔄' },
     { path: '/demo/trick-resolution', label: 'Plis', icon: '🃏' },
     { path: '/demo/objective-validation', label: 'Objectifs', icon: '🎯' },
     { path: '/demo/objective-verification', label: 'Vérification', icon: '✅' },

@@ -30,6 +30,11 @@ export enum WebSocketEvent {
   // Card events
   CARDS_DISTRIBUTED = 'cards:distributed',
   CARD_PLAYED = 'card:played',
+
+  // Mulligan events
+  MULLIGAN_PHASE_STARTED = 'mulligan:phase_started',
+  MULLIGAN_COMPLETED = 'mulligan:completed',
+  MULLIGAN_TIMEOUT = 'mulligan:timeout',
 }
 
 /**
@@ -187,7 +192,11 @@ export class WebSocketService {
     const channel = WebSocketChannels.user(userId)
     transmit.broadcast(
       channel,
-      JSON.stringify({ event: WebSocketEvent.CARDS_DISTRIBUTED, data: cardData, timestamp: Date.now() })
+      JSON.stringify({
+        event: WebSocketEvent.CARDS_DISTRIBUTED,
+        data: cardData,
+        timestamp: Date.now(),
+      })
     )
   }
 }

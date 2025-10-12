@@ -64,10 +64,7 @@ export default class ScoringService {
    * @param mockRoundData - Optional mock data for demo
    * @returns Complete scoring results
    */
-  async calculateRoundScores(
-    roundId: string,
-    mockRoundData?: any
-  ): Promise<RoundScoringResult> {
+  async calculateRoundScores(roundId: string, mockRoundData?: any): Promise<RoundScoringResult> {
     logger.info(`Starting score calculation for round ${roundId}`)
 
     // Verify all objectives for the round

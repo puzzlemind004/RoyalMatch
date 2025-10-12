@@ -22,6 +22,7 @@ export class CardComponent {
   selectable = input<boolean>(false);
   selected = input<boolean>(false);
   dominantColor = input<CardSuit | null>(null); // For showing strong/weak badges
+  ringColor = input<string>('ring-blue-500'); // Custom ring color when selected
 
   // Output
   cardSelected = output<Card>();
