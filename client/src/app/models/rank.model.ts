@@ -9,12 +9,12 @@ export type RankTier = 'unranked' | 'iron' | 'bronze' | 'silver' | 'gold' | 'eme
  * Rank colors for visual representation
  */
 export const RANK_COLORS: Record<Exclude<RankTier, 'unranked'>, string> = {
-  diamond: '#B9F2FF',   // Diamant bleuté éclatant
-  emerald: '#50C878',   // Émeraude vert profond
-  gold: '#FFD700',      // Or classique
-  silver: '#C0C0C0',    // Argent métallique
-  bronze: '#CD7F32',    // Bronze chaud
-  iron: '#71717A',      // Gris fer sombre
+  diamond: '#B9F2FF', // Diamant bleuté éclatant
+  emerald: '#50C878', // Émeraude vert profond
+  gold: '#FFD700', // Or classique
+  silver: '#C0C0C0', // Argent métallique
+  bronze: '#CD7F32', // Bronze chaud
+  iron: '#71717A', // Gris fer sombre
 };
 
 /**

@@ -27,7 +27,8 @@ export enum WebSocketEvent {
   ROUND_ENDED = 'round:ended',
   ROULETTE_RESULT = 'roulette:result',
 
-  // Action events
+  // Card events
+  CARDS_DISTRIBUTED = 'cards:distributed',
   CARD_PLAYED = 'card:played',
 }
 
@@ -54,6 +55,13 @@ export class WebSocketChannels {
    */
   static spectator(gameId: string): string {
     return `spectator:${gameId}`
+  }
+
+  /**
+   * Private channel for a specific user
+   */
+  static user(userId: string): string {
+    return `user:${userId}`
   }
 }
 
@@ -170,5 +178,16 @@ export class WebSocketService {
   static gameEnded(gameId: string, gameData: { winner?: string; finalScores?: any }): void {
     this.broadcastToGame(gameId, WebSocketEvent.GAME_ENDED, gameData)
     this.broadcastToSpectators(gameId, WebSocketEvent.GAME_ENDED, gameData)
+  }
+
+  /**
+   * Send cards distributed event to a specific user (private)
+   */
+  static cardsDistributed(userId: string, cardData: { cards: any[]; count: number }): void {
+    const channel = WebSocketChannels.user(userId)
+    transmit.broadcast(
+      channel,
+      JSON.stringify({ event: WebSocketEvent.CARDS_DISTRIBUTED, data: cardData, timestamp: Date.now() })
+    )
   }
 }

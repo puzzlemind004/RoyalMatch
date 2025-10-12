@@ -19,10 +19,7 @@
   <!-- Header: Category Icon + Difficulty Badge -->
   <div class="mb-3 flex items-center justify-between">
     <span class="text-2xl">{{ getCategoryIcon() }}</span>
-    <span
-      class="rounded-full px-3 py-1 text-xs font-semibold"
-      [ngClass]="getDifficultyClasses()"
-    >
+    <span class="rounded-full px-3 py-1 text-xs font-semibold" [ngClass]="getDifficultyClasses()">
       {{ getDifficultyLabel() }}
     </span>
   </div>

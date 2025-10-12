@@ -90,11 +90,7 @@
       }
 
       <!-- Submit Button -->
-      <button
-        type="submit"
-        [disabled]="loading()"
-        class="w-full text-white py-3 rounded-lg font-semibold primary-btn disabled:bg-neutral-400 disabled:cursor-not-allowed"
-      >
+      <button type="submit" [disabled]="loading()" class="w-full py-3 font-semibold primary-btn">
         @if (loading()) {
           <span>{{ 'auth.register.loading' | transloco }}</span>
         } @else {

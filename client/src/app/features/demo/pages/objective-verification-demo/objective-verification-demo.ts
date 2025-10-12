@@ -88,20 +88,23 @@ export class ObjectiveVerificationDemoComponent implements OnInit {
   loadMockObjectives(): void {
     // For demo, we'll use the objectives from the distribution demo
     // In a real scenario, these would come from validated objectives
-    this.http.get<{ success: boolean; data: { objectives: Record<string, ObjectiveDefinition[]> } }>(
-      `${environment.apiUrl}/api/objectives/available`
-    ).subscribe({
-      next: (response) => {
-        if (response.success) {
-          // Take 3 easy objectives for demo
-          const easyObjectives = response.data.objectives['easy']?.slice(0, 3) || [];
-          this.mockRoundData.players[0].objectives = easyObjectives;
-        }
-      },
-      error: () => {
-        // Failed to load mock objectives - using empty array as fallback
-      },
-    });
+    this.http
+      .get<{
+        success: boolean;
+        data: { objectives: Record<string, ObjectiveDefinition[]> };
+      }>(`${environment.apiUrl}/api/objectives/available`)
+      .subscribe({
+        next: (response) => {
+          if (response.success) {
+            // Take 3 easy objectives for demo
+            const easyObjectives = response.data.objectives['easy']?.slice(0, 3) || [];
+            this.mockRoundData.players[0].objectives = easyObjectives;
+          }
+        },
+        error: () => {
+          // Failed to load mock objectives - using empty array as fallback
+        },
+      });
   }
 
   /**
@@ -117,7 +120,7 @@ export class ObjectiveVerificationDemoComponent implements OnInit {
         {
           roundId: this.mockRoundData.roundId,
           mockRoundData: this.mockRoundData,
-        }
+        },
       )
       .subscribe({
         next: (response) => {

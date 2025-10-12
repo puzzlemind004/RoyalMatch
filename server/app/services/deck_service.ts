@@ -1,4 +1,4 @@
-import { randomUUID } from 'node:crypto'
+import { randomUUID, randomBytes } from 'node:crypto'
 import {
   type Card,
   type CardEffect,
@@ -8,7 +8,7 @@ import {
   ALL_VALUES,
   CARD_VALUE_TO_NUMERIC,
 } from '#types/card'
-import cardEffectsData from '#data/card_effects.json'
+import cardEffectsData from '#data/card_effects.json' with { type: 'json' }
 
 /**
  * Service for managing card decks
@@ -56,17 +56,52 @@ export default class DeckService {
   }
 
   /**
-   * Shuffle a deck using Fisher-Yates algorithm
+   * Shuffle a deck using Fisher-Yates algorithm with cryptographically secure random
+   * Uses crypto.randomBytes for better security than Math.random()
    */
   static shuffleDeck(cards: Card[]): Card[] {
     const shuffled = [...cards]
 
     for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
+      // Generate cryptographically secure random index
+      const j = this.getSecureRandomInt(0, i + 1)
       ;[shuffled[i], shuffled[j]] = [shuffled[j]!, shuffled[i]!]
     }
 
     return shuffled
+  }
+
+  /**
+   * Generate a cryptographically secure random integer between min (inclusive) and max (exclusive)
+   * @param min - Minimum value (inclusive)
+   * @param max - Maximum value (exclusive)
+   * @returns A secure random integer
+   */
+  private static getSecureRandomInt(min: number, max: number): number {
+    const range = max - min
+
+    if (range <= 0) {
+      throw new Error('Max must be greater than min')
+    }
+
+    // Calculate how many bytes we need
+    const bytesNeeded = Math.ceil(Math.log2(range) / 8)
+    const maxValue = 256 ** bytesNeeded
+    const threshold = maxValue - (maxValue % range)
+
+    let randomValue: number
+
+    // Keep generating until we get a value below threshold to avoid modulo bias
+    do {
+      const randomBytesBuffer = randomBytes(bytesNeeded)
+      randomValue = 0
+
+      for (let i = 0; i < bytesNeeded; i++) {
+        randomValue = randomValue * 256 + randomBytesBuffer[i]!
+      }
+    } while (randomValue >= threshold)
+
+    return min + (randomValue % range)
   }
 
   /**

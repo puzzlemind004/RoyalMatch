@@ -19,7 +19,7 @@ export class AuthDemoPage implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private transloco: TranslocoService
+    private transloco: TranslocoService,
   ) {}
 
   async ngOnInit(): Promise<void> {

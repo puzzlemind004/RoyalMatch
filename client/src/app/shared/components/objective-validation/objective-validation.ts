@@ -50,7 +50,9 @@ export class ObjectiveValidationComponent implements OnInit {
   readonly TIMER_TOTAL_DURATION = VALIDATION_CONSTANTS.TIMER_DURATION;
 
   // Computed properties
-  canRedraw = computed(() => !this.hasRedrawn() && !this.isValidated() && this.rejectedCount() === 0);
+  canRedraw = computed(
+    () => !this.hasRedrawn() && !this.isValidated() && this.rejectedCount() === 0,
+  );
   canReject = computed(() => this.service.canReject() && !this.isValidated() && !this.hasRedrawn());
   canValidate = computed(() => !this.isValidated() && this.objectives().length > 0);
   totalPoints = computed(() => this.service.getTotalPoints());

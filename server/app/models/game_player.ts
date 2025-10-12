@@ -134,18 +134,16 @@ export default class GamePlayer extends BaseModel {
   }
 
   /**
-   * Shuffle the player's deck
+   * Shuffle the player's deck using DeckService (cryptographically secure)
    */
   shuffleDeck(): void {
     if (!this.deck) {
       return
     }
 
-    // Fisher-Yates shuffle algorithm
-    for (let i = this.deck.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      ;[this.deck[i], this.deck[j]] = [this.deck[j], this.deck[i]]
-    }
+    // Use DeckService for secure shuffling
+    const DeckService = require('#services/deck_service').default
+    this.deck = DeckService.shuffleDeck(this.deck)
   }
 
   /**

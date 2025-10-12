@@ -35,7 +35,7 @@ export class ObjectiveValidationDemoComponent implements OnInit {
 
   // Expose drawnObjectives from service
   hasDrawnObjectives = computed(
-    () => this.objectiveDistributionService.drawnObjectives().length > 0
+    () => this.objectiveDistributionService.drawnObjectives().length > 0,
   );
 
   constructor(private objectiveDistributionService: ObjectiveDistributionService) {}

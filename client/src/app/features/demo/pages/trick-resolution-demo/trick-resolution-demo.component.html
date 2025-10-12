@@ -15,11 +15,18 @@
       {{ 'demo.trickResolutionDemo.selectDominantColor' | transloco }}
     </h2>
     <div class="flex gap-3 flex-wrap">
-      @for (suit of [CardSuit.HEARTS, CardSuit.DIAMONDS, CardSuit.CLUBS, CardSuit.SPADES]; track suit) {
+      @for (
+        suit of [CardSuit.HEARTS, CardSuit.DIAMONDS, CardSuit.CLUBS, CardSuit.SPADES];
+        track suit
+      ) {
         <button
           (click)="setDominantColor(suit)"
-          [class]="'px-6 py-3 rounded-lg font-bold transition-all ' +
-                   (dominantColor() === suit ? getColorBadgeClass(suit) + ' scale-110' : 'bg-gray-200 hover:bg-gray-300')"
+          [class]="
+            'px-6 py-3 rounded-lg font-bold transition-all ' +
+            (dominantColor() === suit
+              ? getColorBadgeClass(suit) + ' scale-110'
+              : 'bg-gray-200 hover:bg-gray-300')
+          "
         >
           {{ getSuitSymbol(suit) }} {{ getColorLabel(suit) }}
         </button>
@@ -29,7 +36,6 @@
 
   <!-- Main Layout: Simulation + Available Cards -->
   <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
-
     <!-- Left: Trick Simulation (1/3 width on large screens) -->
     <div class="lg:col-span-1 bg-white rounded-lg shadow-lg p-6">
       <div class="flex justify-between items-center mb-4">
@@ -37,12 +43,14 @@
           {{ 'demo.trickResolutionDemo.trickSimulation' | transloco }}
         </h2>
         <span class="text-sm font-medium text-gray-600">
-          {{ 'demo.trickResolutionDemo.cardsCount' | transloco: {count: selectedCount()} }}
+          {{ 'demo.trickResolutionDemo.cardsCount' | transloco: { count: selectedCount() } }}
         </span>
       </div>
 
       <!-- Trick Area -->
-      <div class="mb-6 min-h-[300px] border-2 border-dashed border-gray-300 rounded-lg p-4 bg-gray-50">
+      <div
+        class="mb-6 min-h-[300px] border-2 border-dashed border-gray-300 rounded-lg p-4 bg-gray-50"
+      >
         @if (selectedCount() === 0) {
           <div class="flex items-center justify-center h-full text-gray-400 text-center">
             <p [innerHTML]="'demo.trickResolutionDemo.clickToStart' | transloco"></p>
@@ -51,15 +59,22 @@
           <div class="grid grid-cols-2 gap-3">
             @for (card of selectedCards(); track card.value + card.suit) {
               <div
-                [class]="'p-3 rounded-lg border-2 bg-white ' +
-                         (isWinningCard(card) ? 'border-yellow-500 ring-4 ring-yellow-300 animate-pulse' : 'border-gray-300')"
+                [class]="
+                  'p-3 rounded-lg border-2 bg-white ' +
+                  (isWinningCard(card)
+                    ? 'border-yellow-500 ring-4 ring-yellow-300 animate-pulse'
+                    : 'border-gray-300')
+                "
               >
                 <div class="text-center">
                   <div [class]="'text-3xl font-bold ' + getSuitColorClass(card.suit)">
                     {{ card.value }}{{ getSuitSymbol(card.suit) }}
                   </div>
                   <div class="text-xs mt-1 text-gray-600">
-                    {{ 'demo.trickResolutionDemo.player' | transloco: {number: selectedCards().indexOf(card) + 1} }}
+                    {{
+                      'demo.trickResolutionDemo.player'
+                        | transloco: { number: selectedCards().indexOf(card) + 1 }
+                    }}
                   </div>
                 </div>
               </div>
@@ -71,17 +86,27 @@
       <!-- Winner Display -->
       @if (trickResult(); as result) {
         <div class="mb-4 p-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-lg">
-          <h3 class="text-white font-bold mb-2">🏆 {{ 'demo.trickResolutionDemo.winner' | transloco }}</h3>
+          <h3 class="text-white font-bold mb-2">
+            🏆 {{ 'demo.trickResolutionDemo.winner' | transloco }}
+          </h3>
           <div class="bg-white rounded p-3 mb-2">
-            <div [class]="'text-4xl font-bold text-center ' + getSuitColorClass(result.winnerCard.suit)">
+            <div
+              [class]="
+                'text-4xl font-bold text-center ' + getSuitColorClass(result.winnerCard.suit)
+              "
+            >
               {{ result.winnerCard.value }}{{ getSuitSymbol(result.winnerCard.suit) }}
             </div>
             <div class="text-center text-sm text-gray-600 mt-1">
-              {{ 'demo.trickResolutionDemo.player' | transloco: {number: result.winnerCard.playerId} }}
+              {{
+                'demo.trickResolutionDemo.player'
+                  | transloco: { number: result.winnerCard.playerId }
+              }}
             </div>
           </div>
           <div class="bg-white/90 rounded p-2 text-sm text-gray-800">
-            <strong>{{ 'demo.trickResolutionDemo.reason' | transloco }}</strong> {{ getWinningReasonText() }}
+            <strong>{{ 'demo.trickResolutionDemo.reason' | transloco }}</strong>
+            {{ getWinningReasonText() }}
           </div>
         </div>
       }
@@ -111,7 +136,11 @@
               <span [class]="'text-2xl ' + getSuitColorClass(entry.key)">
                 {{ getSuitSymbol(entry.key) }}
               </span>
-              <span [class]="'px-3 py-1 rounded-full text-xs font-bold ' + getColorBadgeClass(entry.key)">
+              <span
+                [class]="
+                  'px-3 py-1 rounded-full text-xs font-bold ' + getColorBadgeClass(entry.key)
+                "
+              >
                 {{ getColorLabel(entry.key) }}
               </span>
             </div>
@@ -119,10 +148,7 @@
             <!-- Cards Grid -->
             <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-2">
               @for (card of entry.value; track card.value + card.suit) {
-                <div
-                  (click)="toggleCard(card)"
-                  [class]="getCardClasses(card)"
-                >
+                <div (click)="toggleCard(card)" [class]="getCardClasses(card)">
                   <div [class]="'text-2xl font-bold text-center ' + getSuitColorClass(card.suit)">
                     {{ card.value }}
                   </div>
@@ -132,16 +158,16 @@
 
                   <!-- Selected Badge -->
                   @if (card.selected) {
-                    <div class="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold">
+                    <div
+                      class="absolute -top-2 -right-2 bg-blue-600 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold"
+                    >
                       {{ selectedCards().indexOf(card) + 1 }}
                     </div>
                   }
 
                   <!-- Winner Badge -->
                   @if (isWinningCard(card)) {
-                    <div class="absolute -top-2 -left-2 text-2xl">
-                      🏆
-                    </div>
+                    <div class="absolute -top-2 -left-2 text-2xl">🏆</div>
                   }
                 </div>
               }
@@ -154,7 +180,9 @@
 
   <!-- Info Panel -->
   <div class="max-w-7xl mx-auto mt-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
-    <h3 class="font-bold text-blue-900 mb-2">💡 {{ 'demo.trickResolutionDemo.howItWorks' | transloco }}</h3>
+    <h3 class="font-bold text-blue-900 mb-2">
+      💡 {{ 'demo.trickResolutionDemo.howItWorks' | transloco }}
+    </h3>
     <ul class="text-sm text-blue-800 space-y-1">
       <li [innerHTML]="'1️⃣ ' + ('demo.trickResolutionDemo.step1' | transloco)"></li>
       <li [innerHTML]="'2️⃣ ' + ('demo.trickResolutionDemo.step2' | transloco)"></li>

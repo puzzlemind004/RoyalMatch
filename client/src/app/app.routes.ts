@@ -5,8 +5,7 @@ import { authGuard } from './core/guards/auth.guard';
 export const routes: Routes = [
   {
     path: 'login',
-    loadComponent: () =>
-      import('./features/auth/pages/login/login.page').then((m) => m.LoginPage),
+    loadComponent: () => import('./features/auth/pages/login/login.page').then((m) => m.LoginPage),
     canActivate: [guestGuard],
   },
   {
@@ -17,8 +16,7 @@ export const routes: Routes = [
   },
   {
     path: 'profile',
-    loadComponent: () =>
-      import('./features/profile/profile').then((m) => m.Profile),
+    loadComponent: () => import('./features/profile/profile').then((m) => m.Profile),
     canActivate: [authGuard],
   },
   {
@@ -55,16 +53,16 @@ export const routes: Routes = [
       {
         path: 'trick-resolution',
         loadComponent: () =>
-          import('./features/demo/pages/trick-resolution-demo/trick-resolution-demo.component').then(
-            (m) => m.TrickResolutionDemoComponent,
-          ),
+          import(
+            './features/demo/pages/trick-resolution-demo/trick-resolution-demo.component'
+          ).then((m) => m.TrickResolutionDemoComponent),
       },
       {
         path: 'objective-distribution',
         loadComponent: () =>
-          import('./features/demo/objective-distribution-demo/objective-distribution-demo.component').then(
-            (m) => m.ObjectiveDistributionDemoComponent,
-          ),
+          import(
+            './features/demo/objective-distribution-demo/objective-distribution-demo.component'
+          ).then((m) => m.ObjectiveDistributionDemoComponent),
       },
       {
         path: 'objective-validation',
@@ -76,9 +74,9 @@ export const routes: Routes = [
       {
         path: 'objective-verification',
         loadComponent: () =>
-          import('./features/demo/pages/objective-verification-demo/objective-verification-demo').then(
-            (m) => m.ObjectiveVerificationDemoComponent,
-          ),
+          import(
+            './features/demo/pages/objective-verification-demo/objective-verification-demo'
+          ).then((m) => m.ObjectiveVerificationDemoComponent),
       },
       {
         path: 'scoring',
@@ -88,18 +86,21 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'card-distribution',
+        loadComponent: () =>
+          import('./features/demo/pages/card-distribution-demo/card-distribution-demo.page').then(
+            (m) => m.CardDistributionDemoPage,
+          ),
+      },
+      {
         path: 'ranks',
         loadComponent: () =>
-          import('./features/demo/pages/rank-demo/rank-demo.page').then(
-            (m) => m.RankDemoPage,
-          ),
+          import('./features/demo/pages/rank-demo/rank-demo.page').then((m) => m.RankDemoPage),
       },
       {
         path: 'auth',
         loadComponent: () =>
-          import('./features/demo/pages/auth-demo/auth-demo.page').then(
-            (m) => m.AuthDemoPage,
-          ),
+          import('./features/demo/pages/auth-demo/auth-demo.page').then((m) => m.AuthDemoPage),
       },
       {
         path: '',

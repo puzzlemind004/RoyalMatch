@@ -28,9 +28,7 @@ export class ProfileService {
    */
   async getMyStatistics(): Promise<UserStatistics | null> {
     try {
-      const response = await firstValueFrom(
-        this.http.get<StatisticsResponse>(`${this.apiUrl}/me`)
-      );
+      const response = await firstValueFrom(this.http.get<StatisticsResponse>(`${this.apiUrl}/me`));
 
       if (response.success && response.data) {
         this.currentUserStatistics.set(response.data);
@@ -49,7 +47,7 @@ export class ProfileService {
   async getUserStatistics(userId: string): Promise<UserStatistics | null> {
     try {
       const response = await firstValueFrom(
-        this.http.get<StatisticsResponse>(`${this.apiUrl}/${userId}`)
+        this.http.get<StatisticsResponse>(`${this.apiUrl}/${userId}`),
       );
 
       if (response.success && response.data) {
@@ -68,7 +66,7 @@ export class ProfileService {
   async getMyGameHistory(limit: number = 10): Promise<GameHistoryEntry[]> {
     try {
       const response = await firstValueFrom(
-        this.http.get<GameHistoryResponse>(`${this.apiUrl}/me/history?limit=${limit}`)
+        this.http.get<GameHistoryResponse>(`${this.apiUrl}/me/history?limit=${limit}`),
       );
 
       if (response.success && response.data) {
@@ -88,7 +86,7 @@ export class ProfileService {
   async getUserGameHistory(userId: string, limit: number = 10): Promise<GameHistoryEntry[]> {
     try {
       const response = await firstValueFrom(
-        this.http.get<GameHistoryResponse>(`${this.apiUrl}/${userId}/history?limit=${limit}`)
+        this.http.get<GameHistoryResponse>(`${this.apiUrl}/${userId}/history?limit=${limit}`),
       );
 
       if (response.success && response.data) {
@@ -107,7 +105,7 @@ export class ProfileService {
   async getLeaderboard(limit: number = 10): Promise<UserStatistics[]> {
     try {
       const response = await firstValueFrom(
-        this.http.get<LeaderboardResponse>(`${this.apiUrl}/leaderboard?limit=${limit}`)
+        this.http.get<LeaderboardResponse>(`${this.apiUrl}/leaderboard?limit=${limit}`),
       );
 
       if (response.success && response.data) {
@@ -127,7 +125,7 @@ export class ProfileService {
   async resetMyStatistics(): Promise<boolean> {
     try {
       const response = await firstValueFrom(
-        this.http.delete<{ success: boolean }>(`${this.apiUrl}/me/reset`)
+        this.http.delete<{ success: boolean }>(`${this.apiUrl}/me/reset`),
       );
 
       if (response.success) {

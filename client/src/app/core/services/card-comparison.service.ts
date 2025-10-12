@@ -270,10 +270,12 @@ export class CardComparisonService {
     }
 
     // Convert to PlayedCard array
-    const playedCardsArray: PlayedCard[] = Array.from(playedCards.entries()).map(([playerId, card]) => ({
-      ...card,
-      playerId,
-    }));
+    const playedCardsArray: PlayedCard[] = Array.from(playedCards.entries()).map(
+      ([playerId, card]) => ({
+        ...card,
+        playerId,
+      }),
+    );
 
     // Use new trick winner logic
     const result = this.findTrickWinner(playedCardsArray, dominantColor);

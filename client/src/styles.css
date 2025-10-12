@@ -64,7 +64,7 @@
 
 /* Bouton principal avec gradient */
 .primary-btn {
-  @apply bg-gradient-to-br from-primary-500 to-secondary-500 hover:from-secondary-400 hover:to-primary-600 transition-colors;
+  @apply bg-gradient-to-br from-primary-500 to-secondary-500 hover:from-secondary-400 hover:to-primary-600 transition-colors text-white rounded-lg  disabled:bg-neutral-400 disabled:cursor-not-allowed;
 }
 
 /* Bouton secondaire (hover subtle) */

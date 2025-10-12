@@ -84,32 +84,37 @@
               <p class="text-lg text-gray-600">
                 {{ 'demo.scoringDemo.results.roundPoints' | transloco }}
               </p>
-              <p class="text-4xl font-bold text-indigo-600">
-                {{ playerResult.roundPoints }} pts
-              </p>
+              <p class="text-4xl font-bold text-indigo-600">{{ playerResult.roundPoints }} pts</p>
             </div>
 
             <!-- Objectives Summary -->
             <p
               class="mb-2 text-lg font-semibold"
-              [class]="getCompletionClass(playerResult.objectivesCompleted, playerResult.objectivesTotal)"
+              [class]="
+                getCompletionClass(playerResult.objectivesCompleted, playerResult.objectivesTotal)
+              "
             >
               {{
                 'demo.scoringDemo.results.objectivesSummary'
                   | transloco
                     : {
                         completed: playerResult.objectivesCompleted,
-                        total: playerResult.objectivesTotal
+                        total: playerResult.objectivesTotal,
                       }
               }}
             </p>
 
             <!-- Bonus Badge -->
             @if (playerResult.bonusApplied) {
-              <div class="mt-4 inline-block rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 px-6 py-2 text-white shadow-lg">
+              <div
+                class="mt-4 inline-block rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 px-6 py-2 text-white shadow-lg"
+              >
                 <span class="text-2xl">🌟</span>
                 <span class="ml-2 font-bold">
-                  {{ 'demo.scoringDemo.results.bonusApplied' | transloco: { points: playerResult.bonusPoints } }}
+                  {{
+                    'demo.scoringDemo.results.bonusApplied'
+                      | transloco: { points: playerResult.bonusPoints }
+                  }}
                 </span>
                 <span class="text-2xl ml-2">🌟</span>
               </div>
@@ -120,9 +125,7 @@
               <p class="text-sm text-gray-600">
                 {{ 'demo.scoringDemo.results.totalScore' | transloco }}
               </p>
-              <p class="text-3xl font-bold text-purple-600">
-                {{ playerResult.totalScore }} pts
-              </p>
+              <p class="text-3xl font-bold text-purple-600">{{ playerResult.totalScore }} pts</p>
             </div>
           </div>
 
@@ -136,14 +139,15 @@
                 <div
                   class="rounded-lg border-2 p-4"
                   [class]="
-                    result.completed
-                      ? 'border-green-500 bg-green-50'
-                      : 'border-gray-300 bg-gray-50'
+                    result.completed ? 'border-green-500 bg-green-50' : 'border-gray-300 bg-gray-50'
                   "
                 >
                   <div class="mb-2 flex items-center justify-between">
                     <span class="text-2xl">{{ getStatusIcon(result.completed) }}</span>
-                    <span class="text-xl font-bold" [class]="result.completed ? 'text-green-600' : 'text-gray-400'">
+                    <span
+                      class="text-xl font-bold"
+                      [class]="result.completed ? 'text-green-600' : 'text-gray-400'"
+                    >
                       {{ result.points }} pts
                     </span>
                   </div>
