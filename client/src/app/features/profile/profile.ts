@@ -18,7 +18,7 @@ export class Profile implements OnInit {
 
   constructor(
     private profileService: ProfileService,
-    private transloco: TranslocoService
+    private transloco: TranslocoService,
   ) {}
 
   async ngOnInit() {

@@ -19,10 +19,9 @@ import { RankTier, getRankDisplayInfo } from '../../../models/rank.model';
     @if (rankInfo) {
       @if (isEmoji) {
         <!-- Emoji display (for diamond) -->
-        <span
-          class="inline-flex items-center justify-center text-lg"
-          [title]="rankInfo.tier"
-        >{{ rankInfo.svg }}</span>
+        <span class="inline-flex items-center justify-center text-lg" [title]="rankInfo.tier">{{
+          rankInfo.svg
+        }}</span>
       } @else {
         <!-- SVG display -->
         <span
@@ -34,13 +33,15 @@ import { RankTier, getRankDisplayInfo } from '../../../models/rank.model';
       }
     }
   `,
-  styles: [`
-    :host {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-  `]
+  styles: [
+    `
+      :host {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+    `,
+  ],
 })
 export class RankIconComponent implements OnInit {
   @Input() rank: RankTier | null = null;

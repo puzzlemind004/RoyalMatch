@@ -52,7 +52,10 @@
           <h2 class="mb-2 text-xl font-bold text-purple-900">
             {{ 'demo.objectiveValidationDemo.step2.title' | transloco }}
           </h2>
-          <p class="mb-2 text-sm text-purple-700" [innerHTML]="'demo.objectiveValidationDemo.step2.description' | transloco"></p>
+          <p
+            class="mb-2 text-sm text-purple-700"
+            [innerHTML]="'demo.objectiveValidationDemo.step2.description' | transloco"
+          ></p>
           <ul class="list-inside list-disc space-y-1 text-sm text-purple-700">
             <li [innerHTML]="'demo.objectiveValidationDemo.step2.redraw' | transloco"></li>
             <li [innerHTML]="'demo.objectiveValidationDemo.step2.reject' | transloco"></li>
@@ -92,7 +95,13 @@
           <h2 class="mb-2 text-2xl font-bold text-green-900">
             {{ 'demo.objectiveValidationDemo.completed.title' | transloco }}
           </h2>
-          <p class="text-green-700" [innerHTML]="'demo.objectiveValidationDemo.completed.count' | transloco: { count: validatedObjectives().length }"></p>
+          <p
+            class="text-green-700"
+            [innerHTML]="
+              'demo.objectiveValidationDemo.completed.count'
+                | transloco: { count: validatedObjectives().length }
+            "
+          ></p>
         </div>
 
         <!-- Display Validated Objectives -->
@@ -110,7 +119,8 @@
                   {{ objective.descriptionKey | transloco }}
                 </p>
                 <p class="text-xl font-bold text-green-600">
-                  {{ objective.points }} {{ 'demo.objectiveValidationDemo.completed.points' | transloco }}
+                  {{ objective.points }}
+                  {{ 'demo.objectiveValidationDemo.completed.points' | transloco }}
                 </p>
               </div>
             }

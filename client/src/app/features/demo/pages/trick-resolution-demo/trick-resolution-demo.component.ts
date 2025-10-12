@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { CardSuit } from '../../../../models/card.model';
 import { CardComparisonService } from '../../../../core/services/card-comparison.service';
-import type { PlayedCard, TrickWinnerResult } from '../../../../core/services/card-comparison.service';
+import type {
+  PlayedCard,
+  TrickWinnerResult,
+} from '../../../../core/services/card-comparison.service';
 
 interface SelectableCard {
   value: string;
@@ -24,9 +27,7 @@ export class TrickResolutionDemoComponent {
   availableCards = signal<SelectableCard[]>(this.initializeCards());
 
   // Computed signals
-  selectedCards = computed(() =>
-    this.availableCards().filter(card => card.selected)
-  );
+  selectedCards = computed(() => this.availableCards().filter((card) => card.selected));
 
   selectedCount = computed(() => this.selectedCards().length);
 
@@ -72,7 +73,10 @@ export class TrickResolutionDemoComponent {
     const suits = [CardSuit.HEARTS, CardSuit.DIAMONDS, CardSuit.CLUBS, CardSuit.SPADES];
 
     for (const suit of suits) {
-      grouped.set(suit, this.availableCards().filter(card => card.suit === suit));
+      grouped.set(
+        suit,
+        this.availableCards().filter((card) => card.suit === suit),
+      );
     }
 
     return grouped;
@@ -95,12 +99,12 @@ export class TrickResolutionDemoComponent {
    * Update card selection state
    */
   private updateCardSelection(targetCard: SelectableCard, selected: boolean): void {
-    this.availableCards.update(cards =>
-      cards.map(card =>
+    this.availableCards.update((cards) =>
+      cards.map((card) =>
         card.value === targetCard.value && card.suit === targetCard.suit
           ? { ...card, selected }
-          : card
-      )
+          : card,
+      ),
     );
   }
 
@@ -108,9 +112,7 @@ export class TrickResolutionDemoComponent {
    * Reset all selections
    */
   resetTrick(): void {
-    this.availableCards.update(cards =>
-      cards.map(card => ({ ...card, selected: false }))
-    );
+    this.availableCards.update((cards) => cards.map((card) => ({ ...card, selected: false })));
   }
 
   /**
@@ -137,9 +139,7 @@ export class TrickResolutionDemoComponent {
    * Get suit color class
    */
   getSuitColorClass(suit: CardSuit): string {
-    return suit === CardSuit.HEARTS || suit === CardSuit.DIAMONDS
-      ? 'text-red-600'
-      : 'text-black';
+    return suit === CardSuit.HEARTS || suit === CardSuit.DIAMONDS ? 'text-red-600' : 'text-black';
   }
 
   /**
@@ -200,10 +200,7 @@ export class TrickResolutionDemoComponent {
     const result = this.trickResult();
     if (!result) return false;
 
-    return (
-      result.winnerCard.value === card.value &&
-      result.winnerCard.suit === card.suit
-    );
+    return result.winnerCard.value === card.value && result.winnerCard.suit === card.suit;
   }
 
   /**
@@ -211,7 +208,9 @@ export class TrickResolutionDemoComponent {
    */
   getCardClasses(card: SelectableCard): string {
     const base = 'relative p-3 rounded-lg border-2 cursor-pointer transition-all hover:scale-105';
-    const selected = card.selected ? 'border-blue-600 bg-blue-50 scale-105' : 'border-gray-300 hover:border-gray-400';
+    const selected = card.selected
+      ? 'border-blue-600 bg-blue-50 scale-105'
+      : 'border-gray-300 hover:border-gray-400';
     const disabled = !card.selected && !this.canSelectMore() ? 'opacity-50 cursor-not-allowed' : '';
     const winner = this.isWinningCard(card) ? 'ring-4 ring-yellow-400 animate-pulse' : '';
 

@@ -31,7 +31,9 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <!-- Games Played -->
         <div class="bg-white rounded-lg shadow p-6">
-          <div class="text-sm text-neutral-600 mb-1">{{ 'profile.stats.gamesPlayed' | transloco }}</div>
+          <div class="text-sm text-neutral-600 mb-1">
+            {{ 'profile.stats.gamesPlayed' | transloco }}
+          </div>
           <div class="text-3xl font-bold text-primary">{{ statistics()?.gamesPlayed || 0 }}</div>
         </div>
 
@@ -45,14 +47,20 @@
 
         <!-- Best Score -->
         <div class="bg-white rounded-lg shadow p-6">
-          <div class="text-sm text-neutral-600 mb-1">{{ 'profile.stats.bestScore' | transloco }}</div>
+          <div class="text-sm text-neutral-600 mb-1">
+            {{ 'profile.stats.bestScore' | transloco }}
+          </div>
           <div class="text-3xl font-bold text-success">{{ statistics()?.bestScore || 0 }}</div>
         </div>
 
         <!-- Average Score -->
         <div class="bg-white rounded-lg shadow p-6">
-          <div class="text-sm text-neutral-600 mb-1">{{ 'profile.stats.averageScore' | transloco }}</div>
-          <div class="text-3xl font-bold text-info">{{ (statistics()?.averageScore || 0).toFixed(1) }}</div>
+          <div class="text-sm text-neutral-600 mb-1">
+            {{ 'profile.stats.averageScore' | transloco }}
+          </div>
+          <div class="text-3xl font-bold text-info">
+            {{ (statistics()?.averageScore || 0).toFixed(1) }}
+          </div>
         </div>
       </div>
 
@@ -82,16 +90,30 @@
           <h2 class="text-xl font-bold mb-4">{{ 'profile.sections.objectives' | transloco }}</h2>
           <div class="space-y-3">
             <div class="flex justify-between">
-              <span class="text-neutral-600">{{ 'profile.stats.objectivesCompleted' | transloco }}</span>
-              <span class="font-semibold">{{ statistics()?.objectivesCompleted || 0 }} / {{ statistics()?.objectivesTotal || 0 }}</span>
+              <span class="text-neutral-600">{{
+                'profile.stats.objectivesCompleted' | transloco
+              }}</span>
+              <span class="font-semibold"
+                >{{ statistics()?.objectivesCompleted || 0 }} /
+                {{ statistics()?.objectivesTotal || 0 }}</span
+              >
             </div>
             <div class="flex justify-between">
-              <span class="text-neutral-600">{{ 'profile.stats.effectsActivated' | transloco }}</span>
-              <span class="font-semibold text-primary">{{ statistics()?.effectsActivated || 0 }}</span>
+              <span class="text-neutral-600">{{
+                'profile.stats.effectsActivated' | transloco
+              }}</span>
+              <span class="font-semibold text-primary">{{
+                statistics()?.effectsActivated || 0
+              }}</span>
             </div>
             <div class="border-t pt-3 flex justify-between">
               <span class="text-neutral-600">{{ 'profile.stats.tricksWon' | transloco }}</span>
-              <span class="font-semibold">{{ statistics()?.tricksWonTotal || 0 }} ({{ (statistics()?.tricksWonAverage || 0).toFixed(1) }} {{ 'profile.stats.perGame' | transloco }})</span>
+              <span class="font-semibold"
+                >{{ statistics()?.tricksWonTotal || 0 }} ({{
+                  (statistics()?.tricksWonAverage || 0).toFixed(1)
+                }}
+                {{ 'profile.stats.perGame' | transloco }})</span
+              >
             </div>
           </div>
         </div>
@@ -105,10 +127,18 @@
             <table class="min-w-full">
               <thead class="bg-neutral-50">
                 <tr>
-                  <th class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase">{{ 'profile.history.date' | transloco }}</th>
-                  <th class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase">{{ 'profile.history.result' | transloco }}</th>
-                  <th class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase">{{ 'profile.history.score' | transloco }}</th>
-                  <th class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase">{{ 'profile.history.players' | transloco }}</th>
+                  <th class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase">
+                    {{ 'profile.history.date' | transloco }}
+                  </th>
+                  <th class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase">
+                    {{ 'profile.history.result' | transloco }}
+                  </th>
+                  <th class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase">
+                    {{ 'profile.history.score' | transloco }}
+                  </th>
+                  <th class="px-4 py-3 text-left text-xs font-medium text-neutral-500 uppercase">
+                    {{ 'profile.history.players' | transloco }}
+                  </th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-neutral-200">
@@ -117,7 +147,10 @@
                     <td class="px-4 py-3 text-sm">{{ formatDate(game.playedAt) }}</td>
                     <td class="px-4 py-3 text-sm">
                       <span [ngClass]="game.won ? 'text-success font-semibold' : 'text-danger'">
-                        {{ (game.won ? 'profile.history.victory' : 'profile.history.defeat') | transloco }}
+                        {{
+                          (game.won ? 'profile.history.victory' : 'profile.history.defeat')
+                            | transloco
+                        }}
                       </span>
                     </td>
                     <td class="px-4 py-3 text-sm font-semibold">{{ game.score }}</td>

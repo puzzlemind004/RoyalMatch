@@ -87,20 +87,23 @@ export class ScoringDemoComponent implements OnInit {
    * Load mock objectives for the demo player
    */
   loadMockObjectives(): void {
-    this.http.get<{ success: boolean; data: { objectives: Record<string, ObjectiveDefinition[]> } }>(
-      `${environment.apiUrl}/api/objectives/available`
-    ).subscribe({
-      next: (response) => {
-        if (response.success) {
-          // Take 3 easy objectives for demo
-          const easyObjectives = response.data.objectives['easy']?.slice(0, 3) || [];
-          this.mockRoundData.players[0].objectives = easyObjectives;
-        }
-      },
-      error: () => {
-        // Failed to load mock objectives - using empty array as fallback
-      },
-    });
+    this.http
+      .get<{
+        success: boolean;
+        data: { objectives: Record<string, ObjectiveDefinition[]> };
+      }>(`${environment.apiUrl}/api/objectives/available`)
+      .subscribe({
+        next: (response) => {
+          if (response.success) {
+            // Take 3 easy objectives for demo
+            const easyObjectives = response.data.objectives['easy']?.slice(0, 3) || [];
+            this.mockRoundData.players[0].objectives = easyObjectives;
+          }
+        },
+        error: () => {
+          // Failed to load mock objectives - using empty array as fallback
+        },
+      });
   }
 
   /**
@@ -116,7 +119,7 @@ export class ScoringDemoComponent implements OnInit {
         {
           roundId: this.mockRoundData.roundId,
           mockRoundData: this.mockRoundData,
-        }
+        },
       )
       .subscribe({
         next: (response) => {
@@ -144,10 +147,7 @@ export class ScoringDemoComponent implements OnInit {
    * Reset scores
    */
   resetScores(): void {
-    this.http.post<{ success: boolean }>(
-      `${environment.apiUrl}/api/scoring/reset`,
-      {}
-    ).subscribe({
+    this.http.post<{ success: boolean }>(`${environment.apiUrl}/api/scoring/reset`, {}).subscribe({
       next: () => {
         this.scoringResult.set(null);
         this.allObjectivesCompleted.set(false);

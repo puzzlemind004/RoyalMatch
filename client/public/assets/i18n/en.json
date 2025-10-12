@@ -403,6 +403,26 @@
           "description": "Points accumulate round after round"
         }
       }
+    },
+    "cardDistribution": {
+      "title": "Demo - Card Distribution",
+      "subtitle": "Task 6.1: Distribution of 13 cards per player with cryptographic shuffle",
+      "playerCount": "Number of players",
+      "distribute": "Distribute Cards",
+      "reset": "Reset",
+      "totalCards": "Total cards",
+      "distributed": "Distributed",
+      "remaining": "Remaining",
+      "players": "Players",
+      "distributing": "Distributing...",
+      "player": "Player",
+      "cards": "cards",
+      "emptyState": "Click 'Distribute Cards' to start the distribution",
+      "infoTitle": "Implemented Features",
+      "info1": "Creation of a standard 52-card deck (13 per suit)",
+      "info2": "Cryptographic shuffle with crypto.randomBytes (secure)",
+      "info3": "Fair distribution of 13 cards per player (2-4 players)",
+      "info4": "Automatic save in GamePlayer.hand (database)"
     }
   },
   "objectives": {

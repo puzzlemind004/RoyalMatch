@@ -71,7 +71,7 @@ export class ObjectiveValidationService {
           this.error.set(errorKey);
           this.loading.set(false);
         },
-      })
+      }),
     );
   }
 
@@ -114,10 +114,7 @@ export class ObjectiveValidationService {
    * Validate (confirm) the current objectives
    * Sends the final selection to the server
    */
-  validateObjectives(
-    gameId: string,
-    playerId: string
-  ): Observable<ValidateObjectivesResponse> {
+  validateObjectives(gameId: string, playerId: string): Observable<ValidateObjectivesResponse> {
     this.loading.set(true);
     this.error.set(null);
 
@@ -141,7 +138,7 @@ export class ObjectiveValidationService {
           this.error.set(errorKey);
           this.loading.set(false);
         },
-      })
+      }),
     );
   }
 

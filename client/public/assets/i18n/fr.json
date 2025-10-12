@@ -403,6 +403,26 @@
           "description": "Les points s'accumulent manche après manche"
         }
       }
+    },
+    "cardDistribution": {
+      "title": "Démo - Distribution de Cartes",
+      "subtitle": "Tâche 6.1 : Distribution de 13 cartes par joueur avec shuffle cryptographique",
+      "playerCount": "Nombre de joueurs",
+      "distribute": "Distribuer les Cartes",
+      "reset": "Réinitialiser",
+      "totalCards": "Total cartes",
+      "distributed": "Distribuées",
+      "remaining": "Restantes",
+      "players": "Joueurs",
+      "distributing": "Distribution en cours...",
+      "player": "Joueur",
+      "cards": "cartes",
+      "emptyState": "Cliquez sur 'Distribuer les Cartes' pour commencer la distribution",
+      "infoTitle": "Fonctionnalités Implémentées",
+      "info1": "Création d'un deck standard de 52 cartes (13 par couleur)",
+      "info2": "Mélange cryptographique avec crypto.randomBytes (sécurisé)",
+      "info3": "Distribution équitable de 13 cartes par joueur (2-4 joueurs)",
+      "info4": "Sauvegarde automatique dans GamePlayer.hand (BDD)"
     }
   },
   "objectives": {

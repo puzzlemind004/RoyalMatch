@@ -31,7 +31,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private router: Router
+    private router: Router,
   ) {}
 
   /**
@@ -40,7 +40,7 @@ export class AuthService {
   async register(data: RegisterRequest): Promise<AuthResponse> {
     try {
       const response = await firstValueFrom(
-        this.http.post<AuthResponse>(`${this.apiUrl}/register`, data)
+        this.http.post<AuthResponse>(`${this.apiUrl}/register`, data),
       );
 
       if (response.success && response.data) {
@@ -72,7 +72,7 @@ export class AuthService {
   async login(data: LoginRequest): Promise<AuthResponse> {
     try {
       const response = await firstValueFrom(
-        this.http.post<AuthResponse>(`${this.apiUrl}/login`, data)
+        this.http.post<AuthResponse>(`${this.apiUrl}/login`, data),
       );
 
       if (response.success && response.data) {
@@ -119,9 +119,7 @@ export class AuthService {
    */
   async me(): Promise<User | null> {
     try {
-      const response = await firstValueFrom(
-        this.http.get<MeResponse>(`${this.apiUrl}/me`)
-      );
+      const response = await firstValueFrom(this.http.get<MeResponse>(`${this.apiUrl}/me`));
 
       if (response.success && response.data) {
         this.currentUser.set(response.data.user);

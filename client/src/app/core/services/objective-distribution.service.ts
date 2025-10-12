@@ -50,7 +50,7 @@ export class ObjectiveDistributionService {
           this.error.set(errorKey);
           this.loading.set(false);
         },
-      })
+      }),
     );
   }
 
@@ -60,7 +60,7 @@ export class ObjectiveDistributionService {
   drawObjectives(
     selection: ObjectiveSelection,
     gameId: string = 'demo-game',
-    playerId: string = 'demo-player'
+    playerId: string = 'demo-player',
   ): Observable<DrawObjectivesResponse> {
     this.loading.set(true);
     this.error.set(null);
@@ -85,7 +85,7 @@ export class ObjectiveDistributionService {
           this.error.set(errorKey);
           this.loading.set(false);
         },
-      })
+      }),
     );
   }
 

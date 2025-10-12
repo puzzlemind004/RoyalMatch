@@ -1,0 +1,175 @@
+<div class="min-h-screen p-4 md:p-8">
+  <!-- Header -->
+  <div class="mb-8 text-center">
+    <h1 class="text-3xl md:text-4xl font-bold mb-2">
+      {{ 'demo.cardDistribution.title' | transloco }}
+    </h1>
+    <p class="text-lg opacity-80">
+      {{ 'demo.cardDistribution.subtitle' | transloco }}
+    </p>
+  </div>
+
+  <!-- Controls -->
+  <div class="max-w-4xl mx-auto mb-8 p-6 bg-surface-secondary rounded-lg">
+    <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+      <!-- Player Count Selector -->
+      <div class="flex flex-col gap-2">
+        <label class="text-sm font-medium">
+          {{ 'demo.cardDistribution.playerCount' | transloco }}
+        </label>
+        <div class="flex gap-2">
+          @for (count of [2, 3, 4]; track count) {
+            <button
+              (click)="setPlayerCount(count)"
+              [class.primary-btn]="playerCount() === count"
+              [class.bg-surface-tertiary]="playerCount() !== count"
+              class="px-4 py-2 rounded-lg font-medium transition-colors hover:opacity-80"
+            >
+              {{ count }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex gap-2">
+        <button
+          (click)="distributeCards()"
+          [disabled]="isDistributing()"
+          class="px-6 py-3 primary-btn font-medium transition-all hover:opacity-90 disabled:opacity-50"
+        >
+          {{ 'demo.cardDistribution.distribute' | transloco }}
+        </button>
+        <button
+          (click)="resetDistribution()"
+          [disabled]="playerHands().length === 0"
+          class="px-6 py-3 bg-neutral-300 rounded-lg font-medium transition-all hover:opacity-80 disabled:opacity-50"
+        >
+          {{ 'demo.cardDistribution.reset' | transloco }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    @if (playerHands().length > 0) {
+      <div class="mt-4 pt-4 border-t border-surface-tertiary">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+          <div>
+            <div class="text-2xl font-bold">{{ deck().length }}</div>
+            <div class="text-sm opacity-70">
+              {{ 'demo.cardDistribution.totalCards' | transloco }}
+            </div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold">{{ cardsDistributed() }}</div>
+            <div class="text-sm opacity-70">
+              {{ 'demo.cardDistribution.distributed' | transloco }}
+            </div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold">{{ deck().length - cardsDistributed() }}</div>
+            <div class="text-sm opacity-70">
+              {{ 'demo.cardDistribution.remaining' | transloco }}
+            </div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold">{{ playerCount() }}</div>
+            <div class="text-sm opacity-70">
+              {{ 'demo.cardDistribution.players' | transloco }}
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Distribution Animation -->
+  @if (isDistributing()) {
+    <div class="text-center py-12">
+      <div
+        class="inline-block animate-spin rounded-full h-16 w-16 border-4 border-primary border-t-transparent"
+      ></div>
+      <p class="mt-4 text-lg">
+        {{ 'demo.cardDistribution.distributing' | transloco }}
+      </p>
+    </div>
+  }
+
+  <!-- Player Hands -->
+  @if (!isDistributing() && playerHands().length > 0) {
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        @for (hand of playerHands(); track hand.playerNumber) {
+          <div class="p-6 bg-surface-secondary rounded-lg">
+            <!-- Player Header -->
+            <div class="mb-4 flex items-center justify-between">
+              <h2 class="text-xl font-bold">
+                {{ 'demo.cardDistribution.player' | transloco }} {{ hand.playerNumber }}
+              </h2>
+              <span class="text-sm opacity-70">
+                {{ hand.cards.length }} {{ 'demo.cardDistribution.cards' | transloco }}
+              </span>
+            </div>
+
+            <!-- Suit Distribution -->
+            <div class="mb-4 grid grid-cols-4 gap-2 text-center text-sm">
+              @for (
+                suit of [CardSuit.HEARTS, CardSuit.DIAMONDS, CardSuit.CLUBS, CardSuit.SPADES];
+                track suit
+              ) {
+                <div class="p-2 bg-surface-tertiary rounded">
+                  <div class="text-2xl mb-1">{{ getSuitEmoji(suit) }}</div>
+                  <div class="font-bold">{{ getCardCountBySuit(hand)[suit] }}</div>
+                </div>
+              }
+            </div>
+
+            <!-- Cards -->
+            <div class="flex flex-wrap gap-2 justify-center">
+              @for (card of hand.cards; track card.id) {
+                <div class="w-16 md:w-20">
+                  <app-card [card]="card" [faceUp]="true" [selectable]="false" [selected]="false" />
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Empty State -->
+  @if (!isDistributing() && playerHands().length === 0) {
+    <div class="text-center py-16 opacity-70">
+      <svg
+        class="w-24 h-24 mx-auto mb-4 opacity-50"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+        />
+      </svg>
+      <p class="text-lg">
+        {{ 'demo.cardDistribution.emptyState' | transloco }}
+      </p>
+    </div>
+  }
+
+  <!-- Info Box -->
+  <div class="max-w-4xl mx-auto mt-8 p-6 bg-surface-secondary rounded-lg">
+    <h3 class="text-lg font-bold mb-2">
+      {{ 'demo.cardDistribution.infoTitle' | transloco }}
+    </h3>
+    <ul class="list-disc list-inside space-y-1 opacity-80">
+      <li>{{ 'demo.cardDistribution.info1' | transloco }}</li>
+      <li>{{ 'demo.cardDistribution.info2' | transloco }}</li>
+      <li>{{ 'demo.cardDistribution.info3' | transloco }}</li>
+      <li>{{ 'demo.cardDistribution.info4' | transloco }}</li>
+    </ul>
+  </div>
+</div>

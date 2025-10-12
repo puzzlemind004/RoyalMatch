@@ -72,12 +72,16 @@
               class="flex items-center space-x-0 md:space-x-2 w-9 h-9 md:w-auto md:h-auto md:px-3 md:py-1.5 md:bg-neutral-100 rounded-full md:rounded-lg hover:ring-2 md:hover:ring-0 md:hover:bg-neutral-200 hover:ring-primary hover:ring-offset-2 transition-all cursor-pointer"
               [attr.title]="'profile.title' | transloco"
             >
-              <div class="w-9 h-9 md:w-7 md:h-7 avatar-gradient rounded-full flex items-center justify-center flex-shrink-0">
+              <div
+                class="w-9 h-9 md:w-7 md:h-7 avatar-gradient rounded-full flex items-center justify-center flex-shrink-0"
+              >
                 <span class="text-white text-sm md:text-xs font-bold">{{
                   user!.username.charAt(0).toUpperCase()
                 }}</span>
               </div>
-              <span class="hidden md:inline text-sm font-medium text-neutral-700">{{ user!.username }}</span>
+              <span class="hidden md:inline text-sm font-medium text-neutral-700">{{
+                user!.username
+              }}</span>
             </a>
             <!-- Logout Button -->
             <button
@@ -123,7 +127,7 @@
             <!-- Register Button -->
             <a
               routerLink="/register"
-              class="flex items-center space-x-1.5 px-3 py-1.5 text-sm font-medium text-white primary-btn rounded-lg"
+              class="flex items-center space-x-1.5 px-3 py-1.5 text-sm font-medium primary-btn"
               [attr.aria-label]="'auth.button.register' | transloco"
             >
               <!-- Register icon (user plus) -->
@@ -179,11 +183,7 @@
         <ul class="space-y-1">
           @for (link of demoLinks; track link.path) {
             <li>
-              <a
-                [routerLink]="link.path"
-                (click)="closeMenu()"
-                class="menu-item"
-              >
+              <a [routerLink]="link.path" (click)="closeMenu()" class="menu-item">
                 <span class="text-xl">{{ link.icon }}</span>
                 <span class="text-sm font-medium">{{ link.label }}</span>
               </a>
