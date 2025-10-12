@@ -115,6 +115,11 @@
   @apply bg-white rounded-lg shadow-xl border border-neutral-200;
 }
 
+/* Surface secondaire (arrière-plan légèrement grisé) */
+.bg-surface-secondary {
+  @apply bg-neutral-100;
+}
+
 /* ===== NAVIGATION ===== */
 
 /* Item de menu */

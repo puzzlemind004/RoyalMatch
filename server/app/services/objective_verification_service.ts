@@ -196,7 +196,8 @@ export default class ObjectiveVerificationService {
     const remainingCards = totalCards - cardsPlayed.length
 
     // First and last trick detection
-    const firstTrickWon = playerData.tricks.length > 0 && playerData.tricks[0].winner === playerData.playerId
+    const firstTrickWon =
+      playerData.tricks.length > 0 && playerData.tricks[0].winner === playerData.playerId
     const lastTrickWon =
       playerData.tricks.length > 0 &&
       playerData.tricks[playerData.tricks.length - 1].winner === playerData.playerId
@@ -228,10 +229,7 @@ export default class ObjectiveVerificationService {
    * @param tricks - All tricks in order
    * @returns Max consecutive tricks won
    */
-  private calculateConsecutiveTricks(
-    playerId: string,
-    tricks: Array<{ winner: string }>
-  ): number {
+  private calculateConsecutiveTricks(playerId: string, tricks: Array<{ winner: string }>): number {
     let maxConsecutive = 0
     let currentConsecutive = 0
 

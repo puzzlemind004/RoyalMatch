@@ -93,6 +93,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'mulligan',
+        loadComponent: () =>
+          import('./features/demo/pages/mulligan-demo/mulligan-demo.page').then(
+            (m) => m.MulliganDemoPage,
+          ),
+      },
+      {
         path: 'ranks',
         loadComponent: () =>
           import('./features/demo/pages/rank-demo/rank-demo.page').then((m) => m.RankDemoPage),

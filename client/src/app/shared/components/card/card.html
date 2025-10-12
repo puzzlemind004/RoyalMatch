@@ -1,8 +1,8 @@
 <div
-  class="card-container group relative aspect-[2.5/3.5] w-24 cursor-pointer transition-transform duration-300 hover:scale-105"
+  class="card-container group relative aspect-[2.5/3.5] w-24 md:w-28 cursor-pointer rounded-lg transition-transform duration-300 hover:scale-105"
   [class.pointer-events-none]="!selectable()"
   [class.ring-4]="selected()"
-  [class.ring-blue-500]="selected()"
+  [class]="selected() ? ringColor() : ''"
   (click)="onCardClick()"
   (touchstart)="onCardTap($event)"
 >

@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "docker:dev": "docker compose up",
+    "predocker:dev:build": "npm run docker:down",
     "docker:dev:build": "docker compose up --build",
+    "postdocker:dev:build": "docker exec royalmatch-backend node ace migration:run",
     "docker:down": "docker compose down",
     "docker:clean": "docker compose down -v",
     "docker:prod": "docker compose -f docker-compose.prod.yml up -d",

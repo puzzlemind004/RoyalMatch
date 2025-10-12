@@ -92,10 +92,7 @@ export default class ObjectiveDistributionService {
    * Validate that the selection is feasible given available objectives
    * @throws Error if selection exceeds available objectives in any pool
    */
-  private validateSelection(
-    selection: ObjectiveSelection,
-    available: AvailableObjectives
-  ): void {
+  private validateSelection(selection: ObjectiveSelection, available: AvailableObjectives): void {
     if (selection.easy > available.easy.length) {
       throw new Error(
         `game.errors.notEnoughObjectives|easy|${selection.easy}|${available.easy.length}`
